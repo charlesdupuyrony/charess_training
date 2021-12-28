@@ -1,5 +1,8 @@
 package org.charess.training.domain.security;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -13,7 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User implements Serializable, UserDetails {
+public class User implements Serializable, UserDetails, CredentialsContainer {
 
     @Id
     private Integer id;
@@ -43,17 +46,17 @@ public class User implements Serializable, UserDetails {
     @JoinColumn(name = "profile")
     private Profile profile;
 
-    @Column(name = "created", nullable = false)
-    private LocalDateTime created = LocalDateTime.now();
+    @Column(name = "activated_by")
+    private Integer activatedBy;
 
-    @Column(name = "creator", nullable = false)
-    private Integer creator;
+    @Column(name="activated_date")
+    private LocalDateTime activatedDate;
 
-    @Column(name = "edited")
-    private LocalDateTime edited;
+    @Column(name = "edited_by")
+    private Integer editedBy;
 
-    @Column(name = "editor")
-    private Integer editor;
+    @Column(name="edited_date")
+    private LocalDateTime editedDate;
 
     public Collection<Profile> getAuthorities() {
         List<Profile> authorities = new ArrayList<Profile>();
@@ -100,7 +103,14 @@ public class User implements Serializable, UserDetails {
         this.person = person;
     }
 
-    @Override
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -109,11 +119,12 @@ public class User implements Serializable, UserDetails {
         this.username = username;
     }
 
-    @Override
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }
@@ -134,43 +145,69 @@ public class User implements Serializable, UserDetails {
         this.status = status;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public Integer getActivatedBy() {
+        return activatedBy;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setActivatedBy(Integer activatedBy) {
+        this.activatedBy = activatedBy;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
+    public LocalDateTime getActivatedDate() {
+        return activatedDate;
     }
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
+    public void setActivatedDate(LocalDateTime activatedDate) {
+        this.activatedDate = activatedDate;
     }
 
-    public Integer getCreator() {
-        return creator;
+    public LocalDateTime getEditedDate() {
+        return editedDate;
     }
 
-    public void setCreator(Integer creator) {
-        this.creator = creator;
+    public void setEditedDate(LocalDateTime editedDate) {
+        this.editedDate = editedDate;
     }
 
-    public LocalDateTime getEdited() {
-        return edited;
+    public Integer getEditedBy() {
+        return editedBy;
     }
 
-    public void setEdited(LocalDateTime edited) {
-        this.edited = edited;
+    public void setEditedBy(Integer editedBy) {
+        this.editedBy = editedBy;
     }
 
-    public Integer getEditor() {
-        return editor;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id);
     }
 
-    public void setEditor(Integer editor) {
-        this.editor = editor;
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", person=" + person +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", locale='" + locale + '\'' +
+                ", status='" + status + '\'' +
+                ", profile=" + profile +
+                ", activatedBy=" + activatedBy +
+                ", activatedDate=" + activatedDate +
+                ", editedBy=" + editedBy +
+                ", editedDate=" + editedDate +
+                '}';
+    }
+
+    public void eraseCredentials() {
+        this.password = null;
     }
 }

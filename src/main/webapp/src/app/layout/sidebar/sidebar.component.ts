@@ -10,7 +10,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { ROUTES } from './sidebar-items';
-import { Role } from 'src/app/core/models/role';
+import { Role } from 'src/app/core/models/security/role';
 import { AuthService } from 'src/app/core/service/auth.service';
 @Component({
   selector: 'app-sidebar',
@@ -99,24 +99,24 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     if (this.authService.currentUserValue) {
-      const userRole = this.authService.currentUserValue.role;
+      const userRole = this.authService.currentUserValue.profile.role;
       this.userFullName =
-        this.authService.currentUserValue.firstName +
+        this.authService.currentUserValue.person.firstName +
         ' ' +
-        this.authService.currentUserValue.lastName;
+        this.authService.currentUserValue.person.lastName;
       this.userImg = this.authService.currentUserValue.img;
 
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('All') !== -1
       );
-      if (userRole === Role.Admin) {
-        this.userType = Role.Admin;
-      } else if (userRole === Role.Teacher) {
-        this.userType = Role.Teacher;
-      } else if (userRole === Role.Student) {
-        this.userType = Role.Student;
+      if (userRole === Role.ADMIN) {
+        this.userType = Role.ADMIN;
+      } else if (userRole === Role.ORGANISER) {
+        this.userType = Role.ORGANISER;
+      } else if (userRole === Role.ATTENDEE) {
+        this.userType = Role.ATTENDEE;
       } else {
-        this.userType = Role.Admin;
+        this.userType = Role.ADMIN;
       }
     }
 

@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:4200',
-  auth: 'http://localhost:8080/api/authentication',
+  //auth: 'api/authentication',
+    auth: 'http://localhost:8080/authenticate',
 };
 
 /*

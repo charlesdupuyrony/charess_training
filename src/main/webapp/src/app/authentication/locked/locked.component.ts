@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/service/auth.service';
-import { Role } from 'src/app/core/models/role';
+import { Role } from 'src/app/core/models/security/role';
 @Component({
   selector: 'app-locked',
   templateUrl: './locked.component.html',
@@ -26,9 +26,9 @@ export class LockedComponent implements OnInit {
     });
     this.userImg = this.authService.currentUserValue.img;
     this.userFullName =
-      this.authService.currentUserValue.firstName +
+      this.authService.currentUserValue.person.firstName +
       ' ' +
-      this.authService.currentUserValue.lastName;
+      this.authService.currentUserValue.person.lastName;
   }
   get f() {
     return this.authForm.controls;
@@ -39,12 +39,12 @@ export class LockedComponent implements OnInit {
     if (this.authForm.invalid) {
       return;
     } else {
-      const role = this.authService.currentUserValue.role;
-      if (role === Role.All || role === Role.Admin) {
+      const role = this.authService.currentUserValue.profile.role;
+      if (role === Role.SUPER || role === Role.ADMIN) {
         this.router.navigate(['/admin/dashboard/main']);
-      } else if (role === Role.Teacher) {
+      } else if (role === Role.ORGANISER) {
         this.router.navigate(['/teacher/dashboard']);
-      } else if (role === Role.Student) {
+      } else if (role === Role.ATTENDEE) {
         this.router.navigate(['/student/dashboard']);
       } else {
         this.router.navigate(['/authentication/signin']);

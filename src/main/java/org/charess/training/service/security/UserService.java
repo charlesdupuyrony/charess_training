@@ -4,4 +4,5 @@ import org.charess.training.domain.security.User;
 
 public interface UserService {
     User findByUsername(String username);
+    User getCurrentUser();
 }

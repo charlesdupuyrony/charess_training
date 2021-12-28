@@ -6,6 +6,9 @@ import org.charess.training.repository.security.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +30,17 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findByUsername(String username) {
-        User user = userRepository.findByUsername(username);
-        log.info("==username: {}-----{}", username, user);
+        return userRepository.findByUsername(username);
+    }
+
+    public User getCurrentUser() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        User user = null;
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof User)
+                user = (User) authentication.getPrincipal();
+        }
         return user;
     }
 }

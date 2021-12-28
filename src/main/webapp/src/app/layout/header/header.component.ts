@@ -11,7 +11,7 @@ import {
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Router } from '@angular/router';
 import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
-import { Role } from 'src/app/core/models/role';
+import { Role } from 'src/app/core/models/security/role';
 import { LanguageService } from 'src/app/core/service/language.service';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 const document: any = window.document;
@@ -98,14 +98,14 @@ export class HeaderComponent
   ngOnInit() {
     this.config = this.configService.configData;
 
-    const userRole = this.authService.currentUserValue.role;
+    const userRole = this.authService.currentUserValue.profile.role;
     this.userImg = this.authService.currentUserValue.img;
 
-    if (userRole === Role.Admin) {
+    if (userRole === Role.ADMIN) {
       this.homePage = 'admin/dashboard/main';
-    } else if (userRole === Role.Teacher) {
+    } else if (userRole === Role.ORGANISER) {
       this.homePage = 'teacher/dashboard';
-    } else if (userRole === Role.Student) {
+    } else if (userRole === Role.ATTENDEE) {
       this.homePage = 'student/dashboard';
     } else {
       this.homePage = 'admin/dashboard/main';
