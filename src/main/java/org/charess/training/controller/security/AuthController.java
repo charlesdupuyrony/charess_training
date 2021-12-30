@@ -20,6 +20,7 @@ import java.util.Objects;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api")
 public class AuthController {
 
     private AuthenticationManager authenticationManager;

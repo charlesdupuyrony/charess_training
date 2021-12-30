@@ -11,8 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin()
 @RestController
-@RequestMapping("/api/place")
+@RequestMapping({ "/api/place" })
 public class PlaceController {
 
     private PlaceService placeService;
@@ -23,8 +24,9 @@ public class PlaceController {
         this.placeService = placeService;
     }
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(method= RequestMethod.GET, produces = "application/json")
     public Page<Place> find(Pageable pageable, @RequestParam(value = "filter", required = false) String filter) {
+        log.info("===================================");
         return placeService.find(filter, pageable);
     }
 
