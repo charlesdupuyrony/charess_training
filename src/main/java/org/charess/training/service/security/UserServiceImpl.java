@@ -1,6 +1,5 @@
 package org.charess.training.service.security;
 
-import org.charess.training.controller.security.PlaceController;
 import org.charess.training.domain.security.User;
 import org.charess.training.repository.security.UserRepository;
 import org.slf4j.Logger;
@@ -31,16 +30,5 @@ public class UserServiceImpl implements UserService {
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    public User getCurrentUser() {
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        Authentication authentication = securityContext.getAuthentication();
-        User user = null;
-        if (authentication != null) {
-            if (authentication.getPrincipal() instanceof User)
-                user = (User) authentication.getPrincipal();
-        }
-        return user;
     }
 }

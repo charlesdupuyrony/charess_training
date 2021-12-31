@@ -16,7 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User implements Serializable, UserDetails, CredentialsContainer {
+public class User implements Serializable, UserDetails {
 
     @Id
     private Integer id;
@@ -57,6 +57,17 @@ public class User implements Serializable, UserDetails, CredentialsContainer {
 
     @Column(name="edited_date")
     private LocalDateTime editedDate;
+
+    @Transient
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Collection<Profile> getAuthorities() {
         List<Profile> authorities = new ArrayList<Profile>();
@@ -207,7 +218,4 @@ public class User implements Serializable, UserDetails, CredentialsContainer {
                 '}';
     }
 
-    public void eraseCredentials() {
-        this.password = null;
-    }
 }

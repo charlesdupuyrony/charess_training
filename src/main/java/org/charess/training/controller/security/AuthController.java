@@ -2,7 +2,6 @@ package org.charess.training.controller.security;
 
 
 import org.charess.training.configuration.Token;
-import org.charess.training.domain.security.JwtResponse;
 import org.charess.training.domain.security.User;
 import org.charess.training.service.security.AuthUserService;
 import org.slf4j.Logger;
@@ -38,11 +37,12 @@ public class AuthController {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody User user) throws Exception {
-        log.info("user={}, password={}", user.getUsername(), user.getPassword());
-
         authenticate(user.getUsername(), user.getPassword());
-        final UserDetails userDetails = authUserService.loadUserByUsername(user.getUsername());
-        return ResponseEntity.ok(new JwtResponse(token.generateToken(userDetails)));
+        UserDetails details = authUserService.loadUserByUsername(user.getUsername());
+        User usr = authUserService.findByUsername(user.getUsername());
+        if(usr != null)
+            usr.setToken(token.generateToken(details));
+        return ResponseEntity.ok(usr);
     }
 
     private void authenticate(String username, String password) throws Exception {

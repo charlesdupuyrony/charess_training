@@ -1,0 +1,64 @@
+{
+  "_from": "@types/angular-local-storage",
+  "_id": "@types/angular-local-storage@0.7.0",
+  "_inBundle": false,
+  "_integrity": "sha512-DneEdgV+hBsvmbk7yNsm+/EIPoJP3cej6rDz45ipat3lq2acBy4/GOyVpVPr5dDIcEW0/BcoqO2PZ3SiuMWA+w==",
+  "_location": "/@types/angular-local-storage",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@types/angular-local-storage",
+    "name": "@types/angular-local-storage",
+    "escapedName": "@types%2fangular-local-storage",
+    "scope": "@types",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/angular-local-storage/-/angular-local-storage-0.7.0.tgz",
+  "_shasum": "505bc975259e091511ba7b5a6a5ac196fdd22e5b",
+  "_spec": "@types/angular-local-storage",
+  "_where": "/home/charess/workspace/trainsmart_/font-end",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Ken Fukuyama",
+      "url": "https://github.com/kenfdev"
+    },
+    {
+      "name": "Davide Donadello",
+      "url": "https://github.com/dona278"
+    },
+    {
+      "name": "Piotr Błażejewicz",
+      "url": "https://github.com/peterblazejewicz"
+    }
+  ],
+  "dependencies": {
+    "@types/angular": "*"
+  },
+  "deprecated": false,
+  "description": "TypeScript definitions for angular-local-storage",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
+  "license": "MIT",
+  "main": "",
+  "name": "@types/angular-local-storage",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+    "directory": "types/angular-local-storage"
+  },
+  "scripts": {},
+  "typeScriptVersion": "2.8",
+  "types": "index.d.ts",
+  "typesPublisherContentHash": "7bea5915ea8e0ad2cf4bbe44549638fcc4c078b42c975ec5967a50689c2d453b",
+  "version": "0.7.0"
+}
