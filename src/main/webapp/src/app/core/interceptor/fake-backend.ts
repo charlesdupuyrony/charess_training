@@ -9,8 +9,8 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { User } from '../models/user';
-import { Role } from '../models/role';
+import { User } from '../models/security/user';
+import { Role } from '../models/security/role';
 
 const users: User[] = [
   {
