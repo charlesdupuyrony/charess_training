@@ -1,4 +1,4 @@
-insert into training.profile (id, name, page, role) VALUES (1,'super','training.configuration.account','super');
+insert into training.profile (id, name, page, role) VALUES (1,'Super','admin/dashboard/main','super');
 insert into training.person(id, first_name, last_name, gender, phone, identifier, identifier_type) values(1, 'Super', 'Admin', 'i', '(509) 0000-0000', '000-000-000-0', 'NIF');
 insert into training.users(id, username, password, status, locale, profile, created, creator)
 values(1, 'admin', '$2a$12$AHTfyhLWwKQ0pTMcbLqxVuMu8szRACausXNXk1pmjUlWseoGver5e', 'active', 'fr', 1, now(), 1); -- password: admin@pass
