@@ -37,10 +37,10 @@ export class ChipsComponent {
     { name: 'Accent', color: 'accent' },
     { name: 'Warn', color: 'warn' }
   ];
-  @ViewChild('fruitInput', { static: true }) fruitInput: ElementRef<
-    HTMLInputElement
-  >;
-  @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete;
+
+  @ViewChild('fruitInput', { static: true }) fruitInput: ElementRef<HTMLInputElement>;
+
+
   constructor() {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -49,6 +49,7 @@ export class ChipsComponent {
       )
     );
   }
+
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;

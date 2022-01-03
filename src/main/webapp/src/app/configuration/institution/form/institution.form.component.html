@@ -26,13 +26,16 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Location</mat-label>
-                        <mat-select formControlName="locationAddress" required>
-                            <mat-option [value]="l.id" *ngFor="let l of locations">{{l.fullname}}</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="fg.get('locationAddress').hasError('required')">{{'This field is required' | translate}}</mat-error>
+                        <input type="text" placeholder=""  matInput [formControl]="locationControl" [matAutocomplete]="auto">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="display">
+                            <mat-option *ngFor="let location of filteredLocations | async" [value]="location">
+                                {{location.fullname}}
+                            </mat-option>
+                        </mat-autocomplete>
                     </mat-form-field>
                 </div>
             </div>
+
             <!--<div class="row">-->
                 <!--<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">-->
                     <!--<mat-form-field class="example-full-width mb-3" appearance="outline">-->

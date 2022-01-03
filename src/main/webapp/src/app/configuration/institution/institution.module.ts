@@ -24,6 +24,7 @@ import {InstitutionPageComponent} from "./page/institution.page.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {InstitutionFormComponent} from "./form/institution.form.component";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import {InstitutionFormComponent} from "./form/institution.form.component";
         TranslateModule,
         InstitutionRoutingModule,
         NgxDatatableModule,
+        MatAutocompleteModule
     ],
     providers: [InstitutionService]
 })
