@@ -1,8 +1,12 @@
 package org.charess.training.configuration;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import org.charess.training.controller.security.PlaceController;
 import org.charess.training.service.security.AuthUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,13 +29,15 @@ public class RequestFilter extends OncePerRequestFilter {
     @Autowired
     private Token token;
 
+    private final Logger log = LoggerFactory.getLogger(RequestFilter.class);
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
-        final String requestTokenHeader = request.getHeader("Authorization");
+        final String requestTokenHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         String username = null;
         String jwtToken = null;
-
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {

@@ -58,8 +58,7 @@ export class HeaderComponent extends UnsubscribeOnDestroyAdapter implements OnIn
         this.profile = this.usr.profile.name;
         this.homePage = this.usr.profile.page;
 
-        if(this.usr.locale && localStorage.getItem('lang') && localStorage.getItem('lang') !== this.usr.locale)
-            localStorage.setItem('lang', this.usr.locale);
+        localStorage.setItem('lang', this.usr.locale);
 
         this.langStoreValue = localStorage.getItem('lang');
         const val = this.listLang.filter((x) => x.lang === this.langStoreValue);
@@ -71,6 +70,8 @@ export class HeaderComponent extends UnsubscribeOnDestroyAdapter implements OnIn
         } else {
             this.flagvalue = val.map((element) => element.flag);
         }
+
+        this.setLanguage(val[0].text, val[0].lang, val[0].flag)
     }
 
     ngAfterViewInit() {

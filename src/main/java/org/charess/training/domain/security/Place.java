@@ -22,6 +22,18 @@ public class Place extends Name implements Serializable {
     @JoinColumn(name = "parent")
     private Place parent;
 
+    @Transient
+    private String address;
+
+    public String getAddress() {
+        String str = "";
+        if(textAddress != null)
+            str += textAddress;
+        if(locationAddress != null)
+            str += str.length()>0?", ":"" + locationAddress.getFullname();
+        return str;
+    }
+
     public Location getLocationAddress() {
         return locationAddress;
     }

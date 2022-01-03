@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a href="#" onClick="return false;" class="navbar-toggle collapsed" (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
             <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
-            <a class="navbar-brand" routerLink={{homePage}}><img src="assets/images/logo.png" alt=""/><span class="logo-name">Smart</span></a>
+            <a class="navbar-brand" routerLink={{homePage}}><img src="assets/images/logo.png" alt=""/><span class="logo-name">CHARESS</span></a>
         </div>
         <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed">
             <ul class="float-start collapse-menu-icon">
@@ -33,6 +33,7 @@
                     <a ngbDropdownToggle class="lang-dropdown">
                         <img *ngIf="flagvalue !== undefined" src="{{flagvalue}}" height="16">
                         <img *ngIf="flagvalue === undefined" src="{{defaultFlag}}" height="16">
+                        <span>&nbsp;&nbsp;</span>
                     </a>
                     <div ngbDropdownMenu class="dropdown-menu lang-item dropdown-menu-right pullDown">
                         <a href="javascript:void(0);" class="dropdown-item lang-item-list" *ngFor="let item of listLang" (click)="setLanguage(item.text, item.lang, item.flag)" [ngClass]="{'active': langStoreValue === item.lang}">

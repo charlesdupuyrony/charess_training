@@ -4,8 +4,11 @@ import org.charess.training.domain.security.Place;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface PlaceService {
 
-    Page<Place> find(String filter, Pageable pageable);
+    List<Place> all();
+    void delete(Integer id);
     Place save(Place place);
 }

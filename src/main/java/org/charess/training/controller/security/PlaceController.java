@@ -5,15 +5,15 @@ import org.charess.training.service.security.PlaceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin()
+import java.util.List;
+
 @RestController
-@RequestMapping({ "/api/place" })
+@CrossOrigin
+@RequestMapping("/api/place")
 public class PlaceController {
 
     private PlaceService placeService;
@@ -24,10 +24,15 @@ public class PlaceController {
         this.placeService = placeService;
     }
 
-    @RequestMapping(method= RequestMethod.GET, produces = "application/json")
-    public Page<Place> find(Pageable pageable, @RequestParam(value = "filter", required = false) String filter) {
-        log.info("===================================");
-        return placeService.find(filter, pageable);
+    @RequestMapping(method= RequestMethod.GET)
+    public List<Place> all() {
+        return placeService.all();
+    }
+
+    @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
+    public void delete(@PathVariable("id") Integer id) {
+        log.info("======================{}====================", id);
+        placeService.delete(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service("placeService")
 public class PlaceServiceImpl implements PlaceService {
@@ -19,8 +21,12 @@ public class PlaceServiceImpl implements PlaceService {
         this.placeRepository = placeRepository;
     }
 
-    public Page<Place> find(String filter, Pageable pageable){
-        return placeRepository.find(filter==null?"":filter, pageable);
+    public List<Place> all(){
+        return placeRepository.findAll();
+    }
+
+    public void delete(Integer id){
+        placeRepository.deleteById(id);
     }
 
     public Place save(Place place){

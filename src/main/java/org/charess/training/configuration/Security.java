@@ -50,26 +50,26 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
-            .authorizeRequests()
-            .antMatchers("/api/authenticate").permitAll()
-            .antMatchers("/api/user/register").permitAll()
-            .antMatchers("/api/user/password").permitAll()
-            .antMatchers("/api/**").authenticated()
-            .and().exceptionHandling().authenticationEntryPoint(entryPoint)
-            .and().sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-
-
 //        httpSecurity.csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/authenticate")
-//                .permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
-//                .permitAll().anyRequest().authenticated()
-//                .and().exceptionHandling().authenticationEntryPoint(entryPoint)
-//                .and().sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//            .authorizeRequests()
+//            .antMatchers("/api/authenticate").permitAll()
+//            .antMatchers("/api/user/register").permitAll()
+//            .antMatchers("/api/user/password").permitAll()
+//            .antMatchers("/api/**").authenticated()
+//            .and().exceptionHandling().authenticationEntryPoint(entryPoint)
+//            .and().sessionManagement()
+//            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+
+
+        httpSecurity.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/api/authenticate")
+                .permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
+                .permitAll().anyRequest().authenticated()
+                .and().exceptionHandling().authenticationEntryPoint(entryPoint)
+                .and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 
 

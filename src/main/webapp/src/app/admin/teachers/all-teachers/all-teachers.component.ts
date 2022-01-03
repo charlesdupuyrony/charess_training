@@ -41,6 +41,7 @@ export class AllTeachersComponent
   selection = new SelectionModel<Teachers>(true, []);
   id: number;
   teachers: Teachers | null;
+
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
@@ -49,6 +50,7 @@ export class AllTeachersComponent
   ) {
     super();
   }
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild('filter', { static: true }) filter: ElementRef;
@@ -285,6 +287,7 @@ export class ExampleDataSource extends DataSource<Teachers> {
     );
   }
   disconnect() {}
+
   /** Returns a sorted copy of the database data. */
   sortData(data: Teachers[]): Teachers[] {
     if (!this._sort.active || this._sort.direction === '') {

@@ -30,7 +30,6 @@ export class RightSidebarComponent
   isOpenSidebar: boolean;
   isDarkSidebar = false;
   isDarTheme = false;
-  isRtl = false;
   public config: any = {};
 
   constructor(
@@ -94,19 +93,7 @@ export class RightSidebarComponent
       this.isDarTheme = this.config.layout.variant === 'dark' ? true : false;
     }
 
-    if (localStorage.getItem('isRtl')) {
-      if (localStorage.getItem('isRtl') === 'true') {
-        this.setRTLSettings();
-      } else if (localStorage.getItem('isRtl') === 'false') {
-        this.setLTRSettings();
-      }
-    } else {
-      if (this.config.layout.rtl == true) {
-        this.setRTLSettings();
-      } else {
-        this.setLTRSettings();
-      }
-    }
+
   }
 
   selectTheme(e) {
@@ -216,34 +203,13 @@ export class RightSidebarComponent
       (this.isOpenSidebar = !this.isOpenSidebar)
     );
   }
-  switchDirection(event: MatSlideToggleChange) {
-    var isrtl: string = String(event.checked);
-    if (
-      isrtl === 'false' &&
-      document.getElementsByTagName('html')[0].hasAttribute('dir')
-    ) {
-      document.getElementsByTagName('html')[0].removeAttribute('dir');
-      this.renderer.removeClass(this.document.body, 'rtl');
-    } else if (
-      isrtl === 'true' &&
-      !document.getElementsByTagName('html')[0].hasAttribute('dir')
-    ) {
-      document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
-      this.renderer.addClass(this.document.body, 'rtl');
-    }
-    localStorage.setItem('isRtl', isrtl);
-    this.isRtl = event.checked;
-  }
+
   setRTLSettings() {
     document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
     this.renderer.addClass(this.document.body, 'rtl');
-    this.isRtl = true;
-    localStorage.setItem('isRtl', 'true');
   }
   setLTRSettings() {
     document.getElementsByTagName('html')[0].removeAttribute('dir');
     this.renderer.removeClass(this.document.body, 'rtl');
-    this.isRtl = false;
-    localStorage.setItem('isRtl', 'false');
   }
 }

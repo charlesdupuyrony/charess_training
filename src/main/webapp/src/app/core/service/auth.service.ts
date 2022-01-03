@@ -30,13 +30,30 @@ export class AuthService {
             map((user) => {
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
+                sessionStorage.setItem("username", user.username);
+                sessionStorage.setItem("token", "Bearer " + user.token);
                 return user;
             })
         );
     }
 
+    tokenExpired(token: string) {
+        const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+        return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+    }
+
+    isTokenValid(){
+        let user = sessionStorage.getItem("username");
+        let chk = !(user===null);
+        if(chk) {
+            chk = !this.tokenExpired(sessionStorage.getItem("token"));
+        }
+        return chk;
+    }
+
     logout() {
         localStorage.removeItem('currentUser');
+        sessionStorage.removeItem("username");
         this.currentUserSubject.next(null);
         return of({ success: false });
     }

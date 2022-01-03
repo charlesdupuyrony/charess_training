@@ -1,13 +1,13 @@
 {
-    "Name": "Name",
-    "Address": "Address",
-    "Manager": "Manager",
-    "Parent": "Guardianship",
+    "Name": "Nom",
+    "Address": "Adresse",
+    "Manager": "Responsable",
+    "Parent": "Entité de tutelle",
     "training": {
         "configuration": {
-            "text": "Settings",
+            "text": "Configuration",
             "list": {
-                "facility": "Institution & Partner",
+                "facility": "Institution & Partenaire",
                 "DASHBOARD2": "Dashboard 2",
                 "TEACHER-DASHBOARD": "Teacher Dashboard",
                 "STUDENT-DASHBOARD": "Student Dashboard"
