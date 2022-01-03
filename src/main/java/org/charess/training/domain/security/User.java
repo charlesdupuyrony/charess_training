@@ -46,17 +46,19 @@ public class User implements Serializable, UserDetails {
     @JoinColumn(name = "profile")
     private Profile profile;
 
-    @Column(name = "activated_by")
-    private Integer activatedBy;
+    @Column(name = "created", nullable = false)
+    private LocalDateTime created;
 
-    @Column(name="activated_date")
-    private LocalDateTime activatedDate;
+    @ManyToOne
+    @JoinColumn(name = "creator")
+    private User creator;
 
-    @Column(name = "edited_by")
-    private Integer editedBy;
+    @Column(name = "edited")
+    private LocalDateTime edited;
 
-    @Column(name="edited_date")
-    private LocalDateTime editedDate;
+    @ManyToOne
+    @JoinColumn(name = "editor")
+    private User editor;
 
     @Transient
     private String token;
@@ -156,36 +158,36 @@ public class User implements Serializable, UserDetails {
         this.status = status;
     }
 
-    public Integer getActivatedBy() {
-        return activatedBy;
+    public LocalDateTime getCreated() {
+        return created;
     }
 
-    public void setActivatedBy(Integer activatedBy) {
-        this.activatedBy = activatedBy;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
-    public LocalDateTime getActivatedDate() {
-        return activatedDate;
+    public User getCreator() {
+        return creator;
     }
 
-    public void setActivatedDate(LocalDateTime activatedDate) {
-        this.activatedDate = activatedDate;
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
-    public LocalDateTime getEditedDate() {
-        return editedDate;
+    public LocalDateTime getEdited() {
+        return edited;
     }
 
-    public void setEditedDate(LocalDateTime editedDate) {
-        this.editedDate = editedDate;
+    public void setEdited(LocalDateTime edited) {
+        this.edited = edited;
     }
 
-    public Integer getEditedBy() {
-        return editedBy;
+    public User getEditor() {
+        return editor;
     }
 
-    public void setEditedBy(Integer editedBy) {
-        this.editedBy = editedBy;
+    public void setEditor(User editor) {
+        this.editor = editor;
     }
 
     @Override
@@ -211,11 +213,11 @@ public class User implements Serializable, UserDetails {
                 ", locale='" + locale + '\'' +
                 ", status='" + status + '\'' +
                 ", profile=" + profile +
-                ", activatedBy=" + activatedBy +
-                ", activatedDate=" + activatedDate +
-                ", editedBy=" + editedBy +
-                ", editedDate=" + editedDate +
+                ", created=" + created +
+                ", creator=" + creator +
+                ", edited=" + edited +
+                ", editor=" + editor +
+                ", token='" + token + '\'' +
                 '}';
     }
-
 }

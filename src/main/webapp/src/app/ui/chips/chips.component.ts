@@ -15,11 +15,13 @@ export interface ChipColor {
 export interface Fruit {
   name: string;
 }
+
 @Component({
   selector: 'app-chips',
   templateUrl: './chips.component.html',
   styleUrls: ['./chips.component.sass']
 })
+
 export class ChipsComponent {
   visible = true;
   selectable = true;

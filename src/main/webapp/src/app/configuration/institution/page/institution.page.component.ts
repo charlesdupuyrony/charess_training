@@ -9,16 +9,15 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {InstitutionService} from "../institution.service";
-
-interface Gender {
-    id: string;
-    value: string;
-}
+import {FormDialogComponent} from "../../../admin/teachers/all-teachers/dialogs/form-dialog/form-dialog.component";
+import {Teachers} from "../../../admin/teachers/all-teachers/teachers.model";
+import {Institution} from "../institution.model";
+import {MatDialog} from "@angular/material/dialog";
+import {InstitutionFormComponent} from "../form/institution.form.component";
 
 @Component({
     selector: 'app-page',
-    templateUrl: './institution.page.component.html',
-    styleUrls: ['./institution.page.component.sass'],
+    templateUrl: './institution.page.component.html'
 })
 
 export class InstitutionPageComponent implements OnInit {
@@ -27,6 +26,8 @@ export class InstitutionPageComponent implements OnInit {
     @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
     rows = [];
     data = [];
+    institution: Institution | null;
+
     filteredData = [];
 
     columns = [
@@ -34,10 +35,15 @@ export class InstitutionPageComponent implements OnInit {
         { name: 'address' }
     ];
 
-    constructor(private service: InstitutionService, private _snackBar: MatSnackBar) {
+
+    constructor(private service: InstitutionService, private _snackBar: MatSnackBar, public dialog: MatDialog) {
     }
 
     ngOnInit() {
+        this.set();
+    }
+
+    set(){
         this.service.getInstitutions().subscribe(res => {
             this.data = res;
             this.filteredData = res;
@@ -84,7 +90,27 @@ export class InstitutionPageComponent implements OnInit {
         });
     }
 
-    go(){
-        console.log('----------------------------');
+
+    add(){
+        const dialogRef = this.dialog.open(InstitutionFormComponent, {
+            width: '600px',
+            data: {
+                institution: this.institution,
+                action: 'add',
+            }
+        });
+
+        // this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+        //     if (result === 1) {
+        //         this.set();
+        //         this.showNotification(
+        //             'snackbar-success',
+        //             'Add Record Successfully...!!!',
+        //             'bottom',
+        //             'center'
+        //         );
+        //     }
+        // });
     }
+
 }

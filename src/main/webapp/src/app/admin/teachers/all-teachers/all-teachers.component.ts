@@ -64,6 +64,7 @@ export class AllTeachersComponent
   refresh() {
     this.loadData();
   }
+
   addNew() {
     let tempDirection;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -95,6 +96,7 @@ export class AllTeachersComponent
       }
     });
   }
+
   editCall(row) {
     this.id = row.id;
     let tempDirection;

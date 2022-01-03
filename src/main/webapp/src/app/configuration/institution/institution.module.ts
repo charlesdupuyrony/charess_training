@@ -23,10 +23,12 @@ import {InstitutionService} from "./institution.service";
 import {InstitutionPageComponent} from "./page/institution.page.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {InstitutionFormComponent} from "./form/institution.form.component";
 
 @NgModule({
     declarations: [
-        InstitutionPageComponent
+        InstitutionPageComponent,
+        InstitutionFormComponent
     ],
     imports: [
         CommonModule,
