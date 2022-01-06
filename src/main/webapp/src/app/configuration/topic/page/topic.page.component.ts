@@ -17,8 +17,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-page',
-    templateUrl: './topic.page.component.html',
-    styleUrls: ['./topic.page.component.sass'],
+    templateUrl: './topic.page.component.html'
 })
 
 export class TopicPageComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
