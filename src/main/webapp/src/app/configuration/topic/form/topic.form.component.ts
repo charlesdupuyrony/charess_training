@@ -7,56 +7,57 @@ import {
     FormBuilder,
 } from '@angular/forms';
 
-import {InstitutionService} from "../institution.service";
-import {Institution} from "../institution.model";
-import {startWith, switchMap} from 'rxjs/operators';
+import {startWith} from 'rxjs/operators';
 import { Observable, map } from 'rxjs';
-import {Location} from "../../../core/models/security/location";
+import {Topic} from "../topic.model";
+import {TopicService} from "../topic.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: 'app-form',
-    templateUrl: './institution.form.component.html'
+    templateUrl: './topic.form.component.html'
 })
 
-export class InstitutionFormComponent implements OnInit {
+export class TopicFormComponent implements OnInit {
 
     action: string;
     title: string;
     fg: FormGroup;
-    institution: Institution;
-    locationControl = new FormControl();
-    locations=[];
-    filteredLocations: Observable<Location[]>;
+    topic: Topic;
+    themeControl = new FormControl();
+    themes=[];
+    filteredThemes: Observable<Topic[]>;
 
-    constructor(public fm: MatDialogRef<InstitutionFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-                public service: InstitutionService,  private fb: FormBuilder){
+    constructor(public fm: MatDialogRef<TopicFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
+                public service: TopicService, private fb: FormBuilder, private _snackBar: MatSnackBar){
         this.action = data.action;
         if (this.action === 'edit') {
-            this.institution = data.institution;
-            this.title = this.institution.name;
+            this.topic = data.topic;
+            this.title = this.topic.title;
         } else {
-            this.title = 'New Institution Partner';
-            this.institution = new Institution({});
+            this.title = 'New Topic';
+            this.topic = new Topic({});
         }
         this.fg = this.createContactForm();
     }
 
     ngOnInit() {
-        this.service.getLocations().subscribe((res)=>{
-            this.locations = res;
-            this.filteredLocations = this.locationControl.valueChanges.pipe(startWith(''), map(value => {
+        this.service.getTopics().subscribe((res)=>{
+            this.themes = res;
+            this.filteredThemes = this.themeControl.valueChanges.pipe(startWith(''), map(value => {
                 return this._filter(value)
             }));
         });
     }
 
-    _filter(value: string): Location[] {
-        return this.locations.filter(location=>location.name.toLowerCase().includes(typeof value === 'string'?value.toLowerCase():value));
+    _filter(value: string): Topic[] {
+        return this.themes.filter(theme=>theme.title.toLowerCase().includes(typeof value === 'string'?value.toLowerCase():value));
     }
 
-    display(location):string {
-        if(location)
-            return location.fullname ;
+    display(topic):string {
+        if(topic)
+            return topic.title;
     }
 
     // formControl = new FormControl('', [
@@ -72,7 +73,7 @@ export class InstitutionFormComponent implements OnInit {
     // }
 
     createContactForm(): FormGroup {
-        return this.fb.group(this.institution);
+        return this.fb.group(this.topic);
     }
 
     submit() {
@@ -84,9 +85,32 @@ export class InstitutionFormComponent implements OnInit {
 
     public save(): void {
         let obj = this.fg.getRawValue();
-        obj.locationAddress = this.locationControl.value.id;
-        console.log(obj, '-----------------', this.locationControl)
-        //this.teachersService.addTeachers(this.proForm.getRawValue());
+        obj.theme = this.themeControl.value;
+        this.service.addTopic(obj).subscribe(
+            data => this.success(),
+            (err: HttpErrorResponse)=>this.error(err)
+        );
     }
+
+    private success(){
+        this.showNotification('bg-green','The topic has been successfully created');
+    }
+
+    private error(err:HttpErrorResponse){
+        this.showNotification('bg-red','Something went wrong the topic has not been created. Please, try again!');
+        console.error(err);
+    }
+
+    private showNotification(colorName, text) {
+        this._snackBar.open(text, '', {
+            duration: 2000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: colorName,
+        });
+    }
+
+
+
 
 }

@@ -28,6 +28,19 @@ export const ROUTES: RouteInfo[] = [
         roles: [Role.SUPER],
         submenu: [
             {
+                path: '/configuration/topic/page',
+                title: 'training.configuration.list.topic',
+                moduleName: 'configuration',
+                iconType: '',
+                icon: '',
+                class: 'ml-menu',
+                groupTitle: false,
+                badge: '',
+                badgeClass: '',
+                roles: [Role.SUPER],
+                submenu: [],
+            },
+            {
                 path: '/configuration/institution/page',
                 title: 'training.configuration.list.facility',
                 moduleName: 'configuration',

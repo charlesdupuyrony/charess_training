@@ -1,7 +1,7 @@
 package org.charess.training.controller.training;
 
-import org.charess.training.domain.security.Place;
-import org.charess.training.service.security.PlaceService;
+import org.charess.training.domain.training.Topic;
+import org.charess.training.service.training.TopicService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,35 +13,33 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/place")
-public class TropicController {
+@RequestMapping("/api/topic")
+public class TopicController {
 
-    private PlaceService placeService;
-    private final Logger log = LoggerFactory.getLogger(TropicController.class);
+    private TopicService topicService;
+    private final Logger log = LoggerFactory.getLogger(TopicController.class);
 
     @Autowired
-    public TropicController(PlaceService placeService) {
-        this.placeService = placeService;
+    public TopicController(TopicService topicService) {
+        this.topicService = topicService;
     }
 
     @RequestMapping(method= RequestMethod.GET)
-    public List<Place> all() {
-        return placeService.all();
+    public List<Topic> all() {
+        return topicService.all();
     }
 
     @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
         log.info("======================{}====================", id);
-        placeService.delete(id);
+        topicService.delete(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String> save(@RequestBody Place place){
+    public ResponseEntity<String> save(@RequestBody Topic topic){
         try {
-            if(place == null)
-                return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-            placeService.save(place);
-            return new ResponseEntity<>("", HttpStatus.OK);
+            log.info("================={}-----------", topic);
+            return topicService.save(topic)==null?new ResponseEntity<>("", HttpStatus.BAD_REQUEST):new ResponseEntity<>("", HttpStatus.OK);
         } catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }

@@ -73,6 +73,8 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
+    alert(-1)
     this.teachersService.addTeachers(this.proForm.getRawValue());
+    alert(2)
   }
 }

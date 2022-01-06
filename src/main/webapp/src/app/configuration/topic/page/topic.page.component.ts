@@ -8,35 +8,37 @@ import {
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {InstitutionService} from "../institution.service";
-import {FormDialogComponent} from "../../../admin/teachers/all-teachers/dialogs/form-dialog/form-dialog.component";
-import {Teachers} from "../../../admin/teachers/all-teachers/teachers.model";
-import {Institution} from "../institution.model";
 import {MatDialog} from "@angular/material/dialog";
-import {InstitutionFormComponent} from "../form/institution.form.component";
+import {TopicService} from "../topic.service";
+import {Topic} from "../topic.model";
+import {TopicFormComponent} from "../form/topic.form.component";
+import {UnsubscribeOnDestroyAdapter} from "../../../shared/UnsubscribeOnDestroyAdapter";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-page',
-    templateUrl: './institution.page.component.html'
+    templateUrl: './topic.page.component.html',
+    styleUrls: ['./topic.page.component.sass'],
 })
 
-export class InstitutionPageComponent implements OnInit {
+export class TopicPageComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
 
     @ViewChild('roleTemplate', { static: true }) roleTemplate: TemplateRef<any>;
     @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
     rows = [];
     data = [];
-    institution: Institution | null;
+    topic: Topic | null;
 
     filteredData = [];
 
     columns = [
-        { name: 'name' },
-        { name: 'address' }
+        { title: 'title' },
+        { theme: 'theme' }
     ];
 
 
-    constructor(private service: InstitutionService, private _snackBar: MatSnackBar, public dialog: MatDialog) {
+    constructor(private service: TopicService, private _snackBar: MatSnackBar, public dialog: MatDialog) {
+        super();
     }
 
     ngOnInit() {
@@ -44,7 +46,7 @@ export class InstitutionPageComponent implements OnInit {
     }
 
     set(){
-        this.service.getInstitutions().subscribe(res => {
+        this.service.getTopics().subscribe(res => {
             this.data = res;
             this.filteredData = res;
         });
@@ -56,7 +58,7 @@ export class InstitutionPageComponent implements OnInit {
         const keys = Object.keys(this.filteredData[0]);
         this.data = this.filteredData.filter(function (item) {
             for (let i = 0; i < cols.length; i++) {
-                if((item[cols[i].name] && item[cols[i].name].toString().toLowerCase().indexOf(val) !==-1) || !val)
+                if((item[cols[i].title] && item[cols[i].title].toString().toLowerCase().indexOf(val) !==-1) || !val)
                    return true;
             }
         });
@@ -64,15 +66,20 @@ export class InstitutionPageComponent implements OnInit {
     }
 
     deleteRow(row): void {
-        this.service.deleteInstitution(row.id).subscribe(res => {
-            this.data = this.arrayRemove(this.data, row.id);
-            this.showNotification(
-                'bg-red',
-                'That record has been successfully deleted',
-                'top',
-                'right'
-            );
-        });
+        this.service.deleteTopic(row.id).subscribe(
+            res => this.success(row.id),
+            (err: HttpErrorResponse)=>this.error(err)
+        );
+    }
+
+    success(id){
+        this.data = this.arrayRemove(this.data, id);
+        this.showNotification('bg-red','That record has been successfully deleted');
+    }
+
+    private error(err:HttpErrorResponse){
+        this.showNotification('bg-red','That record is in use somewhere, you have to delete its dependance first!');
+        console.error(err);
     }
 
     arrayRemove(array, id) {
@@ -81,36 +88,30 @@ export class InstitutionPageComponent implements OnInit {
         });
     }
 
-    showNotification(colorName, text, placementFrom, placementAlign) {
+    showNotification(colorName, text) {
         this._snackBar.open(text, '', {
             duration: 2000,
-            verticalPosition: placementFrom,
-            horizontalPosition: placementAlign,
+            verticalPosition: "top",
+            horizontalPosition: "right",
             panelClass: colorName,
         });
     }
 
 
     add(){
-        const dialogRef = this.dialog.open(InstitutionFormComponent, {
+        const dialogRef = this.dialog.open(TopicFormComponent, {
             width: '600px',
             data: {
-                institution: this.institution,
+                topic: this.topic,
                 action: 'add',
             }
         });
 
-        // this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-        //     if (result === 1) {
-        //         this.set();
-        //         this.showNotification(
-        //             'snackbar-success',
-        //             'Add Record Successfully...!!!',
-        //             'bottom',
-        //             'center'
-        //         );
-        //     }
-        // });
+        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+            if (result === 1) {
+                this.set();
+            }
+        });
     }
 
 }

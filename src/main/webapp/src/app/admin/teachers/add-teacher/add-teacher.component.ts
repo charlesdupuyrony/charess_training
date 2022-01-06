@@ -29,6 +29,7 @@ export class AddTeacherComponent {
     });
   }
   onSubmit() {
+    alert(2);
     console.log('Form Value', this.proForm.value);
   }
 }

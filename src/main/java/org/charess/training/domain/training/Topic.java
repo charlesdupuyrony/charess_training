@@ -13,8 +13,8 @@ public class Topic extends Audit implements Serializable {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "parent")
-    private Topic parent;
+    @JoinColumn(name = "theme")
+    private Topic theme;
 
     public String getTitle() {
         return title;
@@ -24,11 +24,11 @@ public class Topic extends Audit implements Serializable {
         this.title = title;
     }
 
-    public Topic getParent() {
-        return parent;
+    public Topic getTheme() {
+        return theme;
     }
 
-    public void setParent(Topic parent) {
-        this.parent = parent;
+    public void setTheme(Topic theme) {
+        this.theme = theme;
     }
 }

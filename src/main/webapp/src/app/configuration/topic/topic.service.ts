@@ -1,30 +1,41 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import {Institution} from "./institution.model";
 import {environment} from "../../../environments/environment";
-import {Location} from "../../core/models/security/location";
+import {Topic} from "./topic.model";
+import {Teachers} from "../../admin/teachers/all-teachers/teachers.model";
 
 
 @Injectable()
-export class InstitutionService extends UnsubscribeOnDestroyAdapter {
+export class TopicService extends UnsubscribeOnDestroyAdapter {
+
+    api = `${environment.api}/topic`;
 
     constructor(private http: HttpClient) {
         super();
     }
 
-    getInstitutions(){
-        return this.http.get<Institution[]>(`${environment.api}/place`);
+    getTopics(){
+        console.log(this.api)
+        return this.http.get<Topic[]>(this.api);
     }
 
-    deleteInstitution(id:number){
-        return this.http.delete(`${environment.api}/place/${id}`);
+    deleteTopic(id:number){
+        return this.http.delete(`${this.api}/${id}`);
     }
 
-    getLocations(){
-        return this.http.get<Location[]>(`${environment.api}/location`);
-    }
+    addTopic(topic: Topic){
+        return this.http.post(this.api, topic);
 
+        // console.log(topic);
+        // this.http.post(`${environment.api}/topic`, topic).subscribe(
+        //     data => {
+        //         console.log(data, 'tout se passe bien')
+        //     },
+        //     (err: HttpErrorResponse) => {
+        //         console.log(err, '-------error-------');
+        // });
+    }
 
 }

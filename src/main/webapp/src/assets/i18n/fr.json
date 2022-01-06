@@ -4,12 +4,19 @@
     "Manager": "Responsable",
     "Parent": "Entité de tutelle",
     "New Institution Partner": "Nouvelle institution partenaire",
+    "Title": "Titre",
+    "Search": "Recherche",
+    "Theme": "Thème",
+
+
 
     "training": {
         "configuration": {
             "text": "Configuration",
             "list": {
                 "facility": "Institution & Partenaire",
+                "topic": "Définition de thématique",
+
                 "DASHBOARD2": "Dashboard 2",
                 "TEACHER-DASHBOARD": "Teacher Dashboard",
                 "STUDENT-DASHBOARD": "Student Dashboard"

@@ -4,12 +4,17 @@
     "Manager": "Responsab",
     "Parent": "Antite superyè",
     "New Institution Partner": "Nouvèl enstitisyon patnè",
+    "Title": "Tit",
+    "Search": "Chèche",
+    "Theme": "Tèm",
+
 
     "training": {
         "configuration": {
             "text": "Konfigirasyon",
             "list": {
                 "facility": "Enstitisyon & Patnè",
+                "topic": "Definisyon Tematik",
                 "DASHBOARD2": "Dashboard 2",
                 "TEACHER-DASHBOARD": "Teacher Dashboard",
                 "STUDENT-DASHBOARD": "Student Dashboard"

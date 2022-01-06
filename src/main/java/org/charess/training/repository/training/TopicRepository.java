@@ -1,12 +1,9 @@
-package org.charess.training.repository.security;
+package org.charess.training.repository.training;
 
-import org.charess.training.domain.security.Place;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.charess.training.domain.training.Topic;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-public interface PlaceRepository extends JpaRepository<Place, Integer> {
+public interface TopicRepository extends JpaRepository<Topic, Integer> {
 }
 
 

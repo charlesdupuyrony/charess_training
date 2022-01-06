@@ -1,36 +1,44 @@
-package org.charess.training.service.security;
+package org.charess.training.service.training;
 
-import org.charess.training.domain.security.Place;
-import org.charess.training.repository.security.PlaceRepository;
+import org.charess.training.controller.training.TopicController;
+import org.charess.training.domain.security.Audit;
+import org.charess.training.domain.training.Topic;
+import org.charess.training.repository.training.TopicRepository;
+import org.charess.training.service.security.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Transactional
-@Service("placeService")
-public class PlaceServiceImpl implements PlaceService {
+@Service("topicService")
+public class TopicServiceImpl implements TopicService {
 
-    private PlaceRepository placeRepository;
+    private TopicRepository topicRepository;
+    private UserService userService;
+    private final Logger log = LoggerFactory.getLogger(TopicServiceImpl.class);
 
     @Autowired
-    public PlaceServiceImpl(PlaceRepository placeRepository) {
-        this.placeRepository = placeRepository;
+    public TopicServiceImpl(TopicRepository topicRepository, UserService userService) {
+        this.topicRepository = topicRepository;
+        this.userService = userService;
     }
 
-    public List<Place> all(){
-        return placeRepository.findAll();
+    public List<Topic> all(){
+        return topicRepository.findAll();
     }
 
     public void delete(Integer id){
-        placeRepository.deleteById(id);
+        topicRepository.deleteById(id);
     }
 
-    public Place save(Place place){
-        return placeRepository.save(place);
+    public Topic save(Topic topic){
+        Audit audit = topic;
+        userService.inject(audit);
+        return topic==null?null:topicRepository.save(topic);
     }
 
 }

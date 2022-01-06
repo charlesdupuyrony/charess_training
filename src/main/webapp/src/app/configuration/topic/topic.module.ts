@@ -18,18 +18,18 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
-import {InstitutionRoutingModule} from "./institution-routing.module";
-import {InstitutionService} from "./institution.service";
-import {InstitutionPageComponent} from "./page/institution.page.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
-import {InstitutionFormComponent} from "./form/institution.form.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {TopicService} from "./topic.service";
+import {TopicRoutingModule} from "./topic-routing.module";
+import {TopicPageComponent} from "./page/topic.page.component";
+import {TopicFormComponent} from "./form/topic.form.component";
 
 @NgModule({
     declarations: [
-        InstitutionPageComponent,
-        InstitutionFormComponent
+        TopicPageComponent,
+        TopicFormComponent
     ],
     imports: [
         CommonModule,
@@ -53,11 +53,11 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
         MatMenuModule,
         MatProgressSpinnerModule,
         TranslateModule,
-        InstitutionRoutingModule,
         NgxDatatableModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        TopicRoutingModule,
     ],
-    providers: [InstitutionService]
+    providers: [TopicService]
 })
 
-export class InstitutionModule {}
+export class TopicModule {}

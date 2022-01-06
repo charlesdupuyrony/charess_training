@@ -1,14 +1,12 @@
-package org.charess.training.service.security;
+package org.charess.training.service.training;
 
-import org.charess.training.domain.security.Place;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.charess.training.domain.training.Topic;
 
 import java.util.List;
 
-public interface PlaceService {
+public interface TopicService {
 
-    List<Place> all();
+    List<Topic> all();
     void delete(Integer id);
-    Place save(Place place);
+    Topic save(Topic topic);
 }

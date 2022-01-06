@@ -8,10 +8,10 @@
                             <div class="col-sm-12">
                                 <div class="ngxTableHeader">
                                     <ul class="header-buttons-left ms-0 mb-0">
-                                        <li class="dropdown"><h2><strong>{{'training.configuration.list.facility' | translate}}</strong></h2></li>
+                                        <li class="dropdown"><h2><strong>{{'training.configuration.list.topic' | translate}}</strong></h2></li>
                                         <li class="dropdown m-l-20">
                                             <label><i class="material-icons search-icon">search</i></label>
-                                            <input placeholder="Search" type="text" class="browser-default search-field" (keyup)='filterDatatable($event)' aria-label="Search box">
+                                            <input placeholder="{{'Search' | translate}}" type="text" class="browser-default search-field" (keyup)='filterDatatable($event)' aria-label="Search box">
                                         </li>
                                     </ul>
                                     <ul class="header-buttons">
@@ -22,15 +22,11 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <ngx-datatable #table class="material" [rows]="data" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'60'" [limit]="10">
-                                    <ngx-datatable-column name="{{'Name' | translate}}" sortable="true" prop="name" [width]="170">
+                                <ngx-datatable #table class="material" [rows]="data" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                                    <ngx-datatable-column name="{{'Title' | translate}}" sortable="true" prop="title" [width]="220">
                                         <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value}}</ng-template></ngx-datatable-column>
-                                    <ngx-datatable-column name="{{'Address' | translate}}" sortable="true" prop="address" [width]="120">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value}}</ng-template></ngx-datatable-column>
-                                    <ngx-datatable-column name="{{'Manager' | translate}}" sortable="true" prop="manager" [width]="100">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value?.fullname}}</ng-template></ngx-datatable-column>
-                                    <ngx-datatable-column name="{{'Parent' | translate}}" sortable="true" prop="parent" [width]="170">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value?.name}}</ng-template></ngx-datatable-column>
+                                    <ngx-datatable-column name="{{'Theme' | translate}}" sortable="true" prop="theme" [width]="220">
+                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value?.title}}</ng-template></ngx-datatable-column>
 
                                     <ngx-datatable-column name="Actions" sortable="false" [width]="10">
                                         <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
