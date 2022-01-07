@@ -1,19 +1,13 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import {
-    FormGroup,
-    FormBuilder,
-    FormControl,
-    Validators,
-} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialog} from "@angular/material/dialog";
 import {TopicService} from "../topic.service";
 import {Topic} from "../topic.model";
 import {TopicFormComponent} from "../form/topic.form.component";
 import {UnsubscribeOnDestroyAdapter} from "../../../shared/UnsubscribeOnDestroyAdapter";
 import {HttpErrorResponse} from "@angular/common/http";
+import {DeleteComponent} from "../../delete/delete.confirm";
 
 @Component({
     selector: 'app-page',
@@ -35,6 +29,10 @@ export class TopicPageComponent extends UnsubscribeOnDestroyAdapter implements O
         { theme: 'theme' }
     ];
 
+    dim = {
+        width: '1000px',
+        height: '380px'
+    };
 
     constructor(private service: TopicService, private _snackBar: MatSnackBar, public dialog: MatDialog) {
         super();
@@ -64,23 +62,6 @@ export class TopicPageComponent extends UnsubscribeOnDestroyAdapter implements O
         this.table.offset = 0;
     }
 
-    deleteRow(row): void {
-        this.service.deleteTopic(row.id).subscribe(
-            res => this.success(row.id),
-            (err: HttpErrorResponse)=>this.error(err)
-        );
-    }
-
-    success(id){
-        this.data = this.arrayRemove(this.data, id);
-        this.showNotification('bg-red','That record has been successfully deleted');
-    }
-
-    private error(err:HttpErrorResponse){
-        this.showNotification('bg-red','That record is in use somewhere, you have to delete its dependance first!');
-        console.error(err);
-    }
-
     arrayRemove(array, id) {
         return array.filter(function (element) {
             return element.id != id;
@@ -96,16 +77,24 @@ export class TopicPageComponent extends UnsubscribeOnDestroyAdapter implements O
         });
     }
 
+    success(id){
+        this.data = this.arrayRemove(this.data, id);
+        this.showNotification('bg-green','That record has been successfully deleted');
+    }
+
+    private error(err:HttpErrorResponse){
+        this.showNotification('bg-red','That record is in use somewhere, you have to delete its dependance first!');
+        console.error(err);
+    }
 
     add(){
         const dialogRef = this.dialog.open(TopicFormComponent, {
-            width: '600px',
+            ...this.dim,
             data: {
                 topic: this.topic,
                 action: 'add',
             }
         });
-
         this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
             if (result === 1) {
                 this.set();
@@ -113,4 +102,31 @@ export class TopicPageComponent extends UnsubscribeOnDestroyAdapter implements O
         });
     }
 
+    edit(row) {
+        const dialogRef = this.dialog.open(TopicFormComponent, {
+            ...this.dim,
+            data: {
+                topic: row,
+                action: 'edit',
+            }
+        });
+        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+            if (result === 1) {
+                this.set();
+            }
+        });
+    }
+
+    delete(row): void {
+        const dialogRef = this.dialog.open(DeleteComponent, {});
+        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+            if (result === 1) {
+                this.service.deleteTopic(row.id).subscribe(
+                    res => this.success(row.id),
+                    (err: HttpErrorResponse)=>this.error(err)
+                );
+                this.set();
+            }
+        });
+    }
 }

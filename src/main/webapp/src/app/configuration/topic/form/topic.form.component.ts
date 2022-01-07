@@ -2,7 +2,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {
     FormControl,
-    Validators,
     FormGroup,
     FormBuilder,
 } from '@angular/forms';
@@ -34,9 +33,10 @@ export class TopicFormComponent implements OnInit {
         this.action = data.action;
         if (this.action === 'edit') {
             this.topic = data.topic;
-            this.title = this.topic.title;
-        } else {
-            this.title = 'New Topic';
+            this.title = 'Edit the current topic';
+            this.themeControl.setValue(data.topic.theme);
+        } else{
+            this.title = 'New topic';
             this.topic = new Topic({});
         }
         this.fg = this.createContactForm();
@@ -59,18 +59,6 @@ export class TopicFormComponent implements OnInit {
         if(topic)
             return topic.title;
     }
-
-    // formControl = new FormControl('', [
-    //     Validators.required
-    // ]);
-    //
-    // getErrorMessage() {
-    //     return this.formControl.hasError('required')
-    //         ? 'Required field'
-    //         : this.formControl.hasError('email')
-    //             ? 'Not a valid email'
-    //             : '';
-    // }
 
     createContactForm(): FormGroup {
         return this.fb.group(this.topic);
@@ -109,8 +97,4 @@ export class TopicFormComponent implements OnInit {
             panelClass: colorName,
         });
     }
-
-
-
-
 }

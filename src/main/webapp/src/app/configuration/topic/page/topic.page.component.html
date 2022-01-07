@@ -31,8 +31,8 @@
                                     <ngx-datatable-column name="Actions" sortable="false" [width]="-380">
                                         <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                                         <span>
-                                            <button class="btn tblActnBtn h-auto" (click)='editRow(row, rowIndex, editRecord)'><i class="material-icons">mode_edit</i></button>
-                                            <button class="btn tblActnBtn h-auto" (click)='deleteRow(row)'><i class="material-icons">delete</i></button>
+                                            <button class="btn tblActnBtn h-auto" (click)='edit(row)'><i class="material-icons">mode_edit</i></button>
+                                            <button class="btn tblActnBtn h-auto" (click)='delete(row)'><i class="material-icons">delete</i></button>
                                         </span>
                                         </ng-template>
                                     </ngx-datatable-column>

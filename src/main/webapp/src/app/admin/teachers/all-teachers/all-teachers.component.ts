@@ -144,6 +144,7 @@ export class AllTeachersComponent
       data: row,
       direction: tempDirection,
     });
+
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(

@@ -7,6 +7,12 @@
     "Title": "Title",
     "Search": "Search",
     "Theme": "Theme",
+    "Edit the current topic": "Edit the current topic",
+    "New topic": "New a topic",
+    "Delete": "Delete",
+    "Cancel": "Cancel",
+    "Are you sure?": "Are you sure?",
+
 
     "training": {
         "configuration": {
