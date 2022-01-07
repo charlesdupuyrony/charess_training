@@ -43,16 +43,14 @@ export class TopicFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.service.getTopics().subscribe((res)=>{
-            this.themes = res;
-            this.filteredThemes = this.themeControl.valueChanges.pipe(startWith(''), map(value => {
-                return this._filter(value)
-            }));
-        });
-    }
-
-    _filter(value: string): Topic[] {
-        return this.themes.filter(theme=>theme.title.toLowerCase().includes(typeof value === 'string'?value.toLowerCase():value));
+        this.filteredThemes = this.themeControl.valueChanges.pipe(startWith(''),
+            map(value => {
+                this.service.getTopics(typeof value === 'string'?value.toLowerCase():value.title).subscribe((res)=>{
+                    this.themes = res;
+                });
+                return this.themes;
+            })
+        );
     }
 
     display(topic):string {

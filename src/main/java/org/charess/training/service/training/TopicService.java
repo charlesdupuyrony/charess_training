@@ -9,4 +9,5 @@ public interface TopicService {
     List<Topic> all();
     void delete(Integer id);
     Topic save(Topic topic);
+    List<Topic> search(String criteria);
 }

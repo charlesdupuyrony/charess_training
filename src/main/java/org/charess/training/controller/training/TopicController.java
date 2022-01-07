@@ -24,6 +24,12 @@ public class TopicController {
         this.topicService = topicService;
     }
 
+    @RequestMapping(value = "/{criteria}", method= RequestMethod.GET)
+    public List<Topic> search(@PathVariable(value = "criteria") String criteria) {
+        log.info("------{}--------", criteria);
+        return topicService.search(criteria);
+    }
+
     @RequestMapping(method= RequestMethod.GET)
     public List<Topic> all() {
         return topicService.all();
@@ -31,14 +37,12 @@ public class TopicController {
 
     @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
-        log.info("======================{}====================", id);
         topicService.delete(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> save(@RequestBody Topic topic){
         try {
-            log.info("================={}-----------", topic);
             return topicService.save(topic)==null?new ResponseEntity<>("", HttpStatus.BAD_REQUEST):new ResponseEntity<>("", HttpStatus.OK);
         } catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);

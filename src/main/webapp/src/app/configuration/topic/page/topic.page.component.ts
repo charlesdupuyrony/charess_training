@@ -43,7 +43,7 @@ export class TopicPageComponent extends UnsubscribeOnDestroyAdapter implements O
     }
 
     set(){
-        this.service.getTopics().subscribe(res => {
+        this.service.getAllTopics().subscribe(res => {
             this.data = res;
             this.filteredData = res;
         });

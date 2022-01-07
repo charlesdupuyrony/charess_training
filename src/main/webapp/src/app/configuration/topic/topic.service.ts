@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {UnsubscribeOnDestroyAdapter} from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import {environment} from "../../../environments/environment";
 import {Topic} from "./topic.model";
-import {Teachers} from "../../admin/teachers/all-teachers/teachers.model";
-
 
 @Injectable()
 export class TopicService extends UnsubscribeOnDestroyAdapter {
@@ -16,9 +14,12 @@ export class TopicService extends UnsubscribeOnDestroyAdapter {
         super();
     }
 
-    getTopics(){
-        console.log(this.api)
+    getAllTopics(){
         return this.http.get<Topic[]>(this.api);
+    }
+
+    getTopics(criteria:string){
+        return this.http.get<Topic[]>(`${this.api}/${criteria}`);
     }
 
     deleteTopic(id:number){
@@ -27,15 +28,6 @@ export class TopicService extends UnsubscribeOnDestroyAdapter {
 
     addTopic(topic: Topic){
         return this.http.post(this.api, topic);
-
-        // console.log(topic);
-        // this.http.post(`${environment.api}/topic`, topic).subscribe(
-        //     data => {
-        //         console.log(data, 'tout se passe bien')
-        //     },
-        //     (err: HttpErrorResponse) => {
-        //         console.log(err, '-------error-------');
-        // });
     }
 
 }

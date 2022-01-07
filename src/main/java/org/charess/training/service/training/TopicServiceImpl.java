@@ -41,4 +41,13 @@ public class TopicServiceImpl implements TopicService {
         return topic==null?null:topicRepository.save(topic);
     }
 
+    public List<Topic> search(String criteria){
+        List<Topic> topics;
+        if(criteria==null || criteria.length()<1)
+            topics = topicRepository.findAll();
+        else
+            topics = topicRepository.search(criteria);
+        return topics;
+    }
+
 }
