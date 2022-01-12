@@ -31,7 +31,6 @@ public class PlaceController {
 
     @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
-        log.info("======================{}====================", id);
         placeService.delete(id);
     }
 

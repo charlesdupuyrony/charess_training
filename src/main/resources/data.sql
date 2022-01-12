@@ -1,7 +1,13 @@
-insert into training.profile (id, name, page, role) VALUES (1,'Super','admin/dashboard/main','super');
+insert into training.profile (id, name, page, role) VALUES (1,'Super Administrateur','admin/dashboard/main','super');
+insert into training.profile (id, name, page, role) VALUES (2,'Administrateur','admin/dashboard/main','admin');
+insert into training.profile (id, name, page, role) VALUES (3,'Participant','admin/dashboard/main','attendee');
+insert into training.profile (id, name, page, role) VALUES (4,'Organisateur','admin/dashboard/main','organiser');
+insert into training.profile (id, name, page, role) VALUES (5,'Partenaire','admin/dashboard/main','partner');
+insert into training.profile (id, name, page, role) VALUES (6,'Officier de données','admin/dashboard/main','clerk');
+
 insert into training.person(id, first_name, last_name, gender, phone, identifier, identifier_type) values(1, 'Super', 'Admin', 'i', '(509) 0000-0000', '000-000-000-0', 'NIF');
 insert into training.users(id, username, password, status, locale, profile, created, creator)
-values(1, 'admin', '$2a$12$AHTfyhLWwKQ0pTMcbLqxVuMu8szRACausXNXk1pmjUlWseoGver5e', 'active', 'fr', 1, now(), null); -- password: admin@pass
+values(1, 'admin', '$2a$12$AHTfyhLWwKQ0pTMcbLqxVuMu8szRACausXNXk1pmjUlWseoGver5e', 'active', 'fr', 1, now(), null); -- password: pa1sw@rd
 
 
 

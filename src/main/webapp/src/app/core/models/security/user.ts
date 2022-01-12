@@ -11,6 +11,14 @@ export class User {
     profile?: Profile;
     img?: string;
     token?: string;
+
+    constructor(usr) {
+        {
+            this.id = usr.id;
+            this.username = usr.username;
+            this.person = usr.person?usr.person:new Person({});
+        }
+    }
 }
 
 

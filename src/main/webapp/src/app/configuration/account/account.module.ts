@@ -21,15 +21,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import {TranslateModule} from "@ngx-translate/core";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {TopicService} from "./topic.service";
-import {AccountRoutingModule} from "./topic-routing.module";
-import {TopicPageComponent} from "./page/topic.page.component";
-import {TopicFormComponent} from "./form/topic.form.component";
+import {AccountRoutingModule} from "./account-routing.module";
+import {AccountPageComponent} from "./page/account.page.component";
+import {AccountService} from "./account.service";
+import {AccountFormComponent} from "./form/account.form.component";
 
 @NgModule({
     declarations: [
-        TopicPageComponent,
-        TopicFormComponent
+        AccountPageComponent,
+        AccountFormComponent
     ],
     imports: [
         CommonModule,
@@ -57,7 +57,9 @@ import {TopicFormComponent} from "./form/topic.form.component";
         MatAutocompleteModule,
         AccountRoutingModule,
     ],
-    providers: [TopicService]
+    providers: [
+        AccountService
+    ]
 })
 
-export class TopicModule {}
+export class AccountModule {}

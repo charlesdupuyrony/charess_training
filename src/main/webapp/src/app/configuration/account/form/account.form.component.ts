@@ -1,98 +1,116 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {
-    FormControl,
     FormGroup,
-    FormBuilder,
+    FormBuilder, Validators, FormControl,
 } from '@angular/forms';
 
-import {startWith} from 'rxjs/operators';
-import { Observable, map } from 'rxjs';
-import {Topic} from "../topic.model";
-import {TopicService} from "../topic.service";
+import { Observable, map, startWith } from 'rxjs';
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AccountService} from "../account.service";
+import {User} from "../../../core/models/security/user";
+import {Profile} from "../../../core/models/security/profile";
 
 @Component({
     selector: 'app-form',
-    templateUrl: './topic.form.component.html'
+    templateUrl: './account.form.component.html'
 })
 
-export class TopicFormComponent implements OnInit {
+export class AccountFormComponent implements OnInit {
 
     action: string;
     title: string;
     fg: FormGroup;
-    topic: Topic;
-    themeControl = new FormControl();
-    themes=[];
-    filteredThemes: Observable<Topic[]>;
+    usr: User;
 
-    constructor(public fm: MatDialogRef<TopicFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-                public service: TopicService, private fb: FormBuilder, private _snackBar: MatSnackBar){
+    profileControl = new FormControl();
+    profiles=[];
+    filteredProfiles: Observable<Profile[]>;
+
+    constructor(public fm: MatDialogRef<AccountFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public service: AccountService,
+                private fb: FormBuilder, private snack: MatSnackBar){
         this.action = data.action;
         if (this.action === 'edit') {
-            this.topic = data.topic;
-            this.title = 'Edit the current topic';
-            this.themeControl.setValue(data.topic.theme);
+            this.usr = data.usr;
+            this.title = 'Edit the current usr';
+            //this.themeControl.setValue(data.usr.theme);
         } else{
-            this.title = 'New topic';
-            this.topic = new Topic({});
+            this.title = 'New account';
+            this.usr = new User({});
         }
-        this.fg = this.createContactForm();
+        this.fg = this.create();
     }
 
     ngOnInit() {
-        this.filteredThemes = this.themeControl.valueChanges.pipe(startWith(''),
-            map(value => {
-                this.service.getTopics(typeof value === 'string'?value.toLowerCase():value.title).subscribe((res)=>{
-                    this.themes = res;
-                });
-                return this.themes;
+        this.service.getProfiles().subscribe((res)=>{
+            this.profiles = res;
+            this.filteredProfiles = this.profileControl.valueChanges.pipe(startWith(''), map(value => {
+                return this._filter(value)
+            }));
+        });
+    }
+
+    _filter(value: string): Profile[] {
+        return this.profiles.filter(profile=>profile.name.toLowerCase().includes(typeof value === 'string'?value.toLowerCase():value));
+    }
+
+    display(profile):string {
+        if(profile)
+            return profile.name;
+    }
+
+    create(): FormGroup {
+        return this.fb.group({
+            username: ['', [Validators.required]],
+            locale: ['', [Validators.required]],
+            profile: [],
+            person: this.fb.group({
+                firstName: ['', [Validators.required]],
+                lastName: ['', [Validators.required]],
+                phone: ['', [Validators.required]],
+                email: ['', [Validators.required]],
             })
-        );
-    }
-
-    display(topic):string {
-        if(topic)
-            return topic.title;
-    }
-
-    createContactForm(): FormGroup {
-        return this.fb.group(this.topic);
+        });
     }
 
     submit() {
+        let obj = this.fg.getRawValue();
+        obj.profile = this.profileControl.value;
+        this.service.create(obj).subscribe(
+            data => {
+                this.service.setDialogData(data);
+                this.success()
+            },
+            (err: HttpErrorResponse) => this.error(err)
+        );
     }
 
     cancel(): void {
         this.fm.close();
     }
 
-    public save(): void {
-        let obj = this.fg.getRawValue();
-        obj.theme = this.themeControl.value;
-        this.service.addTopic(obj).subscribe(
-            data => this.success(),
-            (err: HttpErrorResponse)=>this.error(err)
-        );
-    }
+    // public save(): void {
+    //     let obj = this.fg.getRawValue();
+    //     obj.theme = this.themeControl.value;
+    //     this.service.addTopic(obj).subscribe(
+    //         data => this.success(),
+    //         (err: HttpErrorResponse)=>this.error(err)
+    //     );
+    // }
 
     private success(){
-        this.showNotification('bg-green','The topic has been successfully created');
+        this.toast('bg-green','The usr has been successfully created');
     }
 
     private error(err:HttpErrorResponse){
-        this.showNotification('bg-red','Something went wrong the topic has not been created. Please, try again!');
+        this.toast('bg-red','Something went wrong the usr has not been created. Please, try again!');
         console.error(err);
     }
 
-    private showNotification(colorName, text) {
-        this._snackBar.open(text, '', {
-            duration: 2000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right',
-            panelClass: colorName,
+    private toast(color, text) {
+        this.snack.open(text, '', {
+            duration: 2000, verticalPosition: 'top', horizontalPosition: 'right',panelClass: color,
         });
     }
 }

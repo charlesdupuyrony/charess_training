@@ -16,10 +16,10 @@ import java.util.Date;
 @Table(name = "person")
 public class Person extends ID implements Serializable {
 
-    @Column(name = "identifier", length = 25, nullable = false, unique = true)
+    @Column(name = "identifier", length = 25, unique = true)
     private String identifier;
 
-    @Column(name = "identifier_type", length = 5, nullable = false)
+    @Column(name = "identifier_type", length = 5)
     private String identifierType;
 
     @NotEmpty
@@ -33,12 +33,11 @@ public class Person extends ID implements Serializable {
     private String lastName;
 
     @Column(name = "gender", length = 1, nullable = false)
-    private String gender;
+    private String gender = "i";
 
-    @Column(name = "phone", length = 15, nullable = false)
+    @Column(name = "phone", length = 15)
     private String phone;
 
-    @NotEmpty
     @Size(min = 5, max = 60)
     @Column(name = "email", unique = true)
     private String email;

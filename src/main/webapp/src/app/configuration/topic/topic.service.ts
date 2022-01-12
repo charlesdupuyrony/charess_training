@@ -29,5 +29,4 @@ export class TopicService extends UnsubscribeOnDestroyAdapter {
     addTopic(topic: Topic){
         return this.http.post(this.api, topic);
     }
-
 }

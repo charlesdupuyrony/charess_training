@@ -16,40 +16,39 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 
 @Component({
-  selector: 'app-all-teachers',
-  templateUrl: './all-teachers.component.html',
-  styleUrls: ['./all-teachers.component.sass'],
+    selector: 'app-all-teachers',
+    templateUrl: './all-teachers.component.html',
+    styleUrls: ['./all-teachers.component.sass'],
 })
-export class AllTeachersComponent
-  extends UnsubscribeOnDestroyAdapter
-  implements OnInit
-{
-  displayedColumns = [
-    'select',
-    'img',
-    'name',
-    'department',
-    'gender',
-    'degree',
-    'mobile',
-    'email',
-    'date',
-    'actions',
-  ];
-  exampleDatabase: TeachersService | null;
-  dataSource: ExampleDataSource | null;
-  selection = new SelectionModel<Teachers>(true, []);
-  id: number;
-  teachers: Teachers | null;
 
-  constructor(
-    public httpClient: HttpClient,
-    public dialog: MatDialog,
-    public teachersService: TeachersService,
-    private snackBar: MatSnackBar
-  ) {
-    super();
-  }
+export class AllTeachersComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
+    displayedColumns = [
+        'select',
+        'img',
+        'name',
+        'department',
+        'gender',
+        'degree',
+        'mobile',
+        'email',
+        'date',
+        'actions',
+    ];
+
+    exampleDatabase: TeachersService | null;
+    dataSource: ExampleDataSource | null;
+    selection = new SelectionModel<Teachers>(true, []);
+    id: number;
+    teachers: Teachers | null;
+
+    constructor(
+        public httpClient: HttpClient,
+        public dialog: MatDialog,
+        public teachersService: TeachersService,
+        private snackBar: MatSnackBar
+        ) {
+        super();
+    }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -198,22 +197,22 @@ export class AllTeachersComponent
       'center'
     );
   }
-  public loadData() {
-    this.exampleDatabase = new TeachersService(this.httpClient);
-    this.dataSource = new ExampleDataSource(
-      this.exampleDatabase,
-      this.paginator,
-      this.sort
-    );
-    this.subs.sink = fromEvent(this.filter.nativeElement, 'keyup').subscribe(
-      () => {
+    public loadData() {
+        this.exampleDatabase = new TeachersService(this.httpClient);
+        this.dataSource = new ExampleDataSource(
+            this.exampleDatabase,
+            this.paginator,
+            this.sort
+        );
+        this.subs.sink = fromEvent(this.filter.nativeElement, 'keyup').subscribe(
+        () => {
         if (!this.dataSource) {
-          return;
+        return;
         }
         this.dataSource.filter = this.filter.nativeElement.value;
-      }
-    );
-  }
+        }
+        );
+    }
   showNotification(colorName, text, placementFrom, placementAlign) {
     this.snackBar.open(text, '', {
       duration: 2000,
@@ -232,6 +231,8 @@ export class AllTeachersComponent
     this.contextMenu.openMenu();
   }
 }
+
+
 export class ExampleDataSource extends DataSource<Teachers> {
   filterChange = new BehaviorSubject('');
   get filter(): string {
@@ -251,6 +252,7 @@ export class ExampleDataSource extends DataSource<Teachers> {
     // Reset to the first page when the user changes the filter.
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
+
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Teachers[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination

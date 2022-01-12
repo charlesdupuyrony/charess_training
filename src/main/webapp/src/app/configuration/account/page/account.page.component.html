@@ -1,42 +1,100 @@
 <section class="content">
     <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="ngxTableHeader">
-                                    <ul class="header-buttons-left ms-0 mb-0">
-                                        <li class="dropdown"><h2><strong>{{'training.configuration.list.topic' | translate}}</strong></h2></li>
-                                        <li class="dropdown m-l-20">
-                                            <label><i class="material-icons search-icon">search</i></label>
-                                            <input placeholder="{{'Search' | translate}}" type="text" class="browser-default search-field" (keyup)='filterDatatable($event)' aria-label="Search box">
-                                        </li>
-                                    </ul>
-                                    <ul class="header-buttons">
-                                        <li>
-                                            <button mat-mini-fab color="primary" (click)="add()">
-                                                <mat-icon class="col-white">add</mat-icon>
-                                            </button>
-                                        </li>
-                                    </ul>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <div class="materialTableHeader">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <ul class="header-buttons-left ml-0">
+                                                <li class="dropdown"><h2><strong>{{'training.configuration.list.account' | translate}}</strong></h2></li>
+                                                <li class="dropdown m-l-20">
+                                                    <label><i class="material-icons search-icon">search</i></label>
+                                                    <input placeholder="Search" type="text" #filter class="browser-default search-field" aria-label="Search box">
+                                                </li>
+                                                <li>
+                                                    <div class="icon-button-demo m-l-10" [hidden]=!selection.hasValue()>
+                                                        <button mat-mini-fab color="warn" (click)="remove()"><mat-icon class="col-white">delete</mat-icon></button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-4">
+                                            <ul class="header-buttons">
+                                                <li>
+                                                    <div class="icon-button-demo"><button mat-mini-fab color="primary" (click)="add()"><mat-icon class="col-white">add</mat-icon></button></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <ngx-datatable #table class="material" [rows]="data" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-                                    <ngx-datatable-column name="{{'Title' | translate}}" sortable="true" prop="title" [width]="280">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value}}</ng-template></ngx-datatable-column>
-                                    <ngx-datatable-column name="{{'Theme' | translate}}" sortable="true" prop="theme" [width]="280">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value?.title}}</ng-template></ngx-datatable-column>
+                                <mat-table #table [dataSource]="datasource" matSort class="mat-cell">
+                                    <ng-container matColumnDef="select">
+                                        <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
+                                            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                                                          [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
+                                            </mat-checkbox>
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
+                                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                                                          [checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'">
+                                            </mat-checkbox>
+                                        </mat-cell>
+                                    </ng-container>
 
-                                    <ngx-datatable-column name="Actions" sortable="false" [width]="-380">
-                                        <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                                        <span>
-                                            <button class="btn tblActnBtn h-auto" (click)='edit(row)'><i class="material-icons">mode_edit</i></button>
-                                            <button class="btn tblActnBtn h-auto" (click)='delete(row)'><i class="material-icons">delete</i></button>
-                                        </span>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                </ngx-datatable>
+                                    <ng-container matColumnDef="username">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Username'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.username}}</mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="fullname" >
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'user.fullname'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
+                                            <span class="material-icons" style="font-size: 40px">
+                                                {{row.person.gender=='m'?'man':(row.person.gender=='f'?'woman':'arrow_left')}}</span>
+                                            {{row.person.fullname}}
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="profile">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Profile'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.profile.name}}</mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="phone">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Phone'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.person.phone}}</mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="email">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Email'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.person.email}}</mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="locale">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Locale'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.locale=='en'?'Anglais':(row.locale=='fr'?'Fran&ccedil;ais':'Créole Haïtien')}}</mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="actions">
+                                        <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
+                                        <mat-cell *matCellDef="let row;" class="pr-0">
+                                            <button mat-icon-button color="accent" class="btn-tbl-edit" (click)="$event.stopPropagation()" (click)="editCall(row)">
+                                                <mat-icon aria-label="Edit" class="col-white">edit</mat-icon>
+                                            </button>
+                                            <button mat-icon-button color="accent" class="btn-tbl-delete" (click)="$event.stopPropagation()" (click)="deleteItem(row)">
+                                                <mat-icon aria-label="Delete" class="col-white">delete</mat-icon>
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="edit(row)" [style.cursor]="'pointer'" matRipple> </mat-row>
+                                </mat-table>
+                                <mat-paginator #paginator [length]="datasource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                             </div>
                         </div>
                     </div>

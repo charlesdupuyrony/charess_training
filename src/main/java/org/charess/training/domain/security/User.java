@@ -46,8 +46,12 @@ public class User implements Serializable, UserDetails {
     @JoinColumn(name = "profile")
     private Profile profile;
 
+    @ManyToOne
+    @JoinColumn(name = "institution")
+    private Place institution;
+
     @Column(name = "created", nullable = false)
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "creator")
@@ -62,6 +66,13 @@ public class User implements Serializable, UserDetails {
 
     @Transient
     private String token;
+
+    @ManyToOne
+    @JoinColumn(name = "activated_by")
+    private User activatedBy;
+
+    @Column(name = "activated_date")
+    private LocalDateTime activatedDate;
 
     public String getToken() {
         return token;
@@ -98,6 +109,14 @@ public class User implements Serializable, UserDetails {
         if(getAuthorities().size() < 1)
             bool = false;
         return bool;
+    }
+
+    public Place getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(Place institution) {
+        this.institution = institution;
     }
 
     public Integer getId() {
@@ -188,6 +207,22 @@ public class User implements Serializable, UserDetails {
 
     public void setEditor(User editor) {
         this.editor = editor;
+    }
+
+    public User getActivatedBy() {
+        return activatedBy;
+    }
+
+    public void setActivatedBy(User activatedBy) {
+        this.activatedBy = activatedBy;
+    }
+
+    public LocalDateTime getActivatedDate() {
+        return activatedDate;
+    }
+
+    public void setActivatedDate(LocalDateTime activatedDate) {
+        this.activatedDate = activatedDate;
     }
 
     @Override

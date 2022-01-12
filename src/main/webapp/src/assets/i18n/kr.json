@@ -2,7 +2,7 @@
     "Name": "Non",
     "Address": "Adrès",
     "Manager": "Responsab",
-    "Parent": "Antite superyè",
+    "Parent": "Antite siperyè",
     "New Institution Partner": "Nouvèl enstitisyon patnè",
     "Title": "Tit",
     "Search": "Chèche",
@@ -12,6 +12,16 @@
     "Delete": "Retire",
     "Cancel": "Anile",
     "Are you sure?": "Ou si?",
+    "user.fullname": "Siyati & Non",
+    "Phone": "Telefòn",
+    "Locale": "Lang chwazi",
+    "Username": "Non itilizatè",
+    "First Name": "Nom",
+    "Last Name": "Siyati",
+
+
+
+
 
 
 
@@ -21,9 +31,7 @@
             "list": {
                 "facility": "Enstitisyon & Patnè",
                 "topic": "Definisyon Tematik",
-                "DASHBOARD2": "Dashboard 2",
-                "TEACHER-DASHBOARD": "Teacher Dashboard",
-                "STUDENT-DASHBOARD": "Student Dashboard"
+                "account": "Jesyon itilizatè"
             }
         },
 

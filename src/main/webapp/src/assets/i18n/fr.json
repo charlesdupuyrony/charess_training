@@ -12,19 +12,24 @@
     "Delete": "Enlever",
     "Cancel": "Annuler",
     "Are you sure?": "Etes-vous sûr?",
+    "user.fullname": "Nom & Prénom",
+    "Phone": "Téléphone",
+    "Locale": "Langue préférée",
+    "Username": "Nom d'utilisateur",
+    "First Name": "Prénom",
+    "Last Name": "Nom",
 
 
 
-    "training": {
+
+
+      "training": {
         "configuration": {
             "text": "Configuration",
             "list": {
                 "facility": "Institution & Partenaire",
                 "topic": "Définition de thématique",
-
-                "DASHBOARD2": "Dashboard 2",
-                "TEACHER-DASHBOARD": "Teacher Dashboard",
-                "STUDENT-DASHBOARD": "Student Dashboard"
+                "account": "Gestion des utilisateurs"
             }
         },
 

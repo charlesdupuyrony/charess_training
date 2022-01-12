@@ -12,6 +12,12 @@
     "Delete": "Delete",
     "Cancel": "Cancel",
     "Are you sure?": "Are you sure?",
+    "user.fullname": "Full Name",
+    "Phone": "Phone",
+    "Locale": "Locale",
+    "Username": "Username",
+    "First Name": "First Name",
+    "Last Name": "Last Name",
 
 
     "training": {
@@ -20,9 +26,7 @@
             "list": {
                 "facility": "Institution & Partner",
                 "topic": "Thematic Definition",
-                "DASHBOARD2": "Dashboard 2",
-                "TEACHER-DASHBOARD": "Teacher Dashboard",
-                "STUDENT-DASHBOARD": "Student Dashboard"
+                "account": "User Management"
             }
         },
 
