@@ -63,7 +63,7 @@ export class AccountFormComponent implements OnInit {
             username: ['', [Validators.required]],
             locale: ['', [Validators.required]],
             profile: [],
-            institution: [],
+            institution: ['', [Validators.required]],
             person: this.fb.group({
                 firstName: ['', [Validators.required]],
                 lastName: ['', [Validators.required]],

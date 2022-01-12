@@ -37,7 +37,7 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
     usr: User | null;
     dim = {
         width: '1200px',
-        height: '600px'
+        height: '420px'
     };
 
     constructor(public http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar, private accountService: AccountService){
@@ -83,7 +83,7 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
                         this.accountService.getDialogData()
                     );
                     this.paginator._changePageSize(this.paginator.pageSize);
-                }, 1500);
+                }, 1000);
             }
         });
     }
