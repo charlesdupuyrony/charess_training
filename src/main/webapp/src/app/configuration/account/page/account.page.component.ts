@@ -26,9 +26,9 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
         'username',
         'fullname',
         'profile',
-        'phone',
         'email',
         'locale',
+        'institution',
         'actions'
     ];
     database: AccountService | null;

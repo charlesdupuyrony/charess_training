@@ -5,6 +5,7 @@ import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroy
 import {environment} from "../../../environments/environment";
 import {User} from "../../core/models/security/user";
 import {Profile} from "../../core/models/security/profile";
+import {Institution} from "../institution/institution.model";
 
 @Injectable()
 export class AccountService extends UnsubscribeOnDestroyAdapter {
@@ -17,6 +18,10 @@ export class AccountService extends UnsubscribeOnDestroyAdapter {
 
     constructor(private http: HttpClient) {
         super();
+    }
+
+    getInstitutions(){
+        return this.http.get<Institution[]>(`${environment.api}/place`);
     }
 
     getProfiles(){

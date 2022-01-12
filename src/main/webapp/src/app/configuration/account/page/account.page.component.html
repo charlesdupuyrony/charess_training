@@ -64,9 +64,9 @@
                                         <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.profile.name}}</mat-cell>
                                     </ng-container>
 
-                                    <ng-container matColumnDef="phone">
-                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Phone'|translate}}</mat-header-cell>
-                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.person.phone}}</mat-cell>
+                                    <ng-container matColumnDef="institution">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Place of work'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.institution?.name}}</mat-cell>
                                     </ng-container>
 
                                     <ng-container matColumnDef="email">

@@ -18,12 +18,14 @@
     "Username": "Nom d'utilisateur",
     "First Name": "Prénom",
     "Last Name": "Nom",
+    "Place of work": "Lieu de travail",
 
 
 
 
 
-      "training": {
+
+  "training": {
         "configuration": {
             "text": "Configuration",
             "list": {

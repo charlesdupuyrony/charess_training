@@ -23,10 +23,8 @@ export class AccountFormComponent implements OnInit {
     title: string;
     fg: FormGroup;
     usr: User;
-
-    profileControl = new FormControl();
     profiles=[];
-    filteredProfiles: Observable<Profile[]>;
+    institutions=[];
 
     constructor(public fm: MatDialogRef<AccountFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public service: AccountService,
                 private fb: FormBuilder, private snack: MatSnackBar){
@@ -45,9 +43,9 @@ export class AccountFormComponent implements OnInit {
     ngOnInit() {
         this.service.getProfiles().subscribe((res)=>{
             this.profiles = res;
-            this.filteredProfiles = this.profileControl.valueChanges.pipe(startWith(''), map(value => {
-                return this._filter(value)
-            }));
+        });
+        this.service.getInstitutions().subscribe((res)=>{
+            this.institutions = res;
         });
     }
 
@@ -65,10 +63,10 @@ export class AccountFormComponent implements OnInit {
             username: ['', [Validators.required]],
             locale: ['', [Validators.required]],
             profile: [],
+            institution: [],
             person: this.fb.group({
                 firstName: ['', [Validators.required]],
                 lastName: ['', [Validators.required]],
-                phone: ['', [Validators.required]],
                 email: ['', [Validators.required]],
             })
         });
@@ -76,7 +74,6 @@ export class AccountFormComponent implements OnInit {
 
     submit() {
         let obj = this.fg.getRawValue();
-        obj.profile = this.profileControl.value;
         this.service.create(obj).subscribe(
             data => {
                 this.service.setDialogData(data);
