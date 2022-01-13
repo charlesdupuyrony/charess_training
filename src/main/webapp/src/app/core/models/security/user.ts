@@ -20,6 +20,7 @@ export class User {
             this.username = usr?.username;
             this.profile = usr?.profile;
             this.institution = usr?.institution;
+            this.status = usr.status;
             this.person = usr.person?usr.person:new Person({});
         }
     }

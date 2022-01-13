@@ -25,6 +25,8 @@ import {AccountRoutingModule} from "./account-routing.module";
 import {AccountPageComponent} from "./page/account.page.component";
 import {AccountService} from "./account.service";
 import {AccountFormComponent} from "./form/account.form.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {PerfectScrollbarModule} from "ngx-perfect-scrollbar";
 
 @NgModule({
     declarations: [
@@ -54,7 +56,9 @@ import {AccountFormComponent} from "./form/account.form.component";
         MatProgressSpinnerModule,
         TranslateModule,
         NgxDatatableModule,
+        MatTooltipModule,
         MatAutocompleteModule,
+        PerfectScrollbarModule,
         AccountRoutingModule,
     ],
     providers: [

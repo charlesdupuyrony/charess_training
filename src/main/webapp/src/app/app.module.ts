@@ -65,7 +65,6 @@ export function createTranslateLoader(http: HttpClient): any {
                 deps: [HttpClient],
             },
         }),
-        // core & shared
         CoreModule,
         SharedModule,
     ],
@@ -77,7 +76,6 @@ export function createTranslateLoader(http: HttpClient): any {
         },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        // fakeBackendProvider,
     ],
     entryComponents: [],
     bootstrap: [AppComponent],

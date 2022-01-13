@@ -19,19 +19,33 @@
                                         </div>
                                         <div class="col-4">
                                             <ul class="header-buttons">
+
                                                 <li>
                                                     <div class="icon-button-demo" [hidden]=!selection.hasValue()>
-                                                        <button mat-mini-fab color="warn" (click)="remove()"><mat-icon class="col-white">delete</mat-icon></button>
+                                                        <button mat-mini-fab color="primary" (click)="update('USER_ACTIVE')" matTooltip="Activer">
+                                                            <mat-icon class="col-white">notifications</mat-icon>
+                                                        </button>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="icon-button-demo" [hidden]=!selection.hasValue()>
+                                                        <button mat-mini-fab color="warn" (click)="update('USER_INACTIVE')" matTooltip="Désactiver">
+                                                            <mat-icon class="col-white">notifications_off</mat-icon>
+                                                        </button>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="icon-button-demo" [hidden]="selection.selected.length !== 1">
-                                                        <button mat-mini-fab color="primary" (click)="edit()"><mat-icon class="col-white">edit</mat-icon></button>
+                                                        <button mat-mini-fab color="primary" (click)="edit()" matTooltip="Editer">
+                                                            <mat-icon class="col-white">edit</mat-icon>
+                                                        </button>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="icon-button-demo"><button mat-mini-fab color="primary" (click)="add()">
-                                                        <mat-icon class="col-white">add</mat-icon></button>
+                                                    <div class="icon-button-demo" [hidden]=selection.hasValue()>
+                                                        <button mat-mini-fab color="primary" (click)="add()" matTooltip="Ajouter">
+                                                            <mat-icon class="col-white">add</mat-icon>
+                                                        </button>
                                                     </div>
                                                 </li>
                                             </ul>

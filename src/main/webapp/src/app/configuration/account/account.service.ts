@@ -58,6 +58,10 @@ export class AccountService extends UnsubscribeOnDestroyAdapter {
         return this.http.post(this.api, usr);
     }
 
+    update(users: User[]){
+        return this.http.post(`${this.api}/update`, users);
+    }
+
 
     
     // addTeachers(teachers: User): void {

@@ -33,8 +33,6 @@ export class AccountFormComponent implements OnInit {
         if (this.action === 'edit') {
             this.usr = data.usr;
             this.title = 'Edit the current usr';
-            //this.usr.profile = data.usr.profile.id;
-            console.log(this.usr.profile)
         } else{
             this.title = 'New account';
             this.usr = new User({});
@@ -66,6 +64,7 @@ export class AccountFormComponent implements OnInit {
             username: [this.usr.username, [Validators.required]],
             locale: [this.usr.locale, [Validators.required]],
             profile: [this.usr.profile],
+            status: [this.usr.status],
             institution: [this.usr.institution, [Validators.required]],
             person: this.fb.group({
                 id: [this.usr.person.id],

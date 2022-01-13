@@ -109,4 +109,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    public void status(List<User> users){
+        for(User u: users){
+            register(u, false);
+        }
+    }
+
 }

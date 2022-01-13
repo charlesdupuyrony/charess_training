@@ -60,4 +60,15 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseEntity<String> update(@RequestBody List<User> users) {
+        try {
+            userService.status(users);
+            return new ResponseEntity<>("", HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
+
 }

@@ -11,7 +11,6 @@ import {
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Router } from '@angular/router';
 import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
-import { Role } from 'src/app/core/models/security/role';
 import { LanguageService } from 'src/app/core/service/language.service';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import {User} from "../../core/models/security/user";
@@ -163,15 +162,15 @@ export class HeaderComponent extends UnsubscribeOnDestroyAdapter implements OnIn
             this.renderer.addClass(this.document.body, 'submenu-closed');
         }
     }
-
-    public toggleRightSidebar(): void {
-        this.subs.sink = this.rightSidebarService.sidebarState.subscribe(
-        (isRunning) => {
-                this.isOpenSidebar = isRunning;
-            }
-        );
-        this.rightSidebarService.setRightSidebar((this.isOpenSidebar = !this.isOpenSidebar));
-    }
+    //
+    // public toggleRightSidebar(): void {
+    //     this.subs.sink = this.rightSidebarService.sidebarState.subscribe(
+    //     (isRunning) => {
+    //             this.isOpenSidebar = isRunning;
+    //         }
+    //     );
+    //     this.rightSidebarService.setRightSidebar((this.isOpenSidebar = !this.isOpenSidebar));
+    // }
 
     logout() {
         this.subs.sink = this.authService.logout().subscribe((res) => {

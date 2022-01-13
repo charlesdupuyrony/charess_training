@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -13,8 +13,7 @@ import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroy
 import {AccountService} from "../account.service";
 import {User} from "../../../core/models/security/user";
 import {AccountFormComponent} from "../form/account.form.component";
-import {FormDialogComponent} from "../../../admin/teachers/all-teachers/dialogs/form-dialog/form-dialog.component";
-import {Teachers} from "../../../admin/teachers/all-teachers/teachers.model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-page',
@@ -37,12 +36,13 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
     datasource: Source | null;
     selection = new SelectionModel<User>(true, []);
     usr: User | null;
+    profiles=[];
     dim = {
         width: '1200px',
         height: '420px'
     };
 
-    constructor(public http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar, private accountService: AccountService){
+    constructor(public http: HttpClient, public dialog: MatDialog, private snack: MatSnackBar, private factory: AccountService, private router: Router){
         super();
     }
 
@@ -68,10 +68,13 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
 
     ngOnInit() {
         this.load();
+        this.factory.getProfiles().subscribe((res)=>{
+            this.profiles = res;
+        });
     }
 
     add(){
-        const dialogRef = this.dialog.open(AccountFormComponent, {
+        this.dialog.open(AccountFormComponent, {
             ...this.dim,
             data: {
                 usr: this.usr,
@@ -82,7 +85,7 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
 
     edit() {
         const row = this.selection.selected[0];
-        const dialogRef = this.dialog.open(AccountFormComponent, {
+        this.dialog.open(AccountFormComponent, {
             ...this.dim,
             data: {
                 usr: row,
@@ -91,7 +94,26 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
         });
     }
 
-    remove(){}
+    update(status){
+        let users = [];
+        this.selection.selected.forEach((u) => {
+            if(status && u.status!= status){
+                u.status = status;
+                users.push(u);
+            }
+        });
+        if(users.length > 0){
+            this.factory.update(users).subscribe(
+                data => {
+                    this.success();
+                    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+                        this.router.navigate(['/configuration/account/page']);
+                    });
+                },
+                (err: HttpErrorResponse) => this.error(err)
+            );
+        }
+    }
 
     chg(ob){
         switch (ob) {
@@ -106,25 +128,20 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
         }
     }
 
-    // removeSelectedRows() {
-    //     const totalSelect = this.selection.selected.length;
-    //     this.selection.selected.forEach((item) => {
-    //         const index: number = this.dataSource.renderedData.findIndex(
-    //             (d) => d === item
-    //         );
-    //         // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
-    //         this.exampleDatabase.dataChange.value.splice(index, 1);
-    //         this.refreshTable();
-    //         this.selection = new SelectionModel<Teachers>(true, []);
-    //     });
-    //     this.showNotification(
-    //         'snackbar-danger',
-    //         totalSelect + ' Record Delete Successfully...!!!',
-    //         'bottom',
-    //         'center'
-    //     );
-    // }
+    private success(){
+        this.toast('bg-green','Operation successfully terminated');
+    }
 
+    private error(err:HttpErrorResponse){
+        this.toast('bg-red','Operation failed! Please, contact your sys admin');
+        console.error(err);
+    }
+
+    private toast(color, text) {
+        this.snack.open(text, '', {
+            duration: 2000, verticalPosition: 'top', horizontalPosition: 'right',panelClass: color,
+        });
+    }
 
     isAllSelected() {
         const numSelected = this.selection.selected.length;
