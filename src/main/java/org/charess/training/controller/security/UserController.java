@@ -43,8 +43,9 @@ public class UserController {
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
         try {
-            if(user == null)
+            if(user == null) {
                 return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+            }
             if(user.getId() == null){
                 if(userService.findByUsername(user.getUsername()) != null) {
                     return new ResponseEntity<>("username", textPlainHeaders, HttpStatus.CONFLICT);

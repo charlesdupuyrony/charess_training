@@ -13,6 +13,8 @@ import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroy
 import {AccountService} from "../account.service";
 import {User} from "../../../core/models/security/user";
 import {AccountFormComponent} from "../form/account.form.component";
+import {FormDialogComponent} from "../../../admin/teachers/all-teachers/dialogs/form-dialog/form-dialog.component";
+import {Teachers} from "../../../admin/teachers/all-teachers/teachers.model";
 
 @Component({
     selector: 'app-page',
@@ -28,8 +30,7 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
         'profile',
         'email',
         'locale',
-        'institution',
-        'actions'
+        'institution'
     ];
     database: AccountService | null;
     datasource: Source | null;
@@ -54,14 +55,14 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
     public load() {
         this.database = new AccountService(this.http);
         this.datasource = new Source(this.database, this.paginator, this.sort);
-        // this.subs.sink = fromEvent(this.filter.nativeElement, 'keyup').subscribe(
-        //     () => {
-        //         if (!this.datasource) {
-        //             return;
-        //         }
-        //         this.datasource.filter = this.filter.nativeElement.value;
-        //     }
-        // );
+        this.subs.sink = fromEvent(this.filter.nativeElement, 'keyup').subscribe(
+            () => {
+                if (!this.datasource) {
+                    return;
+                }
+                this.datasource.filter = this.filter.nativeElement.value;
+            }
+        );
     }
 
     ngOnInit() {
@@ -76,20 +77,50 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
                 action: 'add',
             }
         });
-        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-            if (result === 1) {
-                setTimeout(()=>{
-                    this.database.dataChange.value.unshift(
-                        this.accountService.getDialogData()
-                    );
-                    this.paginator._changePageSize(this.paginator.pageSize);
-                }, 1000);
+    }
+
+    edit() {
+        const row = this.selection.selected[0];
+        const dialogRef = this.dialog.open(AccountFormComponent, {
+            ...this.dim,
+            data: {
+                usr: row,
+                action: 'edit',
             }
         });
     }
 
     remove(){}
-    edit(row){}
+
+    // removeSelectedRows() {
+    //     const totalSelect = this.selection.selected.length;
+    //     this.selection.selected.forEach((item) => {
+    //         const index: number = this.dataSource.renderedData.findIndex(
+    //             (d) => d === item
+    //         );
+    //         // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+    //         this.exampleDatabase.dataChange.value.splice(index, 1);
+    //         this.refreshTable();
+    //         this.selection = new SelectionModel<Teachers>(true, []);
+    //     });
+    //     this.showNotification(
+    //         'snackbar-danger',
+    //         totalSelect + ' Record Delete Successfully...!!!',
+    //         'bottom',
+    //         'center'
+    //     );
+    // }
+
+
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.datasource.renderedData.length;
+        return numSelected === numRows;
+    }
+
+    masterToggle() {
+        this.isAllSelected()? this.selection.clear(): this.datasource.renderedData.forEach((row) => this.selection.select(row));
+    }
 }
 
 

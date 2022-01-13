@@ -11,6 +11,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AccountService} from "../account.service";
 import {User} from "../../../core/models/security/user";
 import {Profile} from "../../../core/models/security/profile";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-form',
@@ -27,12 +28,13 @@ export class AccountFormComponent implements OnInit {
     institutions=[];
 
     constructor(public fm: MatDialogRef<AccountFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public service: AccountService,
-                private fb: FormBuilder, private snack: MatSnackBar){
+                private fb: FormBuilder, private snack: MatSnackBar, private router: Router){
         this.action = data.action;
         if (this.action === 'edit') {
             this.usr = data.usr;
             this.title = 'Edit the current usr';
-            //this.themeControl.setValue(data.usr.theme);
+            //this.usr.profile = data.usr.profile.id;
+            console.log(this.usr.profile)
         } else{
             this.title = 'New account';
             this.usr = new User({});
@@ -60,24 +62,32 @@ export class AccountFormComponent implements OnInit {
 
     create(): FormGroup {
         return this.fb.group({
-            username: ['', [Validators.required]],
-            locale: ['', [Validators.required]],
-            profile: [],
-            institution: ['', [Validators.required]],
+            id: [this.usr.id],
+            username: [this.usr.username, [Validators.required]],
+            locale: [this.usr.locale, [Validators.required]],
+            profile: [this.usr.profile],
+            institution: [this.usr.institution, [Validators.required]],
             person: this.fb.group({
-                firstName: ['', [Validators.required]],
-                lastName: ['', [Validators.required]],
-                email: ['', [Validators.required]],
+                id: [this.usr.person.id],
+                firstName: [this.usr.person.firstName, [Validators.required]],
+                lastName: [this.usr.person.lastName, [Validators.required]],
+                email: [this.usr.person.email, [Validators.required]],
             })
         });
+    }
+
+    compare(a, b): boolean {
+        return a && b ?(a.id && b.id && a.id===b.id):a===b;
     }
 
     submit() {
         let obj = this.fg.getRawValue();
         this.service.create(obj).subscribe(
             data => {
-                this.service.setDialogData(data);
-                this.success()
+                this.success();
+                this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+                    this.router.navigate(['/configuration/account/page']);
+                });
             },
             (err: HttpErrorResponse) => this.error(err)
         );
@@ -86,15 +96,6 @@ export class AccountFormComponent implements OnInit {
     cancel(): void {
         this.fm.close();
     }
-
-    // public save(): void {
-    //     let obj = this.fg.getRawValue();
-    //     obj.theme = this.themeControl.value;
-    //     this.service.addTopic(obj).subscribe(
-    //         data => this.success(),
-    //         (err: HttpErrorResponse)=>this.error(err)
-    //     );
-    // }
 
     private success(){
         this.toast('bg-green','The usr has been successfully created');

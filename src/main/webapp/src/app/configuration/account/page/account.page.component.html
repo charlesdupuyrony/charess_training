@@ -16,6 +16,11 @@
                                                     <input placeholder="Search" type="text" #filter class="browser-default search-field" aria-label="Search box">
                                                 </li>
                                                 <li>
+                                                    <div class="icon-button-demo m-l-10" [hidden]="selection.selected.length !== 1">
+                                                        <button mat-mini-fab color="warn" (click)="edit()"><mat-icon class="col-white">edit</mat-icon></button>
+                                                    </div>
+                                                </li>
+                                                <li>
                                                     <div class="icon-button-demo m-l-10" [hidden]=!selection.hasValue()>
                                                         <button mat-mini-fab color="warn" (click)="remove()"><mat-icon class="col-white">delete</mat-icon></button>
                                                     </div>
@@ -78,21 +83,8 @@
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Locale'|translate}}</mat-header-cell>
                                         <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.locale=='en'?'Anglais':(row.locale=='fr'?'Fran&ccedil;ais':'Créole Haïtien')}}</mat-cell>
                                     </ng-container>
-
-                                    <ng-container matColumnDef="actions">
-                                        <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
-                                        <mat-cell *matCellDef="let row;" class="pr-0">
-                                            <button mat-icon-button color="accent" class="btn-tbl-edit" (click)="$event.stopPropagation()" (click)="editCall(row)">
-                                                <mat-icon aria-label="Edit" class="col-white">edit</mat-icon>
-                                            </button>
-                                            <button mat-icon-button color="accent" class="btn-tbl-delete" (click)="$event.stopPropagation()" (click)="deleteItem(row)">
-                                                <mat-icon aria-label="Delete" class="col-white">delete</mat-icon>
-                                            </button>
-                                        </mat-cell>
-                                    </ng-container>
-
                                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="edit(row)" [style.cursor]="'pointer'" matRipple> </mat-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;" [style.cursor]="'pointer'" matRipple> </mat-row>
                                 </mat-table>
                                 <mat-paginator #paginator [length]="datasource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                             </div>
