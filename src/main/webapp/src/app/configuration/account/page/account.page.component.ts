@@ -30,6 +30,7 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
         'profile',
         'email',
         'locale',
+        'status',
         'institution'
     ];
     database: AccountService | null;
@@ -91,6 +92,19 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
     }
 
     remove(){}
+
+    chg(ob){
+        switch (ob) {
+            case 'USER_ACTIVE':
+                return 'Actif';
+            case 'USER_LOCKED':
+                return 'Vérouillé';
+            case 'USER_PENDING':
+                return 'Pendant';
+            case 'USER_INACTIVE':
+                return 'Inactif';
+        }
+    }
 
     // removeSelectedRows() {
     //     const totalSelect = this.selection.selected.length;

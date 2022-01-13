@@ -15,22 +15,24 @@
                                                     <label><i class="material-icons search-icon">search</i></label>
                                                     <input placeholder="Search" type="text" #filter class="browser-default search-field" aria-label="Search box">
                                                 </li>
-                                                <li>
-                                                    <div class="icon-button-demo m-l-10" [hidden]="selection.selected.length !== 1">
-                                                        <button mat-mini-fab color="warn" (click)="edit()"><mat-icon class="col-white">edit</mat-icon></button>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon-button-demo m-l-10" [hidden]=!selection.hasValue()>
-                                                        <button mat-mini-fab color="warn" (click)="remove()"><mat-icon class="col-white">delete</mat-icon></button>
-                                                    </div>
-                                                </li>
                                             </ul>
                                         </div>
                                         <div class="col-4">
                                             <ul class="header-buttons">
                                                 <li>
-                                                    <div class="icon-button-demo"><button mat-mini-fab color="primary" (click)="add()"><mat-icon class="col-white">add</mat-icon></button></div>
+                                                    <div class="icon-button-demo" [hidden]=!selection.hasValue()>
+                                                        <button mat-mini-fab color="warn" (click)="remove()"><mat-icon class="col-white">delete</mat-icon></button>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="icon-button-demo" [hidden]="selection.selected.length !== 1">
+                                                        <button mat-mini-fab color="primary" (click)="edit()"><mat-icon class="col-white">edit</mat-icon></button>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="icon-button-demo"><button mat-mini-fab color="primary" (click)="add()">
+                                                        <mat-icon class="col-white">add</mat-icon></button>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -72,6 +74,11 @@
                                     <ng-container matColumnDef="institution">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Place of work'|translate}}</mat-header-cell>
                                         <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.institution?.name}}</mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="status">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Status'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{chg(row.status)}}</mat-cell>
                                     </ng-container>
 
                                     <ng-container matColumnDef="email">
