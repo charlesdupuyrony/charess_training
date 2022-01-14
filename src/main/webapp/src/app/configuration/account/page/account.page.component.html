@@ -82,7 +82,7 @@
 
                                     <ng-container matColumnDef="profile">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Profile'|translate}}</mat-header-cell>
-                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.profile.name}}</mat-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.profile?.name}}</mat-cell>
                                     </ng-container>
 
                                     <ng-container matColumnDef="institution">

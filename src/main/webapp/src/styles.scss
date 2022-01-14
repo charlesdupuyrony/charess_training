@@ -8,6 +8,18 @@
 }
 
 .mat-column-fullname {
-  flex: 0 0 20% !important;
+  flex: 0 0 15% !important;
+}
+.mat-column-email {
+  flex: 0 0 15% !important;
 }
 
+.mat-column-institution {
+  flex: 0 0 25% !important;
+}
+
+.bg {
+  width:70%;
+  height: 60%;
+  top: 25%;
+}

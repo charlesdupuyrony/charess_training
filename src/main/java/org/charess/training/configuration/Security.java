@@ -1,6 +1,9 @@
 package org.charess.training.configuration;
 
+import org.charess.training.controller.security.AuthController;
 import org.charess.training.service.security.AuthUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +19,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -30,12 +36,13 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private RequestFilter requestFilter;
+    private final Logger log = LoggerFactory.getLogger(Security.class);
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(authUserService).passwordEncoder(passwordEncoder());
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -48,10 +55,39 @@ public class Security extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source =   new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http = http.cors().and().csrf().disable();
+        http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
+        http = http.exceptionHandling().authenticationEntryPoint(entryPoint).and();
+        http.authorizeRequests()
+            .antMatchers(HttpMethod.GET, "/api/place").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/user/password").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/user").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
+            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .anyRequest().authenticated();
+        http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+}
+
+
 //        httpSecurity.csrf().disable()
 //            .authorizeRequests()
+//            .antMatchers("/api/authenticate/place").permitAll()
 //            .antMatchers("/api/authenticate").permitAll()
 //            .antMatchers("/api/user/register").permitAll()
 //            .antMatchers("/api/user/password").permitAll()
@@ -61,15 +97,20 @@ public class Security extends WebSecurityConfigurerAdapter {
 //            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 
+//
+//        httpSecurity.csrf().disable()
+//                .authorizeRequests()
+//                    .antMatchers("/api/authenticate").permitAll()
+//                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                .anyRequest().authenticated()
+//                    .and().exceptionHandling().authenticationEntryPoint(entryPoint)
+//                    .and().sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        httpSecurity.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/api/authenticate")
-                .permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
-                .permitAll().anyRequest().authenticated()
-                .and().exceptionHandling().authenticationEntryPoint(entryPoint)
-                .and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+
+
+
 
 
 
@@ -118,6 +159,4 @@ public class Security extends WebSecurityConfigurerAdapter {
 
 
 
-        httpSecurity.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
-    }
-}
+

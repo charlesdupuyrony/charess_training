@@ -80,8 +80,7 @@ export class AccountFormComponent implements OnInit {
     }
 
     submit() {
-        let obj = this.fg.getRawValue();
-        this.service.create(obj).subscribe(
+        this.service.create(this.fg.getRawValue()).subscribe(
             data => {
                 this.success();
                 this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {

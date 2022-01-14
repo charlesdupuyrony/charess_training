@@ -54,7 +54,7 @@ public class UserController {
                     return new ResponseEntity<>("email", textPlainHeaders, HttpStatus.CONFLICT);
                 }
             }
-            return new ResponseEntity<>(userService.register(user, true), HttpStatus.OK);
+            return new ResponseEntity<>(userService.register(user, user.getId()==null), HttpStatus.OK);
         } catch(UsernameNotFoundException ufe){
             return new ResponseEntity<>(ufe.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
@@ -69,6 +69,4 @@ public class UserController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }
-
-
 }

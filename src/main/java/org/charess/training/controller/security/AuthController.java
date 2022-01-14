@@ -1,9 +1,9 @@
 package org.charess.training.controller.security;
 
-
 import org.charess.training.configuration.Token;
 import org.charess.training.domain.security.User;
 import org.charess.training.service.security.AuthUserService;
+import org.charess.training.service.security.PlaceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class AuthController {
 
 
     @Autowired
-    public AuthController(AuthenticationManager authenticationManager, Token token, AuthUserService authUserService) {
+    public AuthController(AuthenticationManager authenticationManager, Token token, AuthUserService authUserService, PlaceService placeService) {
         this.authenticationManager = authenticationManager;
         this.token = token;
         this.authUserService = authUserService;

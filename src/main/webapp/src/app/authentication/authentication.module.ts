@@ -13,25 +13,33 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import {MatSelectModule} from "@angular/material/select";
+import {AccountService} from "../configuration/account/account.service";
 
 @NgModule({
-  declarations: [
-    Page500Component,
-    Page404Component,
-    SigninComponent,
-    SignupComponent,
-    LockedComponent,
-    ForgotPasswordComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AuthenticationRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-  ],
+    declarations: [
+        Page500Component,
+        Page404Component,
+        SigninComponent,
+        SignupComponent,
+        LockedComponent,
+        ForgotPasswordComponent,
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AuthenticationRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSelectModule,
+    ],
+    providers: [
+        AccountService
+    ]
+
 })
+
 export class AuthenticationModule {}

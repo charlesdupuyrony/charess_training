@@ -12,11 +12,20 @@ import {Router} from "@angular/router";
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
+    paths =['/api/user', '/api/place', '/api/user/password'];
+
     constructor(private authenticationService: AuthService, private router: Router) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
+        const url = request.url;
+        let ck = false;
         if(!this.authenticationService.isTokenValid()){
-            this.router.navigate(['/authentication/signin']);
+            this.paths.forEach(p => {
+                if(url.includes(p) === true)
+                    ck = url.includes(p);
+            });
+            if(!ck)
+                this.router.navigate(['/authentication/signin']);
         }
 
         let currentUser = this.authenticationService.currentUserValue;
