@@ -17,8 +17,33 @@
                                                 </li>
                                             </ul>
                                         </div>
+
+
+
                                         <div class="col-4">
                                             <ul class="header-buttons">
+                                                <li class="nav-item user_profile" ngbDropdown>
+                                                    <a href="#" onClick="return false;" ngbDropdownToggle role="button"
+                                                       class="nav-notification-icons pt-0">usrName</a>
+                                                    <div ngbDropdownMenu class="notification-dropdown pullDown">
+                                                        <div class="noti-list" [perfectScrollbar]>
+                                                            <ul class="menu">
+                                                                <li class="body">
+                                                                    <ul class="user_dw_menu">
+                                                                        <li><a href="#"
+                                                                               onClick="return false;">profile</a></li>
+                                                                        <li><a href="javascript:void(0);">
+                                                                            <mat-icon aria-hidden="false" class="msr-2">
+                                                                                power_settings_new
+                                                                            </mat-icon>
+                                                                            Logout</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
 
                                                 <li>
                                                     <div class="icon-button-demo" [hidden]=!selection.hasValue()>
@@ -73,11 +98,7 @@
 
                                     <ng-container matColumnDef="fullname" >
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'user.fullname'|translate}}</mat-header-cell>
-                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                                            <span class="material-icons" style="font-size: 40px">
-                                                {{row.person.gender=='m'?'man':(row.person.gender=='f'?'woman':'arrow_left')}}</span>
-                                            {{row.person.fullname}}
-                                        </mat-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.person.fullname}}</mat-cell>
                                     </ng-container>
 
                                     <ng-container matColumnDef="profile">

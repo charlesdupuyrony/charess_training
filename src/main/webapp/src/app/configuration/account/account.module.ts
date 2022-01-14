@@ -27,6 +27,7 @@ import {AccountService} from "./account.service";
 import {AccountFormComponent} from "./form/account.form.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {PerfectScrollbarModule} from "ngx-perfect-scrollbar";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     declarations: [
@@ -60,6 +61,7 @@ import {PerfectScrollbarModule} from "ngx-perfect-scrollbar";
         MatAutocompleteModule,
         PerfectScrollbarModule,
         AccountRoutingModule,
+        NgbModule
     ],
     providers: [
         AccountService

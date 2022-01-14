@@ -21,11 +21,14 @@ export class JwtInterceptor implements HttpInterceptor {
         let ck = false;
         if(!this.authenticationService.isTokenValid()){
             this.paths.forEach(p => {
-                if(url.includes(p) === true)
+                if(url.includes(p) === true){
                     ck = url.includes(p);
+                    return;
+                }
             });
-            if(!ck)
+            if(!ck){
                 this.router.navigate(['/authentication/signin']);
+            }
         }
 
         let currentUser = this.authenticationService.currentUserValue;
