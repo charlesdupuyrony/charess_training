@@ -109,9 +109,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public void status(List<User> users){
+    public void update(List<User> users){
         for(User u: users){
-            register(u, false);
+            boolean encodePassword = u.getStatus().equals(Status.USER_PENDING);
+            u.setPassword(encodePassword?u.getUsername():u.getPassword());
+            register(u, encodePassword);
         }
     }
 

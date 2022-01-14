@@ -17,44 +17,37 @@
                                                 </li>
                                             </ul>
                                         </div>
-
-
-
                                         <div class="col-4">
                                             <ul class="header-buttons">
-                                                <li class="nav-item user_profile" ngbDropdown>
-                                                    <a href="#" onClick="return false;" ngbDropdownToggle role="button"
-                                                       class="nav-notification-icons pt-0">usrName</a>
-                                                    <div ngbDropdownMenu class="notification-dropdown pullDown">
-                                                        <div class="noti-list" [perfectScrollbar]>
-                                                            <ul class="menu">
-                                                                <li class="body">
-                                                                    <ul class="user_dw_menu">
-                                                                        <li><a href="#"
-                                                                               onClick="return false;">profile</a></li>
-                                                                        <li><a href="javascript:void(0);">
-                                                                            <mat-icon aria-hidden="false" class="msr-2">
-                                                                                power_settings_new
-                                                                            </mat-icon>
-                                                                            Logout</a></li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-
-
                                                 <li>
                                                     <div class="icon-button-demo" [hidden]=!selection.hasValue()>
-                                                        <button mat-mini-fab color="primary" (click)="update('USER_ACTIVE')" matTooltip="Activer">
+                                                        <button mat-mini-fab (click)="update('password', 'password')" matTooltip="Réinitialiser mot de passe">
+                                                            <mat-icon class="col-white">restart_alt</mat-icon>
+                                                        </button>
+                                                    </div>
+                                                </li>
+                                                <li ngbDropdown [hidden]=!selection.hasValue()>
+                                                    <div class="icon-button-demo nav-notification-icons pt-0" ngbDropdownToggle>
+                                                        <button mat-mini-fab color="white" matTooltip="Profile d'utilisateur">
+                                                            <mat-icon>format_list_bulleted</mat-icon>
+                                                        </button>
+                                                    </div>
+                                                    <div ngbDropdownMenu class="downlist">
+                                                        <ul class="menu">
+                                                            <li class="body"><a href="#" *ngFor="let p of profiles" (click)="update(p, 'profile')">{{p.name}}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="icon-button-demo" [hidden]=!selection.hasValue()>
+                                                        <button mat-mini-fab color="primary" (click)="update('USER_ACTIVE', 'status')" matTooltip="Activer">
                                                             <mat-icon class="col-white">notifications</mat-icon>
                                                         </button>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="icon-button-demo" [hidden]=!selection.hasValue()>
-                                                        <button mat-mini-fab color="warn" (click)="update('USER_INACTIVE')" matTooltip="Désactiver">
+                                                        <button mat-mini-fab color="warn" (click)="update('USER_INACTIVE', 'status')" matTooltip="Désactiver">
                                                             <mat-icon class="col-white">notifications_off</mat-icon>
                                                         </button>
                                                     </div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/service/auth.service';
-import { Role } from 'src/app/core/models/security/role';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 
 @Component({
@@ -57,40 +56,3 @@ export class SigninComponent extends UnsubscribeOnDestroyAdapter implements OnIn
         );
     }
 }
-
-
-
-//         this.subs.sink = this.authService.login(this.f.username.value, this.f.password.value).subscribe(
-//             (res) => {
-//                 alert()
-//                 if (res) {
-//                     setTimeout(() => {
-//                         const role = this.authService.currentUserValue.profile.role;
-//
-//                         //this.router.navigate(['/admin/dashboard/main']);
-//                         // if (role === Role.SUPER || role === Role.ADMIN) {
-//                         //     this.router.navigate(['/admin/dashboard/main']);
-//                         // } else if (role === Role.ORGANISER) {
-//                         //     this.router.navigate(['/teacher/dashboard']);
-//                         // } else if (role === Role.ATTENDEE) {
-//                         //     this.router.navigate(['/student/dashboard']);
-//                         // } else {
-//                         //     this.router.navigate(['/authentication/signin']);
-//                         // }
-//                         this.loading = false;
-//                     }, 1000);
-//
-//                 } else {
-//                     this.error = 'Invalid Login';
-//                 }
-//             },
-//             (error) => {
-//                 alert(error)
-//                 this.error = error;
-//                 this.submitted = false;
-//                 this.loading = false;
-//                 console.log(error)
-//             }
-//         );
-//     }
-// }

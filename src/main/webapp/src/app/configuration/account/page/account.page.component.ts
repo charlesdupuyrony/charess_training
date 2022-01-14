@@ -94,16 +94,45 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
         });
     }
 
-    update(status){
+    // updateProfile(pro){
+    //     let users = [];
+    //     this.selection.selected.forEach((u) => {
+    //         if(pro && (!u.profile || u.profile.id != pro.id)){
+    //             u.profile = pro;
+    //             u.status = 'USER_ACTIVE';
+    //             users.push(u);
+    //         }
+    //     });
+    //     this.change(users);
+    // }
+
+    update(ob, tp){
+        if(!ob)
+            return;
         let users = [];
         this.selection.selected.forEach((u) => {
-            if(status && u.status!= status){
-                u.status = status;
-                users.push(u);
+            if(tp === 'status') {
+                if(u.status != ob){
+                    u.status = ob;
+                }
+            } else if(tp === 'profile'){
+                if(!u.profile || u.profile.id != ob.id){
+                    u.profile = ob;
+                    u.status = 'USER_ACTIVE';
+                }
+            } else {
+                if(u.status ==='USER_ACTIVE'){
+                    u.status = 'USER_PENDING';
+                }
             }
+            users.push(u);
         });
-        if(users.length > 0){
-            this.factory.update(users).subscribe(
+        this.change(users);
+    }
+
+    change(array){
+        if(array.length > 0){
+            this.factory.update(array).subscribe(
                 data => {
                     this.success();
                     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {

@@ -15,5 +15,5 @@ public interface UserService {
     List<Profile> getProfiles();
     Person findByEmail(String email);
     User register(User user, boolean encodePassword);
-    void status(List<User> users);
+    void update(List<User> users);
 }
