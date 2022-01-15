@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -20,7 +21,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     public List<Location> search(String criteria){
-        return this.locationRepository.search(criteria!=null?criteria:"");
+        return (criteria==null || criteria.trim().isEmpty())?new ArrayList<>():locationRepository.search(criteria);
     }
 
 }

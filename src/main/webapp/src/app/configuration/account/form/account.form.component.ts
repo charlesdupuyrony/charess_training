@@ -106,7 +106,7 @@ export class AccountFormComponent implements OnInit {
 
     private toast(color, text) {
         this.snack.open(text, '', {
-            duration: 2000, verticalPosition: 'top', horizontalPosition: 'right',panelClass: color,
+            duration: 2000, verticalPosition: 'top', horizontalPosition: 'right', panelClass: color,
         });
     }
 }

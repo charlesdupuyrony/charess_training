@@ -26,7 +26,6 @@ public class TopicController {
 
     @RequestMapping(value = "/{criteria}", method= RequestMethod.GET)
     public List<Topic> search(@PathVariable(value = "criteria") String criteria) {
-        log.info("------{}--------", criteria);
         return topicService.search(criteria);
     }
 

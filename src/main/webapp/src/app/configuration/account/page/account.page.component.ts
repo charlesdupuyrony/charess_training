@@ -94,18 +94,6 @@ export class AccountPageComponent extends UnsubscribeOnDestroyAdapter implements
         });
     }
 
-    // updateProfile(pro){
-    //     let users = [];
-    //     this.selection.selected.forEach((u) => {
-    //         if(pro && (!u.profile || u.profile.id != pro.id)){
-    //             u.profile = pro;
-    //             u.status = 'USER_ACTIVE';
-    //             users.push(u);
-    //         }
-    //     });
-    //     this.change(users);
-    // }
-
     update(ob, tp){
         if(!ob)
             return;

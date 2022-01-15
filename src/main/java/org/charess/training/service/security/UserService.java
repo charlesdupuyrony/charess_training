@@ -16,4 +16,5 @@ public interface UserService {
     Person findByEmail(String email);
     User register(User user, boolean encodePassword);
     void update(List<User> users);
+    Person getPerson(String key);
 }

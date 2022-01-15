@@ -23,11 +23,10 @@ public class LocationController {
         this.locationService = locationService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Location> getLocations() {
-        List<Location> locations = locationService.search(null);
-        log.info("++++++++{}+++++++++++++++++", locations.size());
-        return locations;
+    @RequestMapping(value = "/search/{criteria}", method= RequestMethod.GET)
+    public List<Location> search(@PathVariable(value = "criteria") String criteria) {
+        log.info("========{}==={}=====", criteria, locationService.search(criteria));
+        return locationService.search(criteria);
     }
 
 }

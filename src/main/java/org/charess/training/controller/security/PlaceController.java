@@ -29,6 +29,12 @@ public class PlaceController {
         return placeService.all();
     }
 
+    @RequestMapping(value = "/search/{criteria}", method= RequestMethod.GET)
+    public List<Place> search(@PathVariable(value = "criteria") String criteria) {
+        log.info("========{}==={}=====", criteria, placeService.search(criteria));
+        return placeService.search(criteria);
+    }
+
     @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
     public void delete(@PathVariable("id") Integer id) {
         placeService.delete(id);
@@ -37,12 +43,10 @@ public class PlaceController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> save(@RequestBody Place place){
         try {
-            if(place == null)
-                return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-            placeService.save(place);
-            return new ResponseEntity<>("", HttpStatus.OK);
+            return placeService.save(place)==null?new ResponseEntity<>("", HttpStatus.BAD_REQUEST):new ResponseEntity<>("", HttpStatus.OK);
         } catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }
+
 }

@@ -1,5 +1,6 @@
 package org.charess.training.controller.security;
 
+import org.charess.training.domain.security.Person;
 import org.charess.training.domain.security.Profile;
 import org.charess.training.domain.security.User;
 import org.charess.training.service.security.UserService;
@@ -68,5 +69,10 @@ public class UserController {
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
+    }
+
+    @RequestMapping(value = "/person", method = RequestMethod.GET)
+    public Person getPerson(@RequestParam("key") String key) {
+        return userService.getPerson(key);
     }
 }

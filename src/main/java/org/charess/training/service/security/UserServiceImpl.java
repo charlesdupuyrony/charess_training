@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.apache.logging.log4j.util.Strings.isEmpty;
+
 @Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -116,5 +118,17 @@ public class UserServiceImpl implements UserService {
             register(u, encodePassword);
         }
     }
+
+    public Person getPerson(String key){
+        Person person = null;
+        if(key.trim().length() > 0){
+            if(key.split("@").length > 1)
+                person = personRepository.findByEmail(key);
+            else
+                person = personRepository.findByIdentifier(key);
+        }
+        return person;
+    }
+
 
 }

@@ -9,6 +9,8 @@ import java.util.List;
 public interface PlaceService {
 
     List<Place> all();
+    List<Place> search(String criteria);
     void delete(Integer id);
     Place save(Place place);
+
 }

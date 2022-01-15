@@ -1,9 +1,7 @@
-import {Person} from "../../core/models/security/person";
-
 export class Institution {
     id: number;
     name: string;
-    manager?: Person;
+    managers?: [{Manager}];
     locationAddress?: Location;
     textAddress?: string;
     address?: string;
@@ -13,11 +11,26 @@ export class Institution {
         {
             this.id = institution.id;
             this.name = institution.name;
-            this.textAddress = institution.textAddress || '';
-            this.address = institution.address || '';
-            this.manager = institution.manager || null;
             this.parent = institution.parent || null;
+            this.textAddress = institution.textAddress || '';
             this.locationAddress = institution.locationAddress || null;
+            this.managers = institution.managers || null;
         }
+    }
+}
+
+export class Manager {
+    id: number;
+    identifier: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+
+    constructor(manager) {
+        this.id = manager.id;
+        this.identifier = manager.identifier;
+        this.firstName = manager.firstName;
+        this.lastName = manager.lastName
+        this.email = manager.email;
     }
 }

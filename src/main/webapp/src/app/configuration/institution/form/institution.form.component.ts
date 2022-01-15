@@ -1,17 +1,25 @@
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from "@angular/core";
 import {
-    FormControl,
-    Validators,
-    FormGroup,
+    AbstractControl,
+    FormArray,
     FormBuilder,
-} from '@angular/forms';
-
+    FormControl,
+    FormGroup,
+    ValidationErrors,
+    Validators
+} from "@angular/forms";
+import {Institution, Manager} from "../institution.model";
+import {Observable, map} from "rxjs";
 import {InstitutionService} from "../institution.service";
-import {Institution} from "../institution.model";
-import {startWith, switchMap} from 'rxjs/operators';
-import { Observable, map } from 'rxjs';
-import {Location} from "../../../core/models/security/location";
+import {startWith} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {HttpErrorResponse} from "@angular/common/http";
+import {User} from "../../../core/models/security/user";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {TopicService} from "../../topic/topic.service";
+import {Topic} from "../../topic/topic.model";
+import {sync} from "glob";
 
 @Component({
     selector: 'app-form',
@@ -20,73 +28,87 @@ import {Location} from "../../../core/models/security/location";
 
 export class InstitutionFormComponent implements OnInit {
 
-    action: string;
-    title: string;
     fg: FormGroup;
-    institution: Institution;
-    locationControl = new FormControl();
-    locations=[];
-    filteredLocations: Observable<Location[]>;
+    title: string;
+    place: Institution;
+    parent = new FormControl();
+    locationAddress = new FormControl();
+    places: Observable<Institution[]>;
+    locations: Observable<Location[]>;
+    placeArray = [];
+    locationArray = [];
 
-    constructor(public fm: MatDialogRef<InstitutionFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-                public service: InstitutionService,  private fb: FormBuilder){
-        this.action = data.action;
-        if (this.action === 'edit') {
-            this.institution = data.institution;
-            this.title = this.institution.name;
-        } else {
-            this.title = 'New Institution Partner';
-            this.institution = new Institution({});
-        }
-        this.fg = this.createContactForm();
+    constructor(private fb: FormBuilder, private router: Router, private service: InstitutionService, private snack: MatSnackBar){
+        const st = this.router.getCurrentNavigation().extras.state;
+        this.title = st?'Edit the current institution':'Create new institution';
+        this.fg = this.fb.group(st?st.place: new Institution({}));
+        if(st && st.place && st.place.parent)
+            this.parent.setValue(st.place.parent);
+        if(st && st.place && st.place.locationAddress)
+            this.locationAddress.setValue(st.place.locationAddress)
+
     }
 
-    ngOnInit() {
-        this.service.getLocations().subscribe((res)=>{
-            this.locations = res;
-            this.filteredLocations = this.locationControl.valueChanges.pipe(startWith(''), map(value => {
-                return this._filter(value)
-            }));
+    ngOnInit(){
+        this.places = this.parent.valueChanges.pipe(startWith(''),
+            map(value => {
+                if(typeof value==='string' && value.trim().length < 1)
+                    return [];
+                this.service.getPlaces(typeof value==='string'?value.toLowerCase():value.name).subscribe((res)=>{
+                    this.placeArray = res;
+                });
+                return this.placeArray;
+            })
+        );
+        this.locations = this.locationAddress.valueChanges.pipe(startWith(''),
+            map(value => {
+                if(typeof value==='string' && value.trim().length < 1)
+                    return [];
+                this.service.getLocations(typeof value==='string'?value.toLowerCase(): value.fullname).subscribe((res)=>{
+                    this.locationArray = res;
+                });
+                return this.locationArray;
+            })
+        );
+    }
+
+    display(ob): string {
+        if(!ob)
+            return;
+        return ob.fullname?ob.fullname:ob.name;
+    }
+
+    create(): FormGroup {
+        return;
+    }
+
+    private toast(color, text) {
+        this.snack.open(text, '', {
+            duration: 2000, verticalPosition: 'top', horizontalPosition: 'right', panelClass: color,
         });
     }
 
-    _filter(value: string): Location[] {
-        return this.locations.filter(location=>location.name.toLowerCase().includes(typeof value === 'string'?value.toLowerCase():value));
+    private success(){
+        this.toast('bg-green','The usr has been successfully created');
+        this.back();
     }
 
-    display(location):string {
-        if(location)
-            return location.fullname ;
+    private error(err: HttpErrorResponse){
+        this.toast('bg-red','Something went wrong the usr has not been created. Please, try again!');
+        console.error(err);
     }
 
-    // formControl = new FormControl('', [
-    //     Validators.required
-    // ]);
-    //
-    // getErrorMessage() {
-    //     return this.formControl.hasError('required')
-    //         ? 'Required field'
-    //         : this.formControl.hasError('email')
-    //             ? 'Not a valid email'
-    //             : '';
-    // }
-
-    createContactForm(): FormGroup {
-        return this.fb.group(this.institution);
+    submit(ob: any): void {
+        ob.parent = this.parent.value;
+        ob.locationAddress = this.locationAddress.value;
+        console.log(ob);
+        this.service.save(ob).subscribe(
+            (res) => this.success(),
+            (err) => this.error(err)
+        );
     }
 
-    submit() {
+    back(){
+        this.router.navigate(['configuration/institution/page']);
     }
-
-    cancel(): void {
-        this.fm.close();
-    }
-
-    public save(): void {
-        let obj = this.fg.getRawValue();
-        obj.locationAddress = this.locationControl.value.id;
-        console.log(obj, '-----------------', this.locationControl)
-        //this.teachersService.addTeachers(this.proForm.getRawValue());
-    }
-
 }
