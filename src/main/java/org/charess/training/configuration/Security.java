@@ -69,7 +69,6 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http = http.cors().and().csrf().disable();
         http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
         http = http.exceptionHandling().authenticationEntryPoint(entryPoint).and();
@@ -78,83 +77,10 @@ public class Security extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.POST, "/api/user/password").permitAll()
             .antMatchers(HttpMethod.POST, "/api/user").permitAll()
             .antMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
-            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-            .anyRequest().authenticated();
+            .antMatchers("/api/**").authenticated();
         http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
-
-
-//        httpSecurity.csrf().disable()
-//            .authorizeRequests()
-//            .antMatchers("/api/authenticate/place").permitAll()
-//            .antMatchers("/api/authenticate").permitAll()
-//            .antMatchers("/api/user/register").permitAll()
-//            .antMatchers("/api/user/password").permitAll()
-//            .antMatchers("/api/**").authenticated()
-//            .and().exceptionHandling().authenticationEntryPoint(entryPoint)
-//            .and().sessionManagement()
-//            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-
-//
-//        httpSecurity.csrf().disable()
-//                .authorizeRequests()
-//                    .antMatchers("/api/authenticate").permitAll()
-//                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                .anyRequest().authenticated()
-//                    .and().exceptionHandling().authenticationEntryPoint(entryPoint)
-//                    .and().sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-
-
-
-
-
-
-
-
-
-//        .headers()
-//                .frameOptions()
-//                .sameOrigin()
-//                .and()
-//                .csrf()
-//                .disable()
-//                .exceptionHandling()
-//                .authenticationEntryPoint(authenticationEntryPoint)
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/api/location/**").permitAll()
-//                .antMatchers("/api/subscription/**").permitAll()
-//                .antMatchers("/api/usr/register/**").permitAll()
-//                .antMatchers("/api/usr/auto-reset-pwsd/**").permitAll()
-//                .antMatchers("/api/**").authenticated()
-//                .and()
-//                .sessionManagement()
-//                .invalidSessionUrl("/")
-//                .sessionAuthenticationErrorUrl("/")
-//                .maximumSessions(1)
-//                .expiredUrl("/")
-//                .maxSessionsPreventsLogin(false)
-//                .and()
-//                .and()
-//                .formLogin()
-//                .loginProcessingUrl("/api/authentication")
-//                .successHandler(ajaxAuthSuccess)
-//                .failureHandler(ajaxAuthFailure)
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutUrl("/api/logout")
-//                .logoutSuccessHandler(ajaxLogoutSuccess)
-//                .invalidateHttpSession(true)
-//                .deleteCookies("JSESSIONID")
-//                .permitAll();
-
 
 
 

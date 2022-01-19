@@ -1,0 +1,49 @@
+{
+    "Name": "Nom",
+    "Address": "Adresse",
+    "Manager": "Responsable",
+    "Parent": "Entité de tutelle",
+    "New Institution Partner": "Nouvelle institution partenaire",
+    "Title": "Titre",
+    "Search": "Recherche",
+    "Theme": "Thème",
+    "Edit the current topic": "Modification de ce sujet",
+    "New topic": "Création d'un nouveau sujet",
+    "Delete": "Enlever",
+    "Cancel": "Annuler",
+    "Are you sure?": "Etes-vous sûr?",
+    "user.fullname": "Nom & Prénom",
+    "Phone": "Téléphone",
+    "Locale": "Langue préférée",
+    "Username": "Nom d'utilisateur",
+    "First Name": "Prénom",
+    "Last Name": "Nom",
+    "Place of work": "Lieu de travail",
+
+
+
+
+
+    "training": {
+        "partnership": {
+            "text": "Organisation Partenaire",
+            "request": "Demande de formation"
+        },
+        "attendee": {
+            "text": "Dossier du participant",
+            "charts": "Mes formations"
+        },
+        "organisation": {
+            "text": "Organisation formation",
+            "broadcast": "Diffusion d'une formation"
+        },
+        "configuration": {
+            "text": "Configuration",
+            "list": {
+                "facility": "Institution & Partenaire",
+                "topic": "Définition de thématique",
+                "account": "Gestion des utilisateurs"
+            }
+        }
+    }
+}

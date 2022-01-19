@@ -1,0 +1,51 @@
+{
+    "Name": "Non",
+    "Address": "Adrès",
+    "Manager": "Responsab",
+    "Parent": "Antite siperyè",
+    "New Institution Partner": "Nouvèl enstitisyon patnè",
+    "Title": "Tit",
+    "Search": "Chèche",
+    "Theme": "Tèm",
+    "Edit the current topic": "Modifikasyon de sijè sa a",
+    "New topic": "Kreyasyon yon sijè",
+    "Delete": "Retire",
+    "Cancel": "Anile",
+    "Are you sure?": "Ou si?",
+    "user.fullname": "Siyati & Non",
+    "Phone": "Telefòn",
+    "Locale": "Lang chwazi",
+    "Username": "Non itilizatè",
+    "First Name": "Nom",
+    "Last Name": "Siyati",
+    "Place of work": "Lye travay",
+
+
+
+
+
+
+
+    "training": {
+        "partnership": {
+            "text": "Òganizasyon Patnè",
+            "request": "Mande yon fòmasyon"
+        },
+        "attendee": {
+            "text": "Dosye patisipan",
+            "charts": "Fòmasyon mwen yo"
+        },
+        "organisation": {
+            "text": "Òganizasyon Fòmasyon",
+            "broadcast": "Pataje yon fòmasyon"
+        },
+        "configuration": {
+            "text": "Konfigirasyon",
+            "list": {
+                "facility": "Enstitisyon & Patnè",
+                "topic": "Definisyon Tematik",
+                "account": "Jesyon itilizatè"
+            }
+        }
+    }
+}

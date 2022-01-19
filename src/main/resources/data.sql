@@ -7,9 +7,7 @@ insert into training.profile (id, name, page, role) VALUES (6,'Officier de donn√
 
 insert into training.person(id, first_name, last_name, gender, phone, identifier, identifier_type) values(1, 'Super', 'Admin', 'i', '(509) 0000-0000', '000-000-000-0', 'NIF');
 insert into training.users(id, username, password, status, locale, profile, created, creator)
-values(1, 'admin', '$2a$12$AHTfyhLWwKQ0pTMcbLqxVuMu8szRACausXNXk1pmjUlWseoGver5e', 'active', 'fr', 1, now(), null); -- password: pa1sw@rd
-
-
+values(1, 'admin', '$2a$12$AHTfyhLWwKQ0pTMcbLqxVuMu8szRACausXNXk1pmjUlWseoGver5e', 'USER_ACTIVE', 'fr', 1, now(), null); -- password: pa1sw@rd
 
 -- location
 insert into training.location (id, name, parent, nature, created, creator) values (1,'Ouest', null, 'department', now(), 1);

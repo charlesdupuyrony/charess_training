@@ -23,6 +23,7 @@ public class AuthUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         org.charess.training.domain.security.User usr = userRepository.findByUsername(username);
+
         User user = (usr !=null && (usr.getStatus().equals(Status.USER_ACTIVE.toString()) || usr.getStatus().equals(Status.USER_PENDING.toString())))?
                 new User(usr.getUsername(), usr.getPassword(), usr.getAuthorities()):null;
         return user;
