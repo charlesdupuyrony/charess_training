@@ -48,18 +48,63 @@
                                     </mat-form-field>
                                 </div>
                             </div>
+                            <fieldset>
+                                <div class="row">
+                                    <legend>{{"Manager" | translate}}</legend>
+                                    <ng-container formArrayName="managers" *ngFor="let manager of managers.controls; index as i">
+                                        <ng-container [formGroupName]="i">
+                                            <div class="col-2">
+                                                <mat-form-field class="example-full-width mb-3">
+                                                    <mat-label>
+                                                        {{"Identifier" | translate}}
+                                                        <span *ngIf="isIdentifierDuplicated[i]" class="error">{{msg | translate}}</span>
+                                                    </mat-label>
+                                                    <input matInput mask="000-000-000-0" formControlName="identifier" required (blur)="check(i, 'identifier')"/>
+                                                </mat-form-field>
 
+                                            </div>
+                                            <div class="col-3">
+                                                <mat-form-field class="example-full-width mb-3">
+                                                    <mat-label>{{"FirstName" | translate}}</mat-label>
+                                                    <input matInput formControlName="firstName" [showMaskTyped]="true" required/>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-3">
+                                                <mat-form-field class="example-full-width mb-3">
+                                                    <mat-label>{{"LastName" | translate}}</mat-label>
+                                                    <input matInput formControlName="lastName" [showMaskTyped]="true" required/>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-3">
+                                                <mat-form-field class="example-full-width mb-3">
+                                                    <mat-label>{{"Email"| translate}}<span *ngIf="isEmailDuplicated[i]" class="error">{{msg | translate}}</span></mat-label>
+                                                    <input matInput formControlName="email" [showMaskTyped]="true" required (blur)="check(i, 'email')"/>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-1" *ngIf="managers['controls'][i].status == 'VALID' && i===0 && !msg">
+                                                <div class="example-button-row" >
+                                                    <button mat-mini-fab color="primary" type="button" (click)="push()">
+                                                        <mat-icon class="col-white">add</mat-icon>
+                                                    </button>
 
-
-
-
-
-
+                                                </div>
+                                            </div>
+                                            <div class="col-1" *ngIf="managers['controls'][i].status == 'VALID' && i>0">
+                                                <div class="example-button-row" >
+                                                    <button mat-mini-fab color="warn" (click)="pull(i)">
+                                                        <mat-icon class="col-white">delete</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </fieldset>
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                                     <div class="example-button-row">
                                         <div class="example-button-row">
-                                            <button mat-raised-button color="primary" [type]="submit" [disabled]="!fg.valid">{{"Save" | translate}}</button>
+                                            <button mat-raised-button color="primary" [type]="submit" [disabled]="!fg.valid || msg">{{"Save" | translate}}</button>
                                             <button mat-raised-button color="warn" (click)="back()" tabindex="-1">{{"Cancel" | translate}}</button>
                                         </div>
                                     </div>

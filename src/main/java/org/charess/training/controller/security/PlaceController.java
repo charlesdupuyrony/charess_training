@@ -31,7 +31,6 @@ public class PlaceController {
 
     @RequestMapping(value = "/search/{criteria}", method= RequestMethod.GET)
     public List<Place> search(@PathVariable(value = "criteria") String criteria) {
-        log.info("========{}==={}=====", criteria, placeService.search(criteria));
         return placeService.search(criteria);
     }
 

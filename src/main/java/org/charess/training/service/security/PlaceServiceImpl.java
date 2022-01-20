@@ -3,6 +3,8 @@ package org.charess.training.service.security;
 import org.charess.training.domain.security.Audit;
 import org.charess.training.domain.security.Place;
 import org.charess.training.repository.security.PlaceRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,8 @@ public class PlaceServiceImpl implements PlaceService {
 
     private PlaceRepository placeRepository;
     private UserService userService;
+    private final Logger log = LoggerFactory.getLogger(PlaceServiceImpl.class);
+
 
     @Autowired
     public PlaceServiceImpl(PlaceRepository placeRepository, UserService userService){

@@ -12,8 +12,8 @@ public class Place extends Name implements Serializable {
     @JoinColumn(name = "location_address")
     private Location locationAddress;
 
-    @ManyToMany
-    @JoinColumn(name = "manager")
+    @ManyToMany(cascade={CascadeType.ALL})
+    @JoinTable(name="place_person", joinColumns={@JoinColumn(name="place")}, inverseJoinColumns={@JoinColumn(name="person")})
     private List<Person> managers;
 
     @Column(name = "text_address", length = 200)

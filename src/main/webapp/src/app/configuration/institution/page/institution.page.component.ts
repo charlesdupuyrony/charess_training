@@ -38,7 +38,6 @@ export class InstitutionPageComponent extends UnsubscribeOnDestroyAdapter implem
     set(){
         this.service.getInstitutions().subscribe(res => {
             this.data = res;
-            console.log(res);
             this.filteredData = res;
         });
     }

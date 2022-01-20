@@ -32,8 +32,8 @@ public class Person extends ID implements Serializable {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "gender", length = 1, nullable = false)
-    private String gender = "i";
+    @Column(name = "gender", length = 1)
+    private String gender;
 
     @Column(name = "phone", length = 15)
     private String phone;

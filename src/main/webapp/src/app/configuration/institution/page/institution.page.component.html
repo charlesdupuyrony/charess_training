@@ -32,7 +32,7 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="{{'Manager' | translate}}" sortable="true" prop="managers" [width]="100">
                                         <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>
-                                            {{value[0]?.fullName}}{{value[1]?', ':''}}{{value[1]?.fullName}}
+                                            {{value[0].fullname+' ('+value.length+')'}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="{{'Parent' | translate}}" sortable="true" prop="parent" [width]="170">

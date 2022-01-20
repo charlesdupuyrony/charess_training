@@ -20,8 +20,6 @@ export class JwtInterceptor implements HttpInterceptor {
         const url = request.url;
         let ck = false;
 
-        console.log('-----------------------------------------------------', url);
-
         if(!this.authenticationService.isTokenValid()){
             this.paths.forEach(p => {
                 if(url.includes(p) === true){

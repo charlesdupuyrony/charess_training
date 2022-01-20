@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import {Institution, Manager} from "./institution.model";
+import {Institution} from "./institution.model";
 import {environment} from "../../../environments/environment";
 import {Location} from "../../core/models/security/location";
+import {Person} from "../../core/models/security/person";
 
 
 @Injectable()
@@ -32,19 +33,13 @@ export class InstitutionService extends UnsubscribeOnDestroyAdapter {
         return this.http.get<Location[]>(`${environment.api}/location/search/${criteria}`);
     }
 
-
     deleteInstitution(id: number){
         return this.http.delete(`${environment.api}/place/${id}`);
     }
 
-
-
-    getIdentifierOrEmail(criteria){
-        return this.http.get<Manager>(`${environment.api}/place/getManagerByIdentifierOrEmail?criteria=${criteria}`);
+    getPerson(key){
+        return this.http.get<Person>(`${environment.api}/user/person?key=${key}`);
     }
 
 
-    edit(place){
-        return this.http.put(this.api, place);
-    }
 }
