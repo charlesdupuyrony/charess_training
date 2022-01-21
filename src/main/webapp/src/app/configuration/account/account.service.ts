@@ -5,7 +5,7 @@ import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroy
 import {environment} from "../../../environments/environment";
 import {User} from "../../core/models/security/user";
 import {Profile} from "../../core/models/security/profile";
-import {Institution} from "../institution/institution.model";
+import {Institution} from "../../core/models/security/institution";
 
 @Injectable()
 export class AccountService extends UnsubscribeOnDestroyAdapter {

@@ -10,7 +10,7 @@ public interface TopicRepository extends JpaRepository<Topic, Integer> {
 
     @Query("select t " +
             " from Topic t " +
-            "where (t.title like Concat('%', Concat(?1,'%')))")
+            "where (lower(t.title) like Concat('%', Concat(?1,'%')))")
     List<Topic> search(String criteria);
 }
 

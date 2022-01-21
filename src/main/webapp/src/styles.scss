@@ -41,5 +41,14 @@ legend {
   padding-bottom: 10px;
 }
 
-fieldset {
+.materialTableHeader .header-buttons-left input.search-field {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.54);
+  border-radius: 25px;
+  border: 0;
+  height: 45px;
+  padding: 8px 8px 8px 50px;
+  width: 500px;
+  background: #ffffff;
+  transition: background 0.2s, width 0.2s;
 }

@@ -2409,47 +2409,6 @@
     },
 
     /***/
-    42792:
-    /*!************************************************!*\
-      !*** ./src/app/core/models/security/person.ts ***!
-      \************************************************/
-
-    /***/
-    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export */
-
-
-      __webpack_require__.d(__webpack_exports__, {
-        /* harmony export */
-        "Person": function Person() {
-          return (
-            /* binding */
-            _Person
-          );
-        }
-        /* harmony export */
-
-      });
-
-      var _Person = function _Person(person) {
-        _classCallCheck(this, _Person);
-
-        {
-          this.id = person.id;
-          this.identifier = person.identifier;
-          this.firstName = person.firstName;
-          this.lastName = person.lastName;
-          this.gender = person.gender;
-        }
-      };
-      /***/
-
-    },
-
-    /***/
     69258:
     /*!**********************************************!*\
       !*** ./src/app/core/models/security/user.ts ***!

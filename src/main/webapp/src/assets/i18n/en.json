@@ -20,12 +20,20 @@
     "Last Name": "Last Name",
     "Place of work": "Place of work",
     "Manager": "Manager(s)",
+    "Topic": "Topic",
+    "Number of attendees": "# Attendees",
+    "Start Date": "From",
+    "End Date": "To",
+    "Status": "Status",
+    "whish period": "Desired Period",
 
 
     "training": {
         "partnership": {
             "text": "Partnership",
-            "request": "Training Request"
+            "request": "Training Request",
+            "demands": "List of demands",
+            "dashboard": "Dashboard"
         },
         "attendee": {
             "text": "Trainee Folder",
@@ -40,7 +48,8 @@
             "list": {
                 "facility": "Institution & Partner",
                 "topic": "Thematic Definition",
-                "account": "User Management"
+                "account": "User Management",
+                "category": "Participants Category"
             }
         }
     }

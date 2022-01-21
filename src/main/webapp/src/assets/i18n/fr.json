@@ -20,6 +20,12 @@
     "Last Name": "Nom",
     "Place of work": "Lieu de travail",
     "Manager": "Responsable(s)",
+    "Topic": "Thématique",
+    "Number of attendees": "# Participants",
+    "Start Date": "Du",
+    "End Date": "Au",
+    "Status": "Statut",
+    "whish period": "Période souhaitée",
 
 
 
@@ -27,8 +33,10 @@
 
     "training": {
         "partnership": {
-            "text": "Organisation Partenaire",
-            "request": "Demande de formation"
+            "text": "Partenariat",
+            "request": "Demande d'une formation",
+            "demands": "Liste des demandes",
+            "dashboard": "Tableau de bord"
         },
         "attendee": {
             "text": "Dossier du participant",
@@ -43,7 +51,8 @@
             "list": {
                 "facility": "Institution & Partenaire",
                 "topic": "Définition de thématique",
-                "account": "Gestion des utilisateurs"
+                "account": "Gestion des utilisateurs",
+                "category": "Groupe de participants"
             }
         }
     }

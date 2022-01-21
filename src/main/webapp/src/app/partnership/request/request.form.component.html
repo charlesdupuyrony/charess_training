@@ -1,0 +1,67 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h4 class="page-title">{{'training.partnership.request' | translate}}</h4>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div>
+                <div class="card">
+                    <div class="body">
+                        <form [formGroup]="fg" (submit)="submit(fg.value)">
+                            <div class="row">
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Topic' | translate}}</mat-label>
+                                        <input type="text" matInput [formControl]="topic" [matAutocomplete]="auto" required>
+                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="display">
+                                            <mat-option *ngFor="let t of topics | async" [value]="t">{{t.title}}</mat-option>
+                                        </mat-autocomplete>
+                                        <mat-error *ngIf="fg.get('topic').hasError('')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'whish period' | translate}}</mat-label>
+                                        <mat-date-range-input [rangePicker]="picker">
+                                            <input matStartDate formControlName="startDate" placeholder="From Date">
+                                            <input matEndDate  formControlName="endDate" placeholder="To Date">
+                                        </mat-date-range-input>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #picker></mat-date-range-picker>
+                                    </mat-form-field>
+                                </div>
+
+                                <!--<div class="col-6">-->
+                                <!--<mat-form-field class="example-full-width" appearance="outline">-->
+                                <!--<mat-label>{{'Location Address' | translate}}</mat-label>-->
+                                <!--<input type="text" matInput [formControl]="locationAddress" [matAutocomplete]="autoLoation">-->
+                                <!--<mat-autocomplete autoActiveFirstOption #autoLoation="matAutocomplete" [displayWith]="display">-->
+                                <!--<mat-option *ngFor="let l of locations | async" [value]="l">{{l.fullname}}</mat-option>-->
+                                <!--</mat-autocomplete>-->
+                                <!--</mat-form-field>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                    <div class="example-button-row">
+                                        <div class="example-button-row">
+                                            <button mat-raised-button color="primary" [type]="submit" [disabled]="!fg.valid">{{"Send" | translate}}</button>
+                                            <!--<button mat-raised-button color="warn" (click)="back()" tabindex="-1">{{"Cancel" | translate}}</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

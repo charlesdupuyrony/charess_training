@@ -1,10 +1,10 @@
-import { Page404Component } from './authentication/page404/page404.component';
-import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
-import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './core/guard/auth.guard';
-import { Role } from './core/models/security/role';
+import {Page404Component} from './authentication/page404/page404.component';
+import {AuthLayoutComponent} from './layout/app-layout/auth-layout/auth-layout.component';
+import {MainLayoutComponent} from './layout/app-layout/main-layout/main-layout.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from './core/guard/auth.guard';
+import {Role} from './core/models/security/role';
 
 const routes: Routes = [
     {
@@ -13,6 +13,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
         { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
+        {
+            path: 'partnership',
+            canActivate: [AuthGuard],
+            data: {
+                roles: [Role.SUPER, Role.ADMIN, Role.PARTNER]
+            },
+            loadChildren: () =>
+                import('./partnership/partnership.module').then((m) => m.PartnershipModule),
+        },
         {
             path: 'configuration',
             canActivate: [AuthGuard],

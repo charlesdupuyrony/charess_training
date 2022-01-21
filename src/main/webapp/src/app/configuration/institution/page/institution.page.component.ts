@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {InstitutionService} from "../institution.service";
-import {Institution} from "../institution.model";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 import {UnsubscribeOnDestroyAdapter} from "../../../shared/UnsubscribeOnDestroyAdapter";
 import {DeleteComponent} from "../../delete/delete.confirm";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Institution} from "../../../core/models/security/institution";
 
 @Component({
     selector: 'app-page',

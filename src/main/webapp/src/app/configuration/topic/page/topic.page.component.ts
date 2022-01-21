@@ -3,11 +3,11 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialog} from "@angular/material/dialog";
 import {TopicService} from "../topic.service";
-import {Topic} from "../topic.model";
 import {TopicFormComponent} from "../form/topic.form.component";
 import {UnsubscribeOnDestroyAdapter} from "../../../shared/UnsubscribeOnDestroyAdapter";
 import {HttpErrorResponse} from "@angular/common/http";
 import {DeleteComponent} from "../../delete/delete.confirm";
+import {Topic} from "../../../core/models/training/topic";
 
 @Component({
     selector: 'app-page',

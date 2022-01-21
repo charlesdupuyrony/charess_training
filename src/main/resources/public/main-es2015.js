@@ -555,7 +555,6 @@ class JwtInterceptor {
     intercept(request, next) {
         const url = request.url;
         let ck = false;
-        console.log('-----------------------------------------------------', url);
         if (!this.authenticationService.isTokenValid()) {
             this.paths.forEach(p => {
                 if (url.includes(p) === true) {
@@ -2305,9 +2304,14 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    api: 'http://localhost:8080/api',
-    auth: 'http://localhost:8080/api/authenticate',
+    api: 'http://34.221.108.73:8080/api',
+    auth: 'http://34.221.108.73:8080/api/authenticate',
 };
+// export const environment = {
+//     production: false,
+//     api: 'http://localhost:8080/api',
+//     auth: 'http://localhost:8080/api/authenticate',
+// };
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

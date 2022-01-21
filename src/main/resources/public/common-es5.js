@@ -157,6 +157,48 @@
         factory: _AccountService.ɵfac
       });
       /***/
+    },
+
+    /***/
+    42792:
+    /*!************************************************!*\
+      !*** ./src/app/core/models/security/person.ts ***!
+      \************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "Person": function Person() {
+          return (
+            /* binding */
+            _Person
+          );
+        }
+        /* harmony export */
+
+      });
+
+      var _Person = function _Person(person) {
+        _classCallCheck(this, _Person);
+
+        {
+          this.id = person === null || person === void 0 ? void 0 : person.id;
+          this.identifier = person === null || person === void 0 ? void 0 : person.identifier;
+          this.firstName = person === null || person === void 0 ? void 0 : person.firstName;
+          this.lastName = person === null || person === void 0 ? void 0 : person.lastName;
+          this.email = person === null || person === void 0 ? void 0 : person.email;
+          this.gender = person === null || person === void 0 ? void 0 : person.gender;
+        }
+      };
+      /***/
+
     }
   }]);
 })();

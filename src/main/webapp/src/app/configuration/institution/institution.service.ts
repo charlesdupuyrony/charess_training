@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import {Institution} from "./institution.model";
 import {environment} from "../../../environments/environment";
 import {Location} from "../../core/models/security/location";
 import {Person} from "../../core/models/security/person";
+import {Institution} from "../../core/models/security/institution";
 
 
 @Injectable()

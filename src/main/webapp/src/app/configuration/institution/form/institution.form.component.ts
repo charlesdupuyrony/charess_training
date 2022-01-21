@@ -1,26 +1,18 @@
-import {Component, Inject, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {
-    AbstractControl,
     FormArray,
     FormBuilder,
     FormControl,
-    FormGroup,
-    ValidationErrors,
-    Validators
+    FormGroup
 } from "@angular/forms";
-import {Institution} from "../institution.model";
 import {Observable, map} from "rxjs";
 import {InstitutionService} from "../institution.service";
 import {startWith} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HttpErrorResponse} from "@angular/common/http";
-import {User} from "../../../core/models/security/user";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {TopicService} from "../../topic/topic.service";
-import {Topic} from "../../topic/topic.model";
-import {sync} from "glob";
 import {Person} from "../../../core/models/security/person";
+import {Institution} from "../../../core/models/security/institution";
 
 @Component({
     selector: 'app-form',

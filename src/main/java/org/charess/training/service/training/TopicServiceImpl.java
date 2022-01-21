@@ -1,6 +1,5 @@
 package org.charess.training.service.training;
 
-import org.charess.training.controller.training.TopicController;
 import org.charess.training.domain.security.Audit;
 import org.charess.training.domain.training.Topic;
 import org.charess.training.repository.training.TopicRepository;

@@ -17,6 +17,11 @@ const routes: Routes = [
         loadChildren: () =>
             import('./account/account.module').then((m) => m.AccountModule),
     },
+    {
+        path: 'category',
+        loadChildren: () =>
+            import('./category/category.module').then((m) => m.CategoryModule),
+    },
 ];
 
 @NgModule({

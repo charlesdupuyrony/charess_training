@@ -1,5 +1,5 @@
 insert into training.profile (id, name, page, role) VALUES (1,'Super Administrateur','admin/dashboard/main','super');
-insert into training.profile (id, name, page, role) VALUES (2,'Administrateur','admin/dashboard/main','admin');
+insert into training.profile (id, name, page, role) VALUES (2,'Administrateur','configuration/account/page','admin');
 insert into training.profile (id, name, page, role) VALUES (3,'Participant','admin/dashboard/main','attendee');
 insert into training.profile (id, name, page, role) VALUES (4,'Organisateur','admin/dashboard/main','organiser');
 insert into training.profile (id, name, page, role) VALUES (5,'Partenaire','admin/dashboard/main','partner');

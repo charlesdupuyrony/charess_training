@@ -8,10 +8,10 @@ import {
 
 import {startWith} from 'rxjs/operators';
 import { Observable, map } from 'rxjs';
-import {Topic} from "../topic.model";
 import {TopicService} from "../topic.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Topic} from "../../../core/models/training/topic";
 
 @Component({
     selector: 'app-form',

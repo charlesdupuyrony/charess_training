@@ -1,5 +1,3 @@
-import {Person} from "../../core/models/security/person";
-
 export class Topic {
     id: number;
     title: string;

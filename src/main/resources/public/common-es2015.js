@@ -64,6 +64,33 @@ AccountService.ɵfac = function AccountService_Factory(t) { return new (t || Acc
 AccountService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({ token: AccountService, factory: AccountService.ɵfac });
 
 
+/***/ }),
+
+/***/ 42792:
+/*!************************************************!*\
+  !*** ./src/app/core/models/security/person.ts ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Person": function() { return /* binding */ Person; }
+/* harmony export */ });
+class Person {
+    constructor(person) {
+        {
+            this.id = person === null || person === void 0 ? void 0 : person.id;
+            this.identifier = person === null || person === void 0 ? void 0 : person.identifier;
+            this.firstName = person === null || person === void 0 ? void 0 : person.firstName;
+            this.lastName = person === null || person === void 0 ? void 0 : person.lastName;
+            this.email = person === null || person === void 0 ? void 0 : person.email;
+            this.gender = person === null || person === void 0 ? void 0 : person.gender;
+        }
+    }
+}
+
+
 /***/ })
 
 }]);

@@ -8,7 +8,7 @@ export class Person {
     gender: string;
     phone: string;
     email: string;
-    birthDate: moment.Moment;
+    birthDate: Date;
     locationAddress: Location;
     textAddress: string;
     fullname: string;

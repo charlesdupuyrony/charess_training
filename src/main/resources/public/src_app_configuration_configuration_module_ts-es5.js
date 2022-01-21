@@ -58,9 +58,9 @@
       }, {
         path: 'institution',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() */
-          "src_app_configuration_institution_institution_module_ts").then(__webpack_require__.bind(__webpack_require__,
+          [__webpack_require__.e("common"), __webpack_require__.e("src_app_configuration_institution_institution_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
           /*! ./institution/institution.module */
           10331)).then(function (m) {
             return m.InstitutionModule;

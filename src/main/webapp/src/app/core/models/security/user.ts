@@ -1,7 +1,7 @@
 import { Profile } from './profile';
 import { Locale } from './locale';
 import { Person } from './person';
-import {Institution} from "../../../configuration/institution/institution.model";
+import {Institution} from "./institution";
 
 export class User {
     id: number;

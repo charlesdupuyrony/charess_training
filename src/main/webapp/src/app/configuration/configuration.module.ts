@@ -27,7 +27,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
     declarations: [
-        DeleteComponent,
+        DeleteComponent
     ],
     imports: [
         CommonModule,

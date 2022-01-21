@@ -925,9 +925,9 @@ MediaModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵ
 /***/ }),
 
 /***/ 27517:
-/*!*******************************************************************************!*\
-  !*** ./node_modules/ng-image-fullscreen-view/node_modules/tslib/tslib.es6.js ***!
-  \*******************************************************************************/
+/*!*************!*\
+  !*** tslib ***!
+  \*************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

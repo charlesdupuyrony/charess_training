@@ -1185,32 +1185,6 @@ class Source extends _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_4__.DataS
 
 /***/ }),
 
-/***/ 42792:
-/*!************************************************!*\
-  !*** ./src/app/core/models/security/person.ts ***!
-  \************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Person": function() { return /* binding */ Person; }
-/* harmony export */ });
-class Person {
-    constructor(person) {
-        {
-            this.id = person.id;
-            this.identifier = person.identifier;
-            this.firstName = person.firstName;
-            this.lastName = person.lastName;
-            this.gender = person.gender;
-        }
-    }
-}
-
-
-/***/ }),
-
 /***/ 69258:
 /*!**********************************************!*\
   !*** ./src/app/core/models/security/user.ts ***!

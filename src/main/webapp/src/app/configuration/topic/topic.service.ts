@@ -3,7 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {UnsubscribeOnDestroyAdapter} from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import {environment} from "../../../environments/environment";
-import {Topic} from "./topic.model";
+import {Topic} from "../../core/models/training/topic";
 
 @Injectable()
 export class TopicService extends UnsubscribeOnDestroyAdapter {

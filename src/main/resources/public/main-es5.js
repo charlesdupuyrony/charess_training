@@ -1215,7 +1215,6 @@
           value: function intercept(request, next) {
             var url = request.url;
             var ck = false;
-            console.log('-----------------------------------------------------', url);
 
             if (!this.authenticationService.isTokenValid()) {
               this.paths.forEach(function (p) {
@@ -4360,9 +4359,14 @@
 
       var _environment = {
         production: false,
-        api: 'http://localhost:8080/api',
-        auth: 'http://localhost:8080/api/authenticate'
-      };
+        api: 'http://34.221.108.73:8080/api',
+        auth: 'http://34.221.108.73:8080/api/authenticate'
+      }; // export const environment = {
+      //     production: false,
+      //     api: 'http://localhost:8080/api',
+      //     auth: 'http://localhost:8080/api/authenticate',
+      // };
+
       /*
        * For easier debugging in development mode, you can import the following file
        * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
