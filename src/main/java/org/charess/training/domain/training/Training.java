@@ -1,7 +1,8 @@
 package org.charess.training.domain.training;
 
+import org.charess.training.domain.security.Audit;
 import org.charess.training.domain.security.Category;
-import org.charess.training.domain.security.ID;
+
 import org.charess.training.domain.security.Place;
 import org.charess.training.domain.security.Status;
 
@@ -12,13 +13,19 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "training",
         uniqueConstraints = @UniqueConstraint(columnNames = {"start_date", "end_date", "topic"}))
-public class Training extends ID implements Serializable {
+public class Training extends Audit implements Serializable {
 
     @Column(name = "start_date")
     private LocalDate startDate;
 
     @Column(name = "end_date")
     private LocalDate endDate;
+
+    @Column(name = "request_start_date")
+    private LocalDate requestStartDate;
+
+    @Column(name = "request_end_date")
+    private LocalDate requestEndDate;
 
     @Column(name = "length", length = 4) //en terme de nombre d'heures de crédit
     private Integer length;
@@ -172,5 +179,21 @@ public class Training extends ID implements Serializable {
 
     public void setStatus_date(LocalDate status_date) {
         this.status_date = status_date;
+    }
+
+    public LocalDate getRequestStartDate() {
+        return requestStartDate;
+    }
+
+    public void setRequestStartDate(LocalDate requestStartDate) {
+        this.requestStartDate = requestStartDate;
+    }
+
+    public LocalDate getRequestEndDate() {
+        return requestEndDate;
+    }
+
+    public void setRequestEndDate(LocalDate requestEndDate) {
+        this.requestEndDate = requestEndDate;
     }
 }
