@@ -31,7 +31,7 @@ public class TrainingServiceImpl implements TrainingService{
     }
 
     public Training save(Training training){
-        log.info("=status: {}, topic ={}=", training.getStatus(), training.getTopic().getId());
+        log.info("=status: {}, topic ={}=  start date: {}==", training.getStatus(), training.getTopic().getId(), training.getStartDate());
         return training==null?null:trainingRepository.save(training);
     }
 

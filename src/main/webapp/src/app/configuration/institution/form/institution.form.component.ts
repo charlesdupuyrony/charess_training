@@ -117,6 +117,8 @@ export class InstitutionFormComponent implements OnInit {
                 this.isIdentifierDuplicated[index] = true;
                 this.msg = ' (existed in present pool)';
                 return;
+            } else {
+                this.msg = undefined;
             }
         }
         this.service.getPerson(ident).subscribe(res => {
@@ -136,6 +138,8 @@ export class InstitutionFormComponent implements OnInit {
                 this.isEmailDuplicated[index] = true;
                 this.msg = ' (existed in present pool)';
                 return;
+            } else {
+                this.msg = undefined;
             }
         }
         this.service.getPerson(mail).subscribe(res => {

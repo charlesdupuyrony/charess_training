@@ -28,19 +28,19 @@ export class Training {
             this.startDate = t.startDate;
             this.endDate = t.endDate;
             this.length = t.length;
-            this.topic = t.topic?t.topic:new Topic({});
-            this.place = t.place?t.place:new Institution({});
+            this.topic = t.topic?t.topic:null;
+            this.place = t.place?t.place:null;
             this.numberOfAttendees = t.numberOfAttendees;
-            this.attendeeCategory = t.attendeeCategory?t.attendeeCategory:new Category({});
+            this.attendeeCategory = t.attendeeCategory?t.attendeeCategory:null;
             this.perdiemAllowed = t.perdiemAllowed?t.perdiemAllowed:"n";
-            this.requester = t.requester?t.requester:new Institution({});
-            this.sponsor = t.sponsor?t.sponsor:new Institution({});
-            this.facilitator = t.facilitator?t.facilitator:new Institution({});
+            this.requester = t.requester?t.requester:null;
+            this.sponsor = t.sponsor?t.sponsor:null;
+            this.facilitator = t.facilitator?t.facilitator:null;
             this.status = t.status?t.status:'TRAINING_REQUESTED';
             this.created = t.created;
             this.edited = t.edited;
-            this.creator = t.creator?t.creator:new User({});
-            this.editor = t.editor?t.editor:new User({});
+            this.creator = t.creator?t.creator:null;
+            this.editor = t.editor?t.editor:null;
         }
     }
 }
