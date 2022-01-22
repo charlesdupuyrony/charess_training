@@ -1,8 +1,7 @@
 package org.charess.training.domain.training;
 
-
-import org.charess.training.domain.security.Audit;
 import org.charess.training.domain.security.Category;
+import org.charess.training.domain.security.ID;
 import org.charess.training.domain.security.Place;
 import org.charess.training.domain.security.Status;
 
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "training",
         uniqueConstraints = @UniqueConstraint(columnNames = {"start_date", "end_date", "topic"}))
-public class Training extends Audit implements Serializable {
+public class Training extends ID implements Serializable {
 
     @Column(name = "start_date")
     private LocalDate startDate;
@@ -25,7 +24,7 @@ public class Training extends Audit implements Serializable {
     private Integer length;
 
     @ManyToOne
-    @JoinColumn(name = "topic")
+    @JoinColumn(name = "topic", nullable = false)
     private Topic topic;
 
     @ManyToOne
@@ -35,7 +34,7 @@ public class Training extends Audit implements Serializable {
     @Column(name = "number_of_attendees", length = 4) //nombre éventuel de participant
     private Integer numberOfAttendees;
 
-    @Column(name = "perdiem_allowed", length = 1, nullable = false)
+    @Column(name = "perdiem_allowed", length = 1)
     private String perdiemAllowed = "n";
 
     @ManyToOne
@@ -57,7 +56,7 @@ public class Training extends Audit implements Serializable {
     @JoinColumn(name = "facilitator")
     private Place facilitator;
 
-    @Column(name = "status", length = 15, nullable = false)
+    @Column(name = "status", length = 30, nullable = false)
     private String status = Status.TRAINING_VALIDATED.toString();
 
     @Column(name = "status_date")

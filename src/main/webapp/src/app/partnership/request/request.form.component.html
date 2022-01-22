@@ -30,23 +30,32 @@
                                     <mat-form-field class="example-full-width" appearance="outline">
                                         <mat-label>{{'whish period' | translate}}</mat-label>
                                         <mat-date-range-input [rangePicker]="picker">
-                                            <input matStartDate formControlName="startDate" placeholder="From Date">
-                                            <input matEndDate  formControlName="endDate" placeholder="To Date">
+                                            <input required matStartDate formControlName="startDate" placeholder="From Date">
+                                            <input required matEndDate  formControlName="endDate" placeholder="To Date">
                                         </mat-date-range-input>
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-date-range-picker #picker></mat-date-range-picker>
+                                        <mat-error *ngIf="fg.get('startDate').hasError('') || fg.get('endDate').hasError('')">{{'Both dates are required' | translate}}</mat-error>
+
                                     </mat-form-field>
                                 </div>
-
-                                <!--<div class="col-6">-->
-                                <!--<mat-form-field class="example-full-width" appearance="outline">-->
-                                <!--<mat-label>{{'Location Address' | translate}}</mat-label>-->
-                                <!--<input type="text" matInput [formControl]="locationAddress" [matAutocomplete]="autoLoation">-->
-                                <!--<mat-autocomplete autoActiveFirstOption #autoLoation="matAutocomplete" [displayWith]="display">-->
-                                <!--<mat-option *ngFor="let l of locations | async" [value]="l">{{l.fullname}}</mat-option>-->
-                                <!--</mat-autocomplete>-->
-                                <!--</mat-form-field>-->
-                                <!--</div>-->
+                                <div class="col-6">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'training.configuration.list.category' | translate}}</mat-label>
+                                        <mat-select required="true" [compareWith]="compare" formControlName="attendeeCategory">
+                                            <mat-option [value]=""></mat-option>
+                                            <mat-option *ngFor="let cat of categories" [value]="cat">{{cat.name}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="fg.get('attendeeCategory').hasError('')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Number of attendees' | translate}}</mat-label>
+                                        <input type="number" matInput formControlName="numberOfAttendees" required>
+                                        <mat-error *ngIf="fg.get('numberOfAttendees').hasError('')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">

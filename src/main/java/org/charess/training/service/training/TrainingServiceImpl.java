@@ -31,8 +31,7 @@ public class TrainingServiceImpl implements TrainingService{
     }
 
     public Training save(Training training){
-        Audit audit = training;
-        userService.inject(audit);
+        log.info("=status: {}, topic ={}=", training.getStatus(), training.getTopic().getId());
         return training==null?null:trainingRepository.save(training);
     }
 

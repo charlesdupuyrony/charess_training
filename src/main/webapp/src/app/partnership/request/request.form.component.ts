@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {
-    FormArray,
     FormBuilder,
     FormControl,
     FormGroup
@@ -24,7 +23,8 @@ export class RequestFormComponent implements OnInit {
     fg: FormGroup;
     topics: Observable<Topic[]>;
     topic = new FormControl();
-    topicArray = []
+    topicArray = [];
+    categories = [];
 
     // place: Institution;
     // parent = new FormControl();
@@ -42,11 +42,14 @@ export class RequestFormComponent implements OnInit {
     }
 
     ngOnInit(){
+        this.service.categories().subscribe((res)=>{
+            this.categories = res;
+        });
         this.topics = this.topic.valueChanges.pipe(startWith(''),
             map(value => {
                 if(typeof value==='string' && value.trim().length < 1)
                     return [];
-                this.service.getTopics(typeof value==='string'?value.toLowerCase():value.title).subscribe((res)=>{
+                this.service.topics(typeof value==='string'?value.toLowerCase():value.title).subscribe((res)=>{
                     this.topicArray = res;
                 });
                 return this.topicArray;
@@ -60,37 +63,39 @@ export class RequestFormComponent implements OnInit {
         return ob.title;
     }
 
+    compare(a, b): boolean {
+        return a && b ?(a.id && b.id && a.id===b.id):a===b;
+    }
+
+    private toast(color, text) {
+        this.snack.open(text, '', {
+            duration: 2000, verticalPosition: 'top', horizontalPosition: 'right', panelClass: color,
+        });
+    }
+
+    private success(){
+        this.toast('bg-green','The usr has been successfully created');
+    }
+
+    private error(err: HttpErrorResponse){
+        this.toast('bg-red','Something went wrong the usr has not been created. Please, try again!');
+        console.error(err);
+    }
 
     submit(ob: any): void {
-        console.log(ob, '===============')
-
-        // ob.parent = this.parent.value?.toString().trim().length <1?ob.parent:this.parent.value;
-        // ob.locationAddress = this.locationAddress.value;
-        // ob.managers = this.managers.getRawValue();
-        // this.service.save(ob).subscribe(
-        //     (res) => this.success(),
-        //     (err) => this.error(err)
-        // );
+        ob.topic = this.topic.value;
+        console.log(ob);
+        this.service.save(ob).subscribe(
+            (res) => this.success(),
+            (err) => this.error(err)
+        );
     }
 
 
 
     //
-    // private toast(color, text) {
-    //     this.snack.open(text, '', {
-    //         duration: 2000, verticalPosition: 'top', horizontalPosition: 'right', panelClass: color,
-    //     });
-    // }
-    //
-    // private success(){
-    //     this.toast('bg-green','The usr has been successfully created');
-    //     this.back();
-    // }
-    //
-    // private error(err: HttpErrorResponse){
-    //     this.toast('bg-red','Something went wrong the usr has not been created. Please, try again!');
-    //     console.error(err);
-    // }
+
+
     //
 
     //
