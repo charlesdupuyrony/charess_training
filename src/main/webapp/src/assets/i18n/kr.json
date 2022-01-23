@@ -51,7 +51,11 @@
         },
         "organisation": {
             "text": "Òganizasyon Fòmasyon",
-            "broadcast": "Pataje yon fòmasyon"
+            "broadcast": "Pataje yon fòmasyon",
+            "planning": "Planifikasyon fòmasyon",
+            "calendar": "Kalandriye fòmasyon",
+            "dashboard": "Dashboard",
+            "demands": "Lis fòmasyon"
         },
         "configuration": {
             "text": "Konfigirasyon",

@@ -9,9 +9,9 @@ import {startWith} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HttpErrorResponse} from "@angular/common/http";
-import {TrainingService} from "../../core/service/training.service";
-import {Training} from "../../core/models/training/training";
-import {Topic} from "../../core/models/training/topic";
+import {TrainingService} from "../../../core/service/training.service";
+import {Training} from "../../../core/models/training/training";
+import {Topic} from "../../../core/models/training/topic";
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({

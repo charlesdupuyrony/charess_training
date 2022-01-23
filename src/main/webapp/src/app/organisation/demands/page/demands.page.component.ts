@@ -10,8 +10,8 @@ import { map } from 'rxjs/operators';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { SelectionModel } from '@angular/cdk/collections';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import {Training} from "../../core/models/training/training";
-import {TrainingService} from "../../core/service/training.service";
+import {Training} from "../../../core/models/training/training";
+import {TrainingService} from "../../../core/service/training.service";
 
 @Component({
     selector: 'app-page',

@@ -44,7 +44,11 @@
         },
         "organisation": {
             "text": "Training Organization",
-            "broadcast": "Broadcasting"
+            "broadcast": "Broadcasting",
+            "planning": "Training Planning",
+            "calendar": "Training Calendar",
+            "dashboard": "Dashboard",
+            "demands": "List of Trainings"
         },
         "configuration": {
             "text": "Settings",

@@ -48,7 +48,11 @@
         },
         "organisation": {
             "text": "Organisation formation",
-            "broadcast": "Diffusion d'une formation"
+            "broadcast": "Diffusion d'une formation",
+            "planning": "Planification de formation",
+            "calendar": "Calendrier des formations",
+            "dashboard": "Dashboard",
+            "demands": "List des formations"
         },
         "configuration": {
             "text": "Configuration",

@@ -24,8 +24,60 @@ export const ROUTES: RouteInfo[] = [
                 badge: '',
                 badgeClass: '',
                 roles: [Role.SUPER, Role.ADMIN, Role.ORGANISER],
-                submenu: [],
+                submenu: []
             },
+            {
+                path: '/organisation/planning',
+                title: 'training.organisation.planning',
+                moduleName: 'organisation',
+                iconType: '',
+                icon: '',
+                class: 'ml-menu',
+                groupTitle: false,
+                badge: '',
+                badgeClass: '',
+                roles: [Role.SUPER, Role.ADMIN, Role.ORGANISER],
+                submenu: []
+            },
+            {
+                path: '/organisation/calendar',
+                title: 'training.organisation.calendar',
+                moduleName: 'organisation',
+                iconType: '',
+                icon: '',
+                class: 'ml-menu',
+                groupTitle: false,
+                badge: '',
+                badgeClass: '',
+                roles: [Role.SUPER, Role.ADMIN, Role.ORGANISER],
+                submenu: []
+            },
+            {
+                path: '/organisation/demands',
+                title: 'training.organisation.demands',
+                moduleName: 'organisation',
+                iconType: '',
+                icon: '',
+                class: 'ml-menu',
+                groupTitle: false,
+                badge: '',
+                badgeClass: '',
+                roles: [Role.SUPER, Role.ADMIN, Role.ORGANISER],
+                submenu: []
+            },
+            {
+                path: '/organisation/dashboard',
+                title: 'training.organisation.dashboard',
+                moduleName: 'organisation',
+                iconType: '',
+                icon: '',
+                class: 'ml-menu',
+                groupTitle: false,
+                badge: '',
+                badgeClass: '',
+                roles: [Role.SUPER, Role.ADMIN, Role.ORGANISER],
+                submenu: []
+            }
         ],
     },
 

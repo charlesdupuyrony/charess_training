@@ -22,7 +22,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {RequestRoutingModule} from "./request-routing.module";
-import {RequestFormComponent} from "./request.form.component";
+import {RequestFormComponent} from "./form/request.form.component";
 import {TrainingService} from "../../core/service/training.service";
 
 @NgModule({

@@ -14,6 +14,15 @@ const routes: Routes = [
     children: [
         { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
         {
+            path: 'organisation',
+            canActivate: [AuthGuard],
+            data: {
+                roles: [Role.SUPER, Role.ADMIN, Role.ORGANISER]
+            },
+            loadChildren: () =>
+                import('./organisation/organisation.module').then((m) => m.OrganisationModule),
+        },
+        {
             path: 'partnership',
             canActivate: [AuthGuard],
             data: {
