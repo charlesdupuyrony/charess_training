@@ -1,0 +1,24 @@
+.mat-column-select {
+    flex: 0 0 4% !important;
+}
+
+.mat-column-topic {
+    flex: 0 0 27% !important;
+}
+.mat-column-place {
+    flex: 0 0 22% !important;
+}
+
+.mat-column-attendee {
+    flex: 0 0 6% !important;
+    justify-content: center;
+}
+.mat-column-status {
+    flex: 0 0 6% !important;
+}
+.mat-column-startDate {
+    flex: 0 0 6% !important;
+}
+.mat-column-endDate {
+    flex: 0 0 6% !important;
+}

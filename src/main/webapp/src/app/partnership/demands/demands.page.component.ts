@@ -15,7 +15,8 @@ import {TrainingService} from "../../core/service/training.service";
 
 @Component({
     selector: 'app-page',
-    templateUrl: './demands.page.component.html'
+    templateUrl: './demands.page.component.html',
+    styleUrls: ['./demands.page.component.css'],
 })
 
 export class DemandsPageComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
@@ -23,10 +24,13 @@ export class DemandsPageComponent extends UnsubscribeOnDestroyAdapter implements
     displayedColumns = [
         'select',
         'topic',
-        'numberOfAttendees',
+        'attendee',
         'startDate',
         'endDate',
+        'place',
         'status',
+        'creator',
+        'created'
     ];
 
     database: TrainingService | null;
@@ -68,6 +72,16 @@ export class DemandsPageComponent extends UnsubscribeOnDestroyAdapter implements
             case 'TRAINING_COMPLETED': return 'Complétée';
             case 'TRAINING_UNCOMPLETED': return 'Inachevée';
         }
+    }
+
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.datasource.renderedData.length;
+        return numSelected === numRows;
+    }
+
+    masterToggle() {
+        this.isAllSelected()? this.selection.clear(): this.datasource.renderedData.forEach((row) => this.selection.select(row));
     }
 
 }

@@ -14,6 +14,10 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
             " from Place p " +
             "where (p.name like Concat('%', Concat(?1,'%')))")
     List<Place> search(String criteria);
+
+
+    @Query("select p from Place p where p.id = (select min(e.id) from Place e)")
+    Place defaultPlace();
 }
 
 

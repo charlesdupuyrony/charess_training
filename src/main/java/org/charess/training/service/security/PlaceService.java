@@ -12,5 +12,7 @@ public interface PlaceService {
     List<Place> search(String criteria);
     void delete(Integer id);
     Place save(Place place);
+    Place defaultPlace();
+
 
 }

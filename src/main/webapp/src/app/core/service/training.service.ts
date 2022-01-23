@@ -35,16 +35,16 @@ export class TrainingService extends UnsubscribeOnDestroyAdapter {
     }
 
     getTrainings(): void {
-        // this.subs.sink = this.http.get<User[]>(this.api).subscribe(
-        //     (data) => {
-        //         this.isTblLoading = false;
-        //         this.dataChange.next(data);
-        //     },
-        //     (error: HttpErrorResponse) => {
-        //         this.isTblLoading = false;
-        //         console.log(error.name + ' ' + error.message);
-        //     }
-        // );
+        this.subs.sink = this.http.get<Training[]>(this.api).subscribe(
+            (data) => {
+                this.isTblLoading = false;
+                this.dataChange.next(data);
+            },
+            (error: HttpErrorResponse) => {
+                this.isTblLoading = false;
+                console.log(error.name + ' ' + error.message);
+            }
+        );
     }
 
     save(training){

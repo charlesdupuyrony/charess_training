@@ -47,4 +47,8 @@ public class PlaceServiceImpl implements PlaceService {
         return (place==null || audit==null)?null:placeRepository.save(place);
     }
 
+    public Place defaultPlace(){
+        return placeRepository.defaultPlace();
+    }
+
 }

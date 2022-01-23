@@ -2,10 +2,12 @@ package org.charess.training.service.training;
 
 import org.charess.training.domain.security.Audit;
 import org.charess.training.domain.security.Status;
+import org.charess.training.domain.security.User;
 import org.charess.training.domain.training.Training;
 import org.charess.training.domain.training.TrainingLog;
 import org.charess.training.repository.training.TrainingLogRepository;
 import org.charess.training.repository.training.TrainingRepository;
+import org.charess.training.service.security.PlaceService;
 import org.charess.training.service.security.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service("trainingService")
@@ -23,18 +26,25 @@ public class TrainingServiceImpl implements TrainingService{
 
     private TrainingRepository trainingRepository;
     private UserService userService;
+    private PlaceService placeService;
     private TrainingLogRepository trainingLogRepository;
     private final Logger log = LoggerFactory.getLogger(TrainingServiceImpl.class);
 
     @Autowired
-    public TrainingServiceImpl(TrainingRepository trainingRepository, UserService userService, TrainingLogRepository trainingLogRepository) {
+    public TrainingServiceImpl(TrainingRepository trainingRepository, UserService userService, TrainingLogRepository trainingLogRepository,
+                               PlaceService placeService) {
         this.trainingRepository = trainingRepository;
         this.userService = userService;
+        this.placeService = placeService;
         this.trainingLogRepository = trainingLogRepository;
     }
 
     public List<Training> all(){
-        return trainingRepository.findAll();
+        User usr = userService.getCurrentUser();
+        List<Training> trainings = trainingRepository.findAll();
+        if(usr.getInstitution()!=null && !usr.getInstitution().equals(placeService.defaultPlace()))
+            trainings = trainingRepository.findAll().stream().filter(training -> training.getRequester().equals(usr.getInstitution())).collect(Collectors.toList());
+        return trainings;
     }
 
     public Training save(Training training, String type){

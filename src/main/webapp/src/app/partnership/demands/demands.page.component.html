@@ -88,17 +88,29 @@
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Topic'| translate}}</mat-header-cell>
                                         <mat-cell *matCellDef="let row">{{row.topic?.title}}</mat-cell>
                                     </ng-container>
-                                    <ng-container matColumnDef="numberOfAttendees">
+                                    <ng-container matColumnDef="attendee">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Number of attendees'| translate}}</mat-header-cell>
                                         <mat-cell *matCellDef="let row">{{row.numberOfAttendees}}</mat-cell>
                                     </ng-container>
                                     <ng-container matColumnDef="startDate" >
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Start Date'|translate}}</mat-header-cell>
-                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.startDate}}</mat-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.startDate | date:'mediumDate'}}</mat-cell>
                                     </ng-container>
                                     <ng-container matColumnDef="endDate" >
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'End Date'|translate}}</mat-header-cell>
-                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.endDate }}</mat-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.endDate | date:'mediumDate'}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="place" >
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Institution'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.requester.name }}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="creator" >
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Creator'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.creator.person.fullname }}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="created" >
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Created'|translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">{{row.created | date:'medium'}}</mat-cell>
                                     </ng-container>
                                     <ng-container matColumnDef="status" >
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Status'|translate}}</mat-header-cell>

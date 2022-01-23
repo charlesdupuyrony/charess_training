@@ -31,7 +31,7 @@ public class TrainingController {
         return trainingService.search(criteria);
     }
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(method=RequestMethod.GET)
     public List<Training> all() {
         return trainingService.all();
     }

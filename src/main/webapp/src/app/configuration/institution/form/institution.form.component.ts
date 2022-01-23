@@ -144,7 +144,8 @@ export class InstitutionFormComponent implements OnInit {
         }
         this.service.getPerson(mail).subscribe(res => {
             if(res != null){
-                this.managers.controls[index].setValue(this.fb.group(res));
+                this.pull(index);
+                this.managers.controls.unshift(this.fb.group(res));
             }
         });
     }
