@@ -34,7 +34,7 @@
     "training": {
         "partnership": {
             "text": "Partenariat",
-            "request": "Demande d'une formation",
+            "request": "Demande de formation",
             "demands": "Liste des demandes",
             "dashboard": "Tableau de bord"
         },

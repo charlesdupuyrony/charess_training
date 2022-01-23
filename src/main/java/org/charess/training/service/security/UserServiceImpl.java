@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.apache.logging.log4j.util.Strings.isEmpty;
 
@@ -76,7 +77,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<Profile> getProfiles(){
-        return profileRepository.findAll();
+        return profileRepository.findAll().stream().filter(profile -> profile.getId() > 1).collect(Collectors.toList());
     }
 
     public Person findByEmail(String email){
