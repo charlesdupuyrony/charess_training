@@ -36,7 +36,8 @@
             "text": "Partenariat",
             "request": "Demande de formation",
             "demands": "Liste des demandes",
-            "dashboard": "Tableau de bord"
+            "dashboard": "Tableau de bord",
+            "timeline": "Chronologie de la formation"
         },
         "attendee": {
             "text": "Dossier du participant",

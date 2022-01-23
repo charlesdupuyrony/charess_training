@@ -23,9 +23,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {PartnershipRoutingModule} from "./partnership-routing.module";
+import {TimelineComponent} from "./timeline/timeline.component";
 
 @NgModule({
     declarations: [
+        TimelineComponent
     ],
     imports: [
         CommonModule,

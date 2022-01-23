@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RequestFormComponent} from "./request.form.component";
+import {TimelineComponent} from "../timeline/timeline.component";
 
 const routes: Routes = [
     {
         path: '',
         component: RequestFormComponent,
+    },
+    {
+        path: 'timeline',
+        component: TimelineComponent,
     },
 ];
 

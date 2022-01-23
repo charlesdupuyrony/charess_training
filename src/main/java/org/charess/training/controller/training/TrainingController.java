@@ -1,6 +1,7 @@
 package org.charess.training.controller.training;
 
 import org.charess.training.domain.training.Training;
+import org.charess.training.domain.training.TrainingLog;
 import org.charess.training.service.training.TrainingService;
 import org.charess.training.service.training.TrainingService;
 import org.slf4j.Logger;
@@ -35,13 +36,19 @@ public class TrainingController {
         return trainingService.all();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String> save(@RequestBody Training training){
+    @RequestMapping(value ="request", method = RequestMethod.POST)
+    public ResponseEntity<?> save(@RequestBody Training training){
         try {
-            return trainingService.save(training)==null?new ResponseEntity<>("", HttpStatus.BAD_REQUEST):new ResponseEntity<>("", HttpStatus.OK);
+            Training s = trainingService.save(training, "request");
+            return training==null?new ResponseEntity<>("", HttpStatus.BAD_REQUEST):new ResponseEntity<>(s, HttpStatus.OK);
         } catch(Exception e){
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
+    }
+
+    @RequestMapping(value = "/log", method = RequestMethod.GET)
+    public List<TrainingLog> log(@RequestParam("training") Integer training) {
+        return trainingService.log(training);
     }
 }

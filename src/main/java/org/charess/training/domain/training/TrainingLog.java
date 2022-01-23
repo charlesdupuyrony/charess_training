@@ -5,6 +5,7 @@ import org.charess.training.domain.security.Audit;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "training_log")
@@ -18,7 +19,20 @@ public class TrainingLog extends Audit implements Serializable {
     private String status;
 
     @Column(name = "status_date")
-    private LocalDate status_date;
+    private LocalDateTime statusDate;
+
+    @Column(name = "text", nullable = false, length = 400)
+    private String text;
+
+    public TrainingLog() {
+    }
+
+    public TrainingLog(Training training, String text) {
+        this.training = training;
+        this.status = training.getStatus();
+        this.statusDate = training.getStatusDate();
+        this.text = text;
+    }
 
     public Training getTraining() {
         return training;
@@ -36,11 +50,19 @@ public class TrainingLog extends Audit implements Serializable {
         this.status = status;
     }
 
-    public LocalDate getStatus_date() {
-        return status_date;
+    public LocalDateTime getStatusDate() {
+        return statusDate;
     }
 
-    public void setStatus_date(LocalDate status_date) {
-        this.status_date = status_date;
+    public void setStatusDate(LocalDateTime statusDate) {
+        this.statusDate = statusDate;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

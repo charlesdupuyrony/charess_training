@@ -9,6 +9,7 @@ import org.charess.training.domain.security.Status;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "training",
@@ -67,7 +68,7 @@ public class Training extends Audit implements Serializable {
     private String status = Status.TRAINING_VALIDATED.toString();
 
     @Column(name = "status_date")
-    private LocalDate status_date;
+    private LocalDateTime statusDate;
 
     public LocalDate getStartDate() {
         return startDate;
@@ -173,12 +174,12 @@ public class Training extends Audit implements Serializable {
         this.attendeeCategory = attendeeCategory;
     }
 
-    public LocalDate getStatus_date() {
-        return status_date;
+    public LocalDateTime getStatusDate() {
+        return statusDate;
     }
 
-    public void setStatus_date(LocalDate status_date) {
-        this.status_date = status_date;
+    public void setStatusDate(LocalDateTime statusDate) {
+        this.statusDate = statusDate;
     }
 
     public LocalDate getRequestStartDate() {

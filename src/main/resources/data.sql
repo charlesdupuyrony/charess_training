@@ -2,7 +2,7 @@ insert into training.profile (id, name, page, role) VALUES (1,'Super Administrat
 insert into training.profile (id, name, page, role) VALUES (2,'Administrateur','configuration/account/page','admin');
 insert into training.profile (id, name, page, role) VALUES (3,'Participant','admin/dashboard/main','attendee');
 insert into training.profile (id, name, page, role) VALUES (4,'Organisateur','admin/dashboard/main','organiser');
-insert into training.profile (id, name, page, role) VALUES (5,'Partenaire','admin/dashboard/main','partner');
+insert into training.profile (id, name, page, role) VALUES (5,'Partenaire','partnership/request','partner');
 insert into training.profile (id, name, page, role) VALUES (6,'Officier de données','admin/dashboard/main','clerk');
 
 insert into training.person(id, first_name, last_name, gender, phone, identifier, identifier_type) values(1, 'Super', 'Admin', 'i', '(509) 0000-0000', '000-000-000-0', 'NIF');

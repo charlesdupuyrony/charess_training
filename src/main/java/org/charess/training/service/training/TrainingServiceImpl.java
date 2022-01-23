@@ -1,7 +1,10 @@
 package org.charess.training.service.training;
 
 import org.charess.training.domain.security.Audit;
+import org.charess.training.domain.security.Status;
 import org.charess.training.domain.training.Training;
+import org.charess.training.domain.training.TrainingLog;
+import org.charess.training.repository.training.TrainingLogRepository;
 import org.charess.training.repository.training.TrainingRepository;
 import org.charess.training.service.security.UserService;
 import org.slf4j.Logger;
@@ -10,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Transactional
@@ -18,22 +23,43 @@ public class TrainingServiceImpl implements TrainingService{
 
     private TrainingRepository trainingRepository;
     private UserService userService;
+    private TrainingLogRepository trainingLogRepository;
     private final Logger log = LoggerFactory.getLogger(TrainingServiceImpl.class);
 
     @Autowired
-    public TrainingServiceImpl(TrainingRepository trainingRepository, UserService userService) {
+    public TrainingServiceImpl(TrainingRepository trainingRepository, UserService userService, TrainingLogRepository trainingLogRepository) {
         this.trainingRepository = trainingRepository;
         this.userService = userService;
+        this.trainingLogRepository = trainingLogRepository;
     }
 
     public List<Training> all(){
         return trainingRepository.findAll();
     }
 
-    public Training save(Training training){
+    public Training save(Training training, String type){
         Audit audit = training;
         userService.inject(audit);
-        return training==null?null:trainingRepository.save(training);
+        String txt = "";
+        TrainingLog log = null;
+        if("request".equals(type)){
+            txt = "Your training request has been susccefully made. Follow-up will be doing soon.";
+            if(training.getCreator()!=null && training.getCreator().getInstitution()!=null){
+                training.setRequested(LocalDate.now());
+                training.setRequester(training.getCreator().getInstitution());
+                txt = String.format(txt, training.getCreator().getPerson().getFirstName());
+            }
+            training.setStatus(Status.TRAINING_REQUESTED.toString());
+            training.setStatusDate(LocalDateTime.now());
+        }
+        trainingRepository.save(training);
+
+        log = new TrainingLog(training, txt);
+        log.setCreator(training.getCreator());
+        log.setCreated(training.getCreated());
+        trainingLogRepository.save(log);
+
+        return training;
     }
 
     public List<Training> search(String criteria){
@@ -43,5 +69,9 @@ public class TrainingServiceImpl implements TrainingService{
         else
             trainings = trainingRepository.search(criteria);
         return trainings;
+    }
+
+    public List<TrainingLog> log(Integer training){
+        return trainingLogRepository.findByTrainingId(training);
     }
 }

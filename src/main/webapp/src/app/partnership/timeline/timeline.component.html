@@ -1,0 +1,37 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h4 class="page-title">{{'training.partnership.timeline' | translate}}</h4>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <ul class="left-timeline">
+                                    <li *ngFor="let e of logs">
+                                        <time class="left-time" datetime="{{e.created}}">
+                                            <span class="hidden">{{e.created  | date:'mediumDate'}}</span>
+                                            <span>{{e.created | date:'shortTime'}}</span>
+                                        </time>
+                                        <div class="left-icon"><img src="assets/images/logo.png" alt=""></div>
+                                        <div class="left-label">
+                                            <h2><a href="#" onClick="return false;">{{"Hello "+e.creator.person.firstName+", "}}</a></h2>
+                                            <p>{{e.text}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

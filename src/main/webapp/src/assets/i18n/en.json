@@ -33,7 +33,8 @@
             "text": "Partnership",
             "request": "Training Request",
             "demands": "List of demands",
-            "dashboard": "Dashboard"
+            "dashboard": "Dashboard",
+            "timeline": "Training Timeline"
         },
         "attendee": {
             "text": "Trainee Folder",

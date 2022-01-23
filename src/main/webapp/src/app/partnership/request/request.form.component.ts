@@ -12,6 +12,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {TrainingService} from "../../core/service/training.service";
 import {Training} from "../../core/models/training/training";
 import {Topic} from "../../core/models/training/topic";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
     selector: 'app-form',
@@ -37,7 +38,7 @@ export class RequestFormComponent implements OnInit {
     // isEmailDuplicated = [];
     // msg: string;
 
-    constructor(private fb: FormBuilder, private service: TrainingService, private snack: MatSnackBar){
+    constructor(private fb: FormBuilder, private service: TrainingService, private snack: MatSnackBar, private router: Router){
         this.fg = this.fb.group(new Training({}));
     }
 
@@ -73,8 +74,9 @@ export class RequestFormComponent implements OnInit {
         });
     }
 
-    private success(){
+    private success(res){
         this.toast('bg-green','The usr has been successfully created');
+        this.router.navigate(['partnership/request/timeline'],{state:{training: res}});
     }
 
     private error(err: HttpErrorResponse){
@@ -84,9 +86,8 @@ export class RequestFormComponent implements OnInit {
 
     submit(ob: any): void {
         ob.topic = this.topic.value;
-        console.log(ob);
         this.service.save(ob).subscribe(
-            (res) => this.success(),
+            (res) => this.success(res),
             (err) => this.error(err)
         );
     }

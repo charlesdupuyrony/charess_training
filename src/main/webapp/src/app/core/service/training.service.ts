@@ -6,6 +6,8 @@ import {Training} from "../models/training/training";
 import {environment} from "../../../environments/environment";
 import {Topic} from "../models/training/topic";
 import {Category} from "../models/security/category";
+import {Person} from "../models/security/person";
+import {TrainingLog} from "../models/training/training.log";
 
 @Injectable()
 export class TrainingService extends UnsubscribeOnDestroyAdapter {
@@ -46,7 +48,12 @@ export class TrainingService extends UnsubscribeOnDestroyAdapter {
     }
 
     save(training){
-        return this.http.post(this.api, training);
+        return this.http.post(`${this.api}/request`, training);
+    }
+
+    log(training){
+        console.log(training, '=======================');
+        return this.http.get<TrainingLog[]>(`${this.api}/log?training=${training}`);
     }
 
 }
