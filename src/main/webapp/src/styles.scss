@@ -55,3 +55,6 @@ legend {
   background: #ffffff;
   transition: background 0.2s, width 0.2s;
 }
+body {
+  overflow: hidden; /* Hide scrollbars */
+}

@@ -7,11 +7,11 @@ const routes: Routes = [
         loadChildren: () =>
             import('./demands/demands.module').then((m) => m.DemandsModule),
     },
-    // {
-    //     path: 'request',
-    //     loadChildren: () =>
-    //         import('./request/request.module').then((m) => m.RequestModule),
-    // },
+    {
+        path: 'calendar',
+        loadChildren: () =>
+            import('./calendar/calendar.module').then((m) => m.CalendarModule)
+    },
 ];
 
 @NgModule({

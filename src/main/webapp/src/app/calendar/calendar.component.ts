@@ -1,6 +1,5 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import {
-  CalendarOptions,
+import {Component, ViewChild, OnInit} from '@angular/core';
+import {CalendarOptions,
   DateSelectArg,
   EventClickArg,
   EventApi,
