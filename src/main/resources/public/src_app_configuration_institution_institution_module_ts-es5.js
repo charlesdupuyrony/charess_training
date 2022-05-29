@@ -54,12 +54,6 @@
       /* harmony import */
 
 
-      var _institution_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../institution.model */
-      36980);
-      /* harmony import */
-
-
       var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! rxjs */
       5207);
@@ -72,9 +66,15 @@
       /* harmony import */
 
 
-      var _core_models_security_person__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var _core_models_security_person__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! ../../../core/models/security/person */
       42792);
+      /* harmony import */
+
+
+      var _core_models_security_institution__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../../core/models/security/institution */
+      26469);
       /* harmony import */
 
 
@@ -232,7 +232,7 @@
         }
       }
 
-      function InstitutionFormComponent_ng_container_54_span_26_Template(rf, ctx) {
+      function InstitutionFormComponent_ng_container_54_span_14_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 37);
 
@@ -306,7 +306,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](3, "mat-icon", 40);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](4, "delete");
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](4, "delete ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
 
@@ -368,49 +368,13 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipe"](13, "translate");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](14, "input", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](14, InstitutionFormComponent_ng_container_54_span_14_Template, 3, 3, "span", 30);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](15, "input", 33);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](15, "div", 32);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](16, "mat-form-field", 29);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](17, "mat-label");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](18);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipe"](19, "translate");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](20, "input", 34);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](21, "div", 32);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](22, "mat-form-field", 29);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](23, "mat-label");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](24);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipe"](25, "translate");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](26, InstitutionFormComponent_ng_container_54_span_26_Template, 3, 3, "span", 30);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](27, "input", 35);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("blur", function InstitutionFormComponent_ng_container_54_Template_input_blur_27_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("blur", function InstitutionFormComponent_ng_container_54_Template_input_blur_15_listener() {
             var restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r20);
 
             var i_r9 = restoredCtx.index;
@@ -421,6 +385,42 @@
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](16, "div", 32);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](17, "mat-form-field", 29);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](18, "mat-label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](19);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipe"](20, "translate");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](21, "input", 34);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](22, "div", 32);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](23, "mat-form-field", 29);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](24, "mat-label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](25);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipe"](26, "translate");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](27, "input", 35);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
 
@@ -454,23 +454,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](13, 14, "FirstName"));
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("showMaskTyped", true);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](4);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](19, 16, "LastName"));
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("showMaskTyped", true);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](4);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](25, 18, "Email"));
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](13, 14, "Email"));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
 
@@ -480,13 +464,29 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("showMaskTyped", true);
 
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](20, 16, "FirstName"));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("showMaskTyped", true);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](26, 18, "LastName"));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("showMaskTyped", true);
+
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", ctx_r5.managers["controls"][i_r9].status == "VALID" && i_r9 === 0 && !ctx_r5.msg);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", ctx_r5.managers["controls"][i_r9].status == "VALID" && i_r9 > 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", ctx_r5.managers["controls"].length > 1 && (i_r9 > 0 || ctx_r5.managers["controls"][i_r9].status != "VALID"));
         }
       }
 
@@ -508,8 +508,8 @@
           this.isEmailDuplicated = [];
           var st = this.router.getCurrentNavigation().extras.state;
           this.title = st ? 'Edit the current institution' : 'Create new institution';
-          var pl = st && st.place ? st.place : new _institution_model__WEBPACK_IMPORTED_MODULE_0__.Institution({});
-          pl.managers = this.fb.array(pl.managers == null ? [this.fb.group(new _core_models_security_person__WEBPACK_IMPORTED_MODULE_1__.Person({}))] : pl.managers.map(function (m) {
+          var pl = st && st.place ? st.place : new _core_models_security_institution__WEBPACK_IMPORTED_MODULE_1__.Institution({});
+          pl.managers = this.fb.array(pl.managers == null ? [this.fb.group(new _core_models_security_person__WEBPACK_IMPORTED_MODULE_0__.Person({}))] : pl.managers.map(function (m) {
             return _this.fb.group(m);
           }));
           if (pl && pl.parent) this.parent.setValue(pl.parent);
@@ -610,6 +610,8 @@
                 this.isIdentifierDuplicated[index] = true;
                 this.msg = ' (existed in present pool)';
                 return;
+              } else {
+                this.msg = undefined;
               }
             }
 
@@ -636,12 +638,16 @@
                 this.isEmailDuplicated[index] = true;
                 this.msg = ' (existed in present pool)';
                 return;
+              } else {
+                this.msg = undefined;
               }
             }
 
             this.service.getPerson(mail).subscribe(function (res) {
               if (res != null) {
-                _this5.managers.controls[index].setValue(_this5.fb.group(res));
+                _this5.pull(index);
+
+                _this5.managers.controls.unshift(_this5.fb.group(res));
               }
             });
           }
@@ -654,7 +660,7 @@
         }, {
           key: "push",
           value: function push() {
-            this.managers.controls.unshift(this.fb.group(new _core_models_security_person__WEBPACK_IMPORTED_MODULE_1__.Person({})));
+            this.managers.controls.unshift(this.fb.group(new _core_models_security_person__WEBPACK_IMPORTED_MODULE_0__.Person({})));
           }
         }, {
           key: "pull",
@@ -674,8 +680,8 @@
         type: _InstitutionFormComponent,
         selectors: [["app-form"]],
         decls: 65,
-        vars: 41,
-        consts: [[1, "content"], [1, "container-fluid"], [1, "block-header"], [1, "row"], [1, "col-xs-12", "col-sm-12", "col-md-12", "col-lg-12"], [1, "page-title"], [1, "row", "clearfix"], [1, "card"], [1, "body"], [3, "formGroup", "submit"], [1, "col-6"], ["appearance", "outline", 1, "example-full-width"], ["matInput", "", "formControlName", "name", "required", ""], [4, "ngIf"], ["type", "text", "matInput", "", 3, "formControl", "matAutocomplete"], ["autoActiveFirstOption", "", 3, "displayWith"], ["autoParent", "matAutocomplete"], [3, "value", 4, "ngFor", "ngForOf"], ["matInput", "", "formControlName", "textAddress"], ["autoLoation", "matAutocomplete"], ["formArrayName", "managers", 4, "ngFor", "ngForOf"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], [1, "example-button-row"], ["mat-raised-button", "", "color", "primary", 3, "type", "disabled"], ["mat-raised-button", "", "color", "warn", "tabindex", "-1", 3, "click"], [3, "value"], ["formArrayName", "managers"], [3, "formGroupName"], [1, "col-2"], [1, "example-full-width", "mb-3"], ["class", "error", 4, "ngIf"], ["matInput", "", "mask", "000-000-000-0", "formControlName", "identifier", "required", "", 3, "blur"], [1, "col-3"], ["matInput", "", "formControlName", "firstName", "required", "", 3, "showMaskTyped"], ["matInput", "", "formControlName", "lastName", "required", "", 3, "showMaskTyped"], ["matInput", "", "formControlName", "email", "required", "", 3, "showMaskTyped", "blur"], ["class", "col-1", 4, "ngIf"], [1, "error"], [1, "col-1"], ["mat-mini-fab", "", "color", "primary", "type", "button", 3, "click"], [1, "col-white"], ["mat-mini-fab", "", "color", "warn", 3, "click"]],
+        vars: 42,
+        consts: [[1, "content"], [1, "container-fluid"], [1, "block-header"], [1, "row"], [1, "col-xs-12", "col-sm-12", "col-md-12", "col-lg-12"], [1, "page-title"], [1, "row", "clearfix"], [1, "card"], [1, "body"], [3, "formGroup", "submit"], [1, "col-6"], ["appearance", "outline", 1, "example-full-width"], ["matInput", "", "formControlName", "name", "required", ""], [4, "ngIf"], ["type", "text", "matInput", "", 3, "formControl", "matAutocomplete"], ["autoActiveFirstOption", "", 3, "displayWith"], ["autoParent", "matAutocomplete"], [3, "value", 4, "ngFor", "ngForOf"], ["matInput", "", "formControlName", "textAddress"], ["autoLoation", "matAutocomplete"], ["formArrayName", "managers", 4, "ngFor", "ngForOf"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], [1, "example-button-row"], ["mat-raised-button", "", "color", "primary", 3, "type", "disabled"], ["mat-raised-button", "", "color", "warn", "tabindex", "-1", 3, "click"], [3, "value"], ["formArrayName", "managers"], [3, "formGroupName"], [1, "col-2"], [1, "example-full-width", "mb-3"], ["class", "error", 4, "ngIf"], ["matInput", "", "mask", "000-000-000-0", "formControlName", "identifier", "required", "", 3, "blur"], [1, "col-3"], ["matInput", "", "formControlName", "email", "required", "", 3, "showMaskTyped", "blur"], ["matInput", "", "formControlName", "firstName", "required", "", 3, "showMaskTyped"], ["matInput", "", "formControlName", "lastName", "required", "", 3, "showMaskTyped"], ["class", "col-1", 4, "ngIf"], [1, "error"], [1, "col-1"], ["mat-mini-fab", "", "color", "primary", "type", "button", 3, "click"], [1, "col-white"], ["mat-mini-fab", "", "color", "warn", 3, "click"]],
         template: function InstitutionFormComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "section", 0);
@@ -892,7 +898,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](6);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](7, 21, ctx.title));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](7, 22, ctx.title));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](7);
 
@@ -900,7 +906,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](5);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](19, 23, "Name"));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](19, 24, "Name"));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](3);
 
@@ -908,7 +914,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](4);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](26, 25, "Parent"));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](26, 26, "Parent"));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
 
@@ -920,15 +926,15 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](31, 27, ctx.places));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](31, 28, ctx.places));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](6);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](37, 29, "Text Address"));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](37, 30, "Text Address"));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](6);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](43, 31, "Location Address"));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](43, 32, "Location Address"));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
 
@@ -940,11 +946,11 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](48, 33, ctx.locations));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](48, 34, ctx.locations));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](5);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](53, 35, "Manager"));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](53, 36, "Manager"));
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
 
@@ -956,11 +962,11 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](61, 37, "Save"));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate2"]("", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](61, 38, "Save"), " ", ctx.msg, "");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](3);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](64, 39, "Cancel"));
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind1"](64, 40, "Cancel"));
           }
         },
         directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormGroupDirective, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_9__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_9__.MatLabel, _angular_material_input__WEBPACK_IMPORTED_MODULE_10__.MatInput, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormControlName, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.RequiredValidator, _angular_common__WEBPACK_IMPORTED_MODULE_11__.NgIf, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_12__.MatAutocompleteTrigger, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormControlDirective, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_12__.MatAutocomplete, _angular_common__WEBPACK_IMPORTED_MODULE_11__.NgForOf, _angular_material_button__WEBPACK_IMPORTED_MODULE_13__.MatButton, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_9__.MatError, _angular_material_core__WEBPACK_IMPORTED_MODULE_14__.MatOption, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormArrayName, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormGroupName, ngx_mask__WEBPACK_IMPORTED_MODULE_15__.MaskDirective, _angular_material_icon__WEBPACK_IMPORTED_MODULE_16__.MatIcon],
@@ -1049,48 +1055,6 @@
           exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule]
         });
       })();
-      /***/
-
-    },
-
-    /***/
-    36980:
-    /*!****************************************************************!*\
-      !*** ./src/app/configuration/institution/institution.model.ts ***!
-      \****************************************************************/
-
-    /***/
-    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export */
-
-
-      __webpack_require__.d(__webpack_exports__, {
-        /* harmony export */
-        "Institution": function Institution() {
-          return (
-            /* binding */
-            _Institution
-          );
-        }
-        /* harmony export */
-
-      });
-
-      var _Institution = function _Institution(institution) {
-        _classCallCheck(this, _Institution);
-
-        {
-          this.id = institution.id;
-          this.name = institution.name;
-          this.parent = institution.parent || null;
-          this.textAddress = institution.textAddress || '';
-          this.locationAddress = institution.locationAddress || null;
-          this.managers = institution.managers || null;
-        }
-      };
       /***/
 
     },
@@ -1553,7 +1517,7 @@
         if (rf & 2) {
           var value_r13 = ctx.value;
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", value_r13[0].fullname + " (" + value_r13.length + ")", " ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", value_r13.length > 0 ? value_r13[0].fullname + " (" + value_r13.length + ")" : "", " ");
         }
       }
 
@@ -1951,6 +1915,48 @@
         encapsulation: 2
       });
       /***/
+    },
+
+    /***/
+    26469:
+    /*!*****************************************************!*\
+      !*** ./src/app/core/models/security/institution.ts ***!
+      \*****************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "Institution": function Institution() {
+          return (
+            /* binding */
+            _Institution
+          );
+        }
+        /* harmony export */
+
+      });
+
+      var _Institution = function _Institution(institution) {
+        _classCallCheck(this, _Institution);
+
+        {
+          this.id = institution.id;
+          this.name = institution.name;
+          this.parent = institution.parent || null;
+          this.textAddress = institution.textAddress || '';
+          this.locationAddress = institution.locationAddress || null;
+          this.managers = institution.managers || null;
+        }
+      };
+      /***/
+
     }
   }]);
 })();

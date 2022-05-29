@@ -91,6 +91,81 @@ class Person {
 }
 
 
+/***/ }),
+
+/***/ 29744:
+/*!**************************************************!*\
+  !*** ./src/app/core/service/training.service.ts ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TrainingService": function() { return /* binding */ TrainingService; }
+/* harmony export */ });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45094);
+/* harmony import */ var src_app_shared_UnsubscribeOnDestroyAdapter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/shared/UnsubscribeOnDestroyAdapter */ 7868);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../environments/environment */ 92340);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 91841);
+
+
+
+
+
+class TrainingService extends src_app_shared_UnsubscribeOnDestroyAdapter__WEBPACK_IMPORTED_MODULE_0__.UnsubscribeOnDestroyAdapter {
+    constructor(http) {
+        super();
+        this.http = http;
+        this.api = `${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api}/training`;
+        this.isTblLoading = true;
+        this.dataChange = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject([]);
+        this.inputs = [];
+    }
+    topics(criteria) {
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api}/topic/${criteria}`);
+    }
+    categories() {
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api}/category`);
+    }
+    get data() {
+        return this.dataChange.value;
+    }
+    getTrainings() {
+        this.subs.sink = this.http.get(this.api).subscribe((data) => {
+            this.isTblLoading = false;
+            this.dataChange.next(data);
+        }, (error) => {
+            this.isTblLoading = false;
+            console.log(error.name + ' ' + error.message);
+        });
+    }
+    getEvents() {
+        return this.http.get(this.api);
+    }
+    // getEvents(): EventInput[] {
+    //     this.http.get<Training[]>(this.api).subscribe(
+    //         (res) => {
+    //             console.log('----------------', res)
+    //             for (let i = 0; i < res.length; i++) {
+    //                 this.inputs.push({id: res[i].id.toString(), title: res[i].topic.title, start: new Date(res[i].startDate)});
+    //             }
+    //         });
+    //     return this.inputs;
+    // }
+    save(training) {
+        return this.http.post(`${this.api}/request`, training);
+    }
+    log(training) {
+        console.log(training, '=======================');
+        return this.http.get(`${this.api}/log?training=${training}`);
+    }
+}
+TrainingService.ɵfac = function TrainingService_Factory(t) { return new (t || TrainingService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient)); };
+TrainingService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({ token: TrainingService, factory: TrainingService.ɵfac });
+
+
 /***/ })
 
 }]);

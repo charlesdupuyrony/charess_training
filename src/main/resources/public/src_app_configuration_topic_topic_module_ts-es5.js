@@ -72,9 +72,9 @@
       /* harmony import */
 
 
-      var _topic_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ../topic.model */
-      86080);
+      var _core_models_training_topic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../../../core/models/training/topic */
+      39475);
       /* harmony import */
 
 
@@ -199,7 +199,7 @@
             this.themeControl.setValue(data.topic.theme);
           } else {
             this.title = 'New topic';
-            this.topic = new _topic_model__WEBPACK_IMPORTED_MODULE_0__.Topic({});
+            this.topic = new _core_models_training_topic__WEBPACK_IMPORTED_MODULE_0__.Topic({});
           }
 
           this.fg = this.createContactForm();
@@ -1068,45 +1068,6 @@
     },
 
     /***/
-    86080:
-    /*!****************************************************!*\
-      !*** ./src/app/configuration/topic/topic.model.ts ***!
-      \****************************************************/
-
-    /***/
-    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export */
-
-
-      __webpack_require__.d(__webpack_exports__, {
-        /* harmony export */
-        "Topic": function Topic() {
-          return (
-            /* binding */
-            _Topic
-          );
-        }
-        /* harmony export */
-
-      });
-
-      var _Topic = function _Topic(topic) {
-        _classCallCheck(this, _Topic);
-
-        {
-          this.id = topic.id;
-          this.title = topic.title;
-          this.theme = topic.parent || null;
-        }
-      };
-      /***/
-
-    },
-
-    /***/
     46447:
     /*!*****************************************************!*\
       !*** ./src/app/configuration/topic/topic.module.ts ***!
@@ -1420,6 +1381,45 @@
         factory: _TopicService.ɵfac
       });
       /***/
+    },
+
+    /***/
+    39475:
+    /*!***********************************************!*\
+      !*** ./src/app/core/models/training/topic.ts ***!
+      \***********************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "Topic": function Topic() {
+          return (
+            /* binding */
+            _Topic
+          );
+        }
+        /* harmony export */
+
+      });
+
+      var _Topic = function _Topic(topic) {
+        _classCallCheck(this, _Topic);
+
+        {
+          this.id = topic.id;
+          this.title = topic.title;
+          this.theme = topic.parent || null;
+        }
+      };
+      /***/
+
     }
   }]);
 })();

@@ -20,6 +20,15 @@
     "Last Name": "Nom",
     "Place of work": "Lieu de travail",
     "Manager": "Responsable(s)",
+    "Topic": "Thématique",
+    "Number of attendees": "# Participants",
+    "Start Date": "Du",
+    "End Date": "Au",
+    "Status": "Statut",
+    "whish period": "Période souhaitée",
+    "Creator": "Créé par",
+    "Created": "Créé le",
+
 
 
 
@@ -27,8 +36,11 @@
 
     "training": {
         "partnership": {
-            "text": "Organisation Partenaire",
-            "request": "Demande de formation"
+            "text": "Partenariat",
+            "request": "Demande de formation",
+            "demands": "Liste des demandes",
+            "dashboard": "Tableau de bord",
+            "timeline": "Chronologie de la formation"
         },
         "attendee": {
             "text": "Dossier du participant",
@@ -36,14 +48,19 @@
         },
         "organisation": {
             "text": "Organisation formation",
-            "broadcast": "Diffusion d'une formation"
+            "broadcast": "Diffusion d'une formation",
+            "planning": "Planification de formation",
+            "calendar": "Calendrier des formations",
+            "dashboard": "Dashboard",
+            "demands": "List des formations"
         },
         "configuration": {
             "text": "Configuration",
             "list": {
                 "facility": "Institution & Partenaire",
                 "topic": "Définition de thématique",
-                "account": "Gestion des utilisateurs"
+                "account": "Gestion des utilisateurs",
+                "category": "Groupe de participants"
             }
         }
     }

@@ -199,6 +199,152 @@
       };
       /***/
 
+    },
+
+    /***/
+    29744:
+    /*!**************************************************!*\
+      !*** ./src/app/core/service/training.service.ts ***!
+      \**************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "TrainingService": function TrainingService() {
+          return (
+            /* binding */
+            _TrainingService
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! rxjs */
+      45094);
+      /* harmony import */
+
+
+      var src_app_shared_UnsubscribeOnDestroyAdapter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/app/shared/UnsubscribeOnDestroyAdapter */
+      7868);
+      /* harmony import */
+
+
+      var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../../environments/environment */
+      92340);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/common/http */
+      91841);
+
+      var _TrainingService = /*#__PURE__*/function (_src_app_shared_Unsub2) {
+        _inherits(_TrainingService, _src_app_shared_Unsub2);
+
+        var _super2 = _createSuper(_TrainingService);
+
+        function _TrainingService(http) {
+          var _this3;
+
+          _classCallCheck(this, _TrainingService);
+
+          _this3 = _super2.call(this);
+          _this3.http = http;
+          _this3.api = "".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api, "/training");
+          _this3.isTblLoading = true;
+          _this3.dataChange = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject([]);
+          _this3.inputs = [];
+          return _this3;
+        }
+
+        _createClass(_TrainingService, [{
+          key: "topics",
+          value: function topics(criteria) {
+            return this.http.get("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api, "/topic/").concat(criteria));
+          }
+        }, {
+          key: "categories",
+          value: function categories() {
+            return this.http.get("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api, "/category"));
+          }
+        }, {
+          key: "data",
+          get: function get() {
+            return this.dataChange.value;
+          }
+        }, {
+          key: "getTrainings",
+          value: function getTrainings() {
+            var _this4 = this;
+
+            this.subs.sink = this.http.get(this.api).subscribe(function (data) {
+              _this4.isTblLoading = false;
+
+              _this4.dataChange.next(data);
+            }, function (error) {
+              _this4.isTblLoading = false;
+              console.log(error.name + ' ' + error.message);
+            });
+          }
+        }, {
+          key: "getEvents",
+          value: function getEvents() {
+            return this.http.get(this.api);
+          } // getEvents(): EventInput[] {
+          //     this.http.get<Training[]>(this.api).subscribe(
+          //         (res) => {
+          //             console.log('----------------', res)
+          //             for (let i = 0; i < res.length; i++) {
+          //                 this.inputs.push({id: res[i].id.toString(), title: res[i].topic.title, start: new Date(res[i].startDate)});
+          //             }
+          //         });
+          //     return this.inputs;
+          // }
+
+        }, {
+          key: "save",
+          value: function save(training) {
+            return this.http.post("".concat(this.api, "/request"), training);
+          }
+        }, {
+          key: "log",
+          value: function log(training) {
+            console.log(training, '=======================');
+            return this.http.get("".concat(this.api, "/log?training=").concat(training));
+          }
+        }]);
+
+        return _TrainingService;
+      }(src_app_shared_UnsubscribeOnDestroyAdapter__WEBPACK_IMPORTED_MODULE_0__.UnsubscribeOnDestroyAdapter);
+
+      _TrainingService.ɵfac = function TrainingService_Factory(t) {
+        return new (t || _TrainingService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient));
+      };
+
+      _TrainingService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
+        token: _TrainingService,
+        factory: _TrainingService.ɵfac
+      });
+      /***/
     }
   }]);
 })();

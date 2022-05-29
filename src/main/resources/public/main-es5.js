@@ -125,6 +125,36 @@
           redirectTo: '/authentication/signin',
           pathMatch: 'full'
         }, {
+          path: 'organisation',
+          canActivate: [_core_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__.AuthGuard],
+          data: {
+            roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_4__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_4__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_4__.Role.ORGANISER]
+          },
+          loadChildren: function loadChildren() {
+            return Promise.all(
+            /*! import() */
+            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_paginator_js-node_modules_angular-7ead80"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sort_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_toolbar_js-node_modules_ngx-mater-be9d83"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-spinner_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_tabs_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_autocomplete_js"), __webpack_require__.e("default-node_modules_swimlane_ngx-datatable___ivy_ngcc___fesm2015_swimlane-ngx-datatable_js"), __webpack_require__.e("src_app_organisation_organisation_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
+            /*! ./organisation/organisation.module */
+            86479)).then(function (m) {
+              return m.OrganisationModule;
+            });
+          }
+        }, {
+          path: 'partnership',
+          canActivate: [_core_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__.AuthGuard],
+          data: {
+            roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_4__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_4__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_4__.Role.PARTNER]
+          },
+          loadChildren: function loadChildren() {
+            return Promise.all(
+            /*! import() */
+            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_paginator_js-node_modules_angular-7ead80"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sort_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_toolbar_js-node_modules_ngx-mater-be9d83"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-spinner_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_tabs_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_autocomplete_js"), __webpack_require__.e("default-node_modules_swimlane_ngx-datatable___ivy_ngcc___fesm2015_swimlane-ngx-datatable_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_partnership_partnership_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
+            /*! ./partnership/partnership.module */
+            78995)).then(function (m) {
+              return m.PartnershipModule;
+            });
+          }
+        }, {
           path: 'configuration',
           canActivate: [_core_guard_auth_guard__WEBPACK_IMPORTED_MODULE_3__.AuthGuard],
           data: {
@@ -163,7 +193,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() */
-            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_paginator_js-node_modules_angular-7ead80"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sort_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-spinner_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_radio_js"), __webpack_require__.e("default-node_modules_lodash-es__baseClone_js"), __webpack_require__.e("default-node_modules_ng-apexcharts___ivy_ngcc___fesm2015_ng-apexcharts_js-node_modules_ng2-ch-401b22"), __webpack_require__.e("default-node_modules_ng-pick-datetime___ivy_ngcc___picker_js"), __webpack_require__.e("default-node_modules_ngx-echarts___ivy_ngcc___fesm2015_ngx-echarts_js"), __webpack_require__.e("default-src_app_teacher_dashboard_dashboard_component_ts"), __webpack_require__.e("src_app_teacher_teacher_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
+            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_paginator_js-node_modules_angular-7ead80"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sort_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-spinner_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_radio_js"), __webpack_require__.e("default-node_modules_lodash-es__baseClone_js"), __webpack_require__.e("default-node_modules_ng-pick-datetime___ivy_ngcc___picker_js"), __webpack_require__.e("default-node_modules_ng-apexcharts___ivy_ngcc___fesm2015_ng-apexcharts_js-node_modules_ng2-ch-401b22"), __webpack_require__.e("default-node_modules_ngx-echarts___ivy_ngcc___fesm2015_ngx-echarts_js"), __webpack_require__.e("default-src_app_teacher_dashboard_dashboard_component_ts"), __webpack_require__.e("src_app_teacher_teacher_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
             /*! ./teacher/teacher.module */
             33042)).then(function (m) {
               return m.TeacherModule;
@@ -178,7 +208,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() */
-            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_paginator_js-node_modules_angular-7ead80"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sort_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-spinner_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_radio_js"), __webpack_require__.e("default-node_modules_lodash-es__baseClone_js"), __webpack_require__.e("default-node_modules_ng-apexcharts___ivy_ngcc___fesm2015_ng-apexcharts_js-node_modules_ng2-ch-401b22"), __webpack_require__.e("default-node_modules_ng-pick-datetime___ivy_ngcc___picker_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-bar_js"), __webpack_require__.e("default-node_modules_ngx-echarts___ivy_ngcc___fesm2015_ngx-echarts_js"), __webpack_require__.e("default-src_app_student_dashboard_dashboard_component_ts"), __webpack_require__.e("src_app_student_student_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
+            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_paginator_js-node_modules_angular-7ead80"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sort_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-spinner_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_radio_js"), __webpack_require__.e("default-node_modules_lodash-es__baseClone_js"), __webpack_require__.e("default-node_modules_ng-pick-datetime___ivy_ngcc___picker_js"), __webpack_require__.e("default-node_modules_ng-apexcharts___ivy_ngcc___fesm2015_ng-apexcharts_js-node_modules_ng2-ch-401b22"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-bar_js"), __webpack_require__.e("default-node_modules_ngx-echarts___ivy_ngcc___fesm2015_ngx-echarts_js"), __webpack_require__.e("default-src_app_student_dashboard_dashboard_component_ts"), __webpack_require__.e("src_app_student_student_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
             /*! ./student/student.module */
             47859)).then(function (m) {
               return m.StudentModule;
@@ -190,7 +220,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() */
-            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_radio_js"), __webpack_require__.e("default-node_modules_ng-pick-datetime___ivy_ngcc___picker_js"), __webpack_require__.e("src_app_calendar_calendar_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
+            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_radio_js"), __webpack_require__.e("default-node_modules_ng-pick-datetime___ivy_ngcc___picker_js"), __webpack_require__.e("default-node_modules_fullcalendar_angular___ivy_ngcc___fesm2015_fullcalendar-angular_js-node_-7d935a"), __webpack_require__.e("src_app_calendar_calendar_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
             /*! ./calendar/calendar.module */
             979)).then(function (m) {
               return m.CalendarsModule;
@@ -256,7 +286,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() */
-            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-spinner_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_tabs_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_card_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sidenav_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_autocomplete_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_slider_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_expansion_js"), __webpack_require__.e("src_app_ui_ui_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
+            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_snack-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-spinner_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_tabs_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_card_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_autocomplete_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sidenav_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_progress-bar_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_slider_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_expansion_js"), __webpack_require__.e("src_app_ui_ui_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
             /*! ./ui/ui.module */
             28086)).then(function (m) {
               return m.UiModule;
@@ -267,7 +297,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() */
-            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sort_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_toolbar_js-node_modules_ngx-mater-be9d83"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_radio_js"), __webpack_require__.e("default-node_modules_lodash-es__baseClone_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_card_js"), __webpack_require__.e("default-node_modules_ng-pick-datetime___ivy_ngcc___picker_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sidenav_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_autocomplete_js"), __webpack_require__.e("default-node_modules_ckeditor_ckeditor5-angular___ivy_ngcc___fesm2015_ckeditor-ckeditor5-angu-956b01"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_slider_js"), __webpack_require__.e("src_app_forms_forms_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
+            [__webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_checkbox_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_select_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_menu_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_dialog_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sort_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_toolbar_js-node_modules_ngx-mater-be9d83"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_radio_js"), __webpack_require__.e("default-node_modules_lodash-es__baseClone_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_card_js"), __webpack_require__.e("default-node_modules_ng-pick-datetime___ivy_ngcc___picker_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_autocomplete_js"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_sidenav_js"), __webpack_require__.e("default-node_modules_ckeditor_ckeditor5-angular___ivy_ngcc___fesm2015_ckeditor-ckeditor5-angu-956b01"), __webpack_require__.e("default-node_modules_angular_material___ivy_ngcc___fesm2015_slider_js"), __webpack_require__.e("src_app_forms_forms_module_ts")]).then(__webpack_require__.bind(__webpack_require__,
             /*! ./forms/forms.module */
             71366)).then(function (m) {
               return m.FormModule;
@@ -3367,6 +3397,54 @@
           badgeClass: '',
           roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ORGANISER],
           submenu: []
+        }, {
+          path: '/organisation/planning',
+          title: 'training.organisation.planning',
+          moduleName: 'organisation',
+          iconType: '',
+          icon: '',
+          "class": 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ORGANISER],
+          submenu: []
+        }, {
+          path: '/organisation/calendar',
+          title: 'training.organisation.calendar',
+          moduleName: 'organisation',
+          iconType: '',
+          icon: '',
+          "class": 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ORGANISER],
+          submenu: []
+        }, {
+          path: '/organisation/demands',
+          title: 'training.organisation.demands',
+          moduleName: 'organisation',
+          iconType: '',
+          icon: '',
+          "class": 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ORGANISER],
+          submenu: []
+        }, {
+          path: '/organisation/dashboard',
+          title: 'training.organisation.dashboard',
+          moduleName: 'organisation',
+          iconType: '',
+          icon: '',
+          "class": 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ORGANISER],
+          submenu: []
         }]
       }, {
         path: '',
@@ -3382,6 +3460,30 @@
         submenu: [{
           path: '/partnership/request',
           title: 'training.partnership.request',
+          moduleName: 'partnership',
+          iconType: '',
+          icon: '',
+          "class": 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.PARTNER],
+          submenu: []
+        }, {
+          path: '/partnership/demands',
+          title: 'training.partnership.demands',
+          moduleName: 'partnership',
+          iconType: '',
+          icon: '',
+          "class": 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ADMIN, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.PARTNER],
+          submenu: []
+        }, {
+          path: '/partnership/dashboard',
+          title: 'training.partnership.dashboard',
           moduleName: 'partnership',
           iconType: '',
           icon: '',
@@ -3454,6 +3556,18 @@
         }, {
           path: '/configuration/account/page',
           title: 'training.configuration.list.account',
+          moduleName: 'configuration',
+          iconType: '',
+          icon: '',
+          "class": 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          roles: [_core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.SUPER, _core_models_security_role__WEBPACK_IMPORTED_MODULE_0__.Role.ADMIN],
+          submenu: []
+        }, {
+          path: '/configuration/category/page',
+          title: 'training.configuration.list.category',
           moduleName: 'configuration',
           iconType: '',
           icon: '',
@@ -4355,12 +4469,13 @@
       }); // This file can be replaced during build by using the `fileReplacements` array.
       // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
       // The list of file replacements can be found in `angular.json`.
+      //
 
 
       var _environment = {
         production: false,
-        api: 'http://34.221.108.73:8080/api',
-        auth: 'http://34.221.108.73:8080/api/authenticate'
+        api: 'http://100.21.60.231:8080/api',
+        auth: 'http://100.21.60.231:8080/api/authenticate'
       }; // export const environment = {
       //     production: false,
       //     api: 'http://localhost:8080/api',

@@ -29,6 +29,10 @@ const routes = [
         path: 'account',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_configuration_account_account_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./account/account.module */ 68715)).then((m) => m.AccountModule),
     },
+    {
+        path: 'category',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_configuration_category_category_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./category/category.module */ 31541)).then((m) => m.CategoryModule),
+    },
 ];
 class ConfigurationRoutingModule {
 }

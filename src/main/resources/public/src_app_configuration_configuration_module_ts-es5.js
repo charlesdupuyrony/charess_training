@@ -77,6 +77,17 @@
             return m.AccountModule;
           });
         }
+      }, {
+        path: 'category',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() */
+          "src_app_configuration_category_category_module_ts").then(__webpack_require__.bind(__webpack_require__,
+          /*! ./category/category.module */
+          31541)).then(function (m) {
+            return m.CategoryModule;
+          });
+        }
       }];
 
       var _ConfigurationRoutingModule = function _ConfigurationRoutingModule() {

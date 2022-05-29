@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 3679);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 69978);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 5207);
-/* harmony import */ var _topic_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../topic.model */ 86080);
+/* harmony import */ var _core_models_training_topic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../core/models/training/topic */ 39475);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _topic_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../topic.service */ 34052);
 /* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/snack-bar */ 77001);
@@ -81,7 +81,7 @@ class TopicFormComponent {
         }
         else {
             this.title = 'New topic';
-            this.topic = new _topic_model__WEBPACK_IMPORTED_MODULE_0__.Topic({});
+            this.topic = new _core_models_training_topic__WEBPACK_IMPORTED_MODULE_0__.Topic({});
         }
         this.fg = this.createContactForm();
     }
@@ -507,30 +507,6 @@ TopicRoutingModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_
 
 /***/ }),
 
-/***/ 86080:
-/*!****************************************************!*\
-  !*** ./src/app/configuration/topic/topic.model.ts ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Topic": function() { return /* binding */ Topic; }
-/* harmony export */ });
-class Topic {
-    constructor(topic) {
-        {
-            this.id = topic.id;
-            this.title = topic.title;
-            this.theme = topic.parent || null;
-        }
-    }
-}
-
-
-/***/ }),
-
 /***/ 46447:
 /*!*****************************************************!*\
   !*** ./src/app/configuration/topic/topic.module.ts ***!
@@ -695,6 +671,30 @@ class TopicService extends src_app_shared_UnsubscribeOnDestroyAdapter__WEBPACK_I
 }
 TopicService.ɵfac = function TopicService_Factory(t) { return new (t || TopicService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient)); };
 TopicService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({ token: TopicService, factory: TopicService.ɵfac });
+
+
+/***/ }),
+
+/***/ 39475:
+/*!***********************************************!*\
+  !*** ./src/app/core/models/training/topic.ts ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Topic": function() { return /* binding */ Topic; }
+/* harmony export */ });
+class Topic {
+    constructor(topic) {
+        {
+            this.id = topic.id;
+            this.title = topic.title;
+            this.theme = topic.parent || null;
+        }
+    }
+}
 
 
 /***/ })

@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { INITIAL_EVENTS } from './events-util';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import {UnsubscribeOnDestroyAdapter} from "../../shared/UnsubscribeOnDestroyAdapter";
+import {TrainingService} from "../../core/service/training.service";
 
 @Component({
     selector: 'app-calendar',
@@ -29,20 +30,43 @@ export class CalendarComponent extends UnsubscribeOnDestroyAdapter implements On
     dialogTitle: string;
     calendarData: any;
 
-    calendarEvents: EventInput[];
+    calendarEvents:EventInput[] = [];
     //tempEvents: EventInput[];
 
-    constructor(private fb: FormBuilder, private dialog: MatDialog, public calendarService: CalendarService, private snack: MatSnackBar){
+    constructor(private fb: FormBuilder, private dialog: MatDialog, public calendarService: CalendarService, private snack: MatSnackBar, public service: TrainingService){
         super();
         // this.dialogTitle = 'Add New Event';
         // this.calendar = new Calendar({});
         // this.addCusForm = this.createCalendarForm(this.calendar);
+        alert();
+
+        this.service.getEvents().subscribe((res)=>{
+            for (let i = 0; i < res.length; i++) {
+                this.calendarEvents.push({
+                    id: res[i].id.toString(),
+                    title: res[i].topic.title,
+                    start: new Date(res[i].startDate),
+                    end: new Date(res[i].endDate)
+                });
+            }
+            this.calendarOptions.initialEvents = this.calendarEvents;
+            console.log('------2932----------', this.calendarEvents)
+        })
+        alert();
+
     }
 
     public ngOnInit(): void {
-        this.calendarEvents = INITIAL_EVENTS;
+
+
+
+
+        // this.calendarEvents = INITIAL_EVENTS;
+        //  this.calendarEvents = this.service.getEvents().subscribe();
+        console.log('------292----------', this.calendarEvents)
+
+
         //this.tempEvents = this.calendarEvents;
-        this.calendarOptions.initialEvents = this.calendarEvents;
     }
 
     calendarOptions: CalendarOptions = {

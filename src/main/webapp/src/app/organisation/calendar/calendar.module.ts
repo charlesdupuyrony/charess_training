@@ -25,6 +25,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import {TranslateModule} from "@ngx-translate/core";
+import {TrainingService} from "../../core/service/training.service";
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -59,7 +60,10 @@ FullCalendarModule.registerPlugins([
         OwlNativeDateTimeModule,
         TranslateModule
     ],
-    providers: [CalendarService],
+    providers: [
+        CalendarService,
+        TrainingService
+    ],
 })
 
 export class CalendarModule {}
