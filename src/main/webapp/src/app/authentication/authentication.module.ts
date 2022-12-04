@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from "@angular/material/select";
 import {AccountService} from "../configuration/account/account.service";
+import {ResetPasswordComponent} from "./reset-password/reset-password.component";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
     declarations: [
@@ -24,8 +26,10 @@ import {AccountService} from "../configuration/account/account.service";
         SignupComponent,
         LockedComponent,
         ForgotPasswordComponent,
+        ResetPasswordComponent
     ],
     imports: [
+        MatSnackBarModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,

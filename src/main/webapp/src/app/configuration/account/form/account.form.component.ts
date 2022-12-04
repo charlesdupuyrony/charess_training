@@ -96,8 +96,14 @@ export class AccountFormComponent implements OnInit {
     }
 
     private success(){
-        this.toast('bg-green','The usr has been successfully created');
+        this.toast('bg-green','The user has been successfully created');
+        this.back();
     }
+
+    back(){
+        this.router.navigate(['configuration/account/page']);
+    }
+
 
     private error(err:HttpErrorResponse){
         this.toast('bg-red','Something went wrong the usr has not been created. Please, try again!');

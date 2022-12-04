@@ -25,7 +25,6 @@ public class LocationController {
 
     @RequestMapping(value = "/search/{criteria}", method= RequestMethod.GET)
     public List<Location> search(@PathVariable(value = "criteria") String criteria) {
-        log.info("========{}==={}=====", criteria, locationService.search(criteria));
         return locationService.search(criteria);
     }
 

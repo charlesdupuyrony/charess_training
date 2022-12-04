@@ -1,57 +1,54 @@
 package org.charess.training.domain.training;
 
-import org.charess.training.domain.security.Audit;
-import org.charess.training.domain.security.Category;
-
-import org.charess.training.domain.security.Place;
-import org.charess.training.domain.security.Status;
+import org.charess.training.domain.security.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "training",
         uniqueConstraints = @UniqueConstraint(columnNames = {"start_date", "end_date", "topic"}))
-public class Training extends Audit implements Serializable {
-
-    @Column(name = "start_date")
-    private LocalDate startDate;
-
-    @Column(name = "end_date")
-    private LocalDate endDate;
-
-    @Column(name = "request_start_date")
-    private LocalDate requestStartDate;
-
-    @Column(name = "request_end_date")
-    private LocalDate requestEndDate;
-
-    @Column(name = "length", length = 4) //en terme de nombre d'heures de crédit
-    private Integer length;
+public class Training extends Audit {
 
     @ManyToOne
     @JoinColumn(name = "topic", nullable = false)
-    private Topic topic;
+    private Topic topic; //training title
+
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
 
     @ManyToOne
-    @JoinColumn(name = "place") //where the training will be hold
-    private Place place;
+    @JoinColumn(name = "location", nullable = false) //institution where the training will be hold
+    private Place location;
 
-    @Column(name = "number_of_attendees", length = 4) //nombre éventuel de participant
-    private Integer numberOfAttendees;
+    @Column(name = "capacity", length = 4)
+    private Integer capacity; //training room capacity: number of participants
 
-    @Column(name = "perdiem_allowed", length = 1)
-    private String perdiemAllowed = "n";
+    @ManyToMany(cascade={CascadeType.MERGE})
+    @JoinTable(name="training_category", joinColumns={@JoinColumn(name="training")}, inverseJoinColumns={@JoinColumn(name="category")})
+    private List<Category> categories; //group of participants
+
+    @ManyToMany(cascade={CascadeType.MERGE})
+    @JoinTable(name="training_partner", joinColumns={@JoinColumn(name="training")}, inverseJoinColumns={@JoinColumn(name="place")})
+    private List<Place> partners; //Partners to take part of the training.
+
+    @Column(name = "cyclic", length = 1)
+    private String cyclic;
+
+    @Column(name = "mode", length = 20)
+    private String mode = Status.MODE_ON_SITE.toString();
+
+    @Column(name = "test_type", length = 30)
+    private String testType = Status.TEST_TYPE_PRE_AND_POST.toString();
 
     @ManyToOne
     @JoinColumn(name = "requester")
     private Place requester;
-
-    @ManyToOne
-    @JoinColumn(name = "attendee_category")
-    private Category attendeeCategory;
 
     @Column(name = "requested")
     private LocalDate requested;
@@ -68,7 +65,31 @@ public class Training extends Audit implements Serializable {
     private String status = Status.TRAINING_VALIDATED.toString();
 
     @Column(name = "status_date")
-    private LocalDateTime statusDate;
+    private LocalDateTime statusDatetime = LocalDateTime.now();
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public String getTestType() {
+        return testType;
+    }
+
+    public void setTestType(String testType) {
+        this.testType = testType;
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -86,36 +107,45 @@ public class Training extends Audit implements Serializable {
         this.endDate = endDate;
     }
 
-    public Integer getLength() {
-        return length;
+    public Place getLocation() {
+        return location;
     }
 
-    public void setLength(Integer length) {
-        this.length = length;
+    public void setLocation(Place location) {
+        this.location = location;
     }
 
-    public Topic getTopic() {
-        return topic;
+    public Integer getCapacity() {
+        return capacity;
+//        return partners.size()<1?capacity:partners.size() * capacity;
     }
 
-    public void setTopic(Topic topic) {
-        this.topic = topic;
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
     }
 
-    public Place getPlace() {
-        return place;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setPlace(Place place) {
-        this.place = place;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
-    public String getPerdiemAllowed() {
-        return perdiemAllowed;
+    public List<Place> getPartners() {
+        return partners;
     }
 
-    public void setPerdiemAllowed(String perdiemAllowed) {
-        this.perdiemAllowed = perdiemAllowed;
+    public void setPartners(List<Place> partners) {
+        this.partners = partners;
+    }
+
+    public String getCyclic() {
+        return cyclic;
+    }
+
+    public void setCyclic(String cyclic) {
+        this.cyclic = cyclic;
     }
 
     public Place getRequester() {
@@ -124,6 +154,14 @@ public class Training extends Audit implements Serializable {
 
     public void setRequester(Place requester) {
         this.requester = requester;
+    }
+
+    public LocalDate getRequested() {
+        return requested;
+    }
+
+    public void setRequested(LocalDate requested) {
+        this.requested = requested;
     }
 
     public Place getSponsor() {
@@ -142,22 +180,6 @@ public class Training extends Audit implements Serializable {
         this.facilitator = facilitator;
     }
 
-    public Integer getNumberOfAttendees() {
-        return numberOfAttendees;
-    }
-
-    public void setNumberOfAttendees(Integer numberOfAttendees) {
-        this.numberOfAttendees = numberOfAttendees;
-    }
-
-    public LocalDate getRequested() {
-        return requested;
-    }
-
-    public void setRequested(LocalDate requested) {
-        this.requested = requested;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -166,35 +188,11 @@ public class Training extends Audit implements Serializable {
         this.status = status;
     }
 
-    public Category getAttendeeCategory() {
-        return attendeeCategory;
+    public LocalDateTime getStatusDatetime() {
+        return statusDatetime;
     }
 
-    public void setAttendeeCategory(Category attendeeCategory) {
-        this.attendeeCategory = attendeeCategory;
-    }
-
-    public LocalDateTime getStatusDate() {
-        return statusDate;
-    }
-
-    public void setStatusDate(LocalDateTime statusDate) {
-        this.statusDate = statusDate;
-    }
-
-    public LocalDate getRequestStartDate() {
-        return requestStartDate;
-    }
-
-    public void setRequestStartDate(LocalDate requestStartDate) {
-        this.requestStartDate = requestStartDate;
-    }
-
-    public LocalDate getRequestEndDate() {
-        return requestEndDate;
-    }
-
-    public void setRequestEndDate(LocalDate requestEndDate) {
-        this.requestEndDate = requestEndDate;
+    public void setStatusDatetime(LocalDateTime statusDatetime) {
+        this.statusDatetime = statusDatetime;
     }
 }

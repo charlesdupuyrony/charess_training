@@ -1,0 +1,115 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h4 class="page-title">{{partner?partner.name:''}}: {{'Participants Submission' | translate}}</h4>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div>
+                <div class="card">
+                    <div class="body">
+                        <form [formGroup]="fg" (submit)="submit(fg.value)">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i [ngClass]="['material-icons-two-tone', 'icon']">subject</i>
+                                </div>
+                                <div class="col-11">
+                                    <div class="row title">{{training?.topic?.fullname}}</div>
+                                    <div class="row">
+                                        <div class="inline">Nombre maximum de participants: <span class="corps">{{training?.capacity}}</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline">
+                                            Date de début: <span class="corps">{{startDate.toLocaleString('fr-FR', {weekday:"long", year:"numeric", month:"long", day:"numeric"})}}</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            Date de fin: <span class="corps">{{endDate.toLocaleString('fr-FR', {weekday:"long", year:"numeric", month:"long", day:"numeric"})}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline">Catégorie de professionels attendue:
+                                            <span class="corps" *ngFor="let category of training?.categories; index as i">
+                                            {{i===0?category.name: (i===training.categories.length-1?' et ' + category.name: ' , ' + category.name)}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline">
+                                            Lieu de formation: <span class="corps">{{training?.location.fullname}}</span> se trouvant (au/à/aux) <span class="corps">{{training?.location.address}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <fieldset>
+                                <div class="row">
+                                    <legend>{{"Participants" | translate}}</legend>
+                                    <ng-container formArrayName="participants" *ngFor="let person of participants.controls; index as i">
+                                        <ng-container [formGroupName]="i">
+                                            <div class="col-2">
+                                                <mat-form-field class="example-full-width mb-2">
+                                                    <mat-label>{{"Numéro d'Identifiant Fiscal" | translate}}</mat-label>
+                                                    <input matInput mask="000-000-000-0" formControlName="identifier" required/>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-1">
+                                                <mat-form-field class="example-full-width mb-2">
+                                                    <mat-label>{{"Phone"| translate}}</mat-label>
+                                                    <input matInput formControlName="phone" [showMaskTyped]="true" required/>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-3">
+                                                <mat-form-field class="example-full-width mb-3">
+                                                    <mat-label>{{"Email"| translate}}</mat-label>
+                                                    <input matInput formControlName="email" [showMaskTyped]="true" required/>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-3">
+                                                <mat-form-field class="example-full-width mb-3">
+                                                    <mat-label>{{"FirstName" | translate}}</mat-label>
+                                                    <input matInput formControlName="firstName" [showMaskTyped]="true" required/>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-2">
+                                                <mat-form-field class="example-full-width mb-2">
+                                                    <mat-label>{{"LastName" | translate}}</mat-label>
+                                                    <input matInput formControlName="lastName" [showMaskTyped]="true" required/>
+                                                </mat-form-field>
+                                            </div>
+                                            <!--<div class="col-1" *ngIf="participants['controls'][i].status == 'VALID' && i===0">-->
+                                            <div class="col-1" *ngIf="participants['controls'][i].status == 'VALID' && i===0 && participants['controls'].length < training.capacity">
+                                                <div class="example-button-row" >
+                                                    <button mat-mini-fab color="primary" type="button" (click)="push()"><mat-icon class="col-white">add</mat-icon></button>
+                                                </div>
+                                            </div>
+                                            <!--<div class="col-1" *ngIf="participants['controls'].length > 1 && (i>0 || participants['controls'][i].status != 'VALID')">-->
+                                            <div class="col-1" *ngIf="participants['controls'].length > 1 && (i>0 || participants['controls'][i].status != 'VALID') || participants['controls'].length >= training.capacity">
+                                                <div class="example-button-row" >
+                                                    <button mat-mini-fab color="warn" (click)="pull(i)"><mat-icon class="col-white">delete </mat-icon></button>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </fieldset>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                    <div class="example-button-row">
+                                        <div class="example-button-row">
+                                            <button mat-raised-button color="primary" [type]="submit">{{"Save" | translate}}</button>
+                                            <!--<button mat-raised-button color="primary" [type]="submit" [disabled]="!fg.valid">{{"Save" | translate}}</button>-->
+                                            <button mat-raised-button color="warn" (click)="back()" tabindex="-1">{{"Cancel" | translate}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -11,4 +11,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("select u from User u where u.person.id <> 1 order by u.person.id desc ")
     List<User> find();
+
+    @Query("select u from User u where u.person.email =?1 ")
+    User findByPersonEmail(String email);
 }

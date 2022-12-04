@@ -23,7 +23,7 @@ export class DemandsPageComponent extends UnsubscribeOnDestroyAdapter implements
 
     displayedColumns = [
         'select',
-        'topic',
+        'title',
         'attendee',
         'startDate',
         'endDate',
@@ -120,7 +120,7 @@ export class Source extends DataSource<Training> {
                     .slice()
                     .filter((t: Training) => {
                         const search = (
-                            t?.topic?.title
+                            t?.topic.title
                         ).toLowerCase();
                         return search.indexOf(this.filter.toLowerCase()) !== -1;
                     });

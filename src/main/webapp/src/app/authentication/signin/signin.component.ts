@@ -17,7 +17,7 @@ export class SigninComponent extends UnsubscribeOnDestroyAdapter implements OnIn
     error = '';
     hide = true;
 
-    constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,  private router: Router,  private authService: AuthService) {
+    constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,  private router: Router, private authService: AuthService) {
         super();
     }
 
@@ -45,7 +45,7 @@ export class SigninComponent extends UnsubscribeOnDestroyAdapter implements OnIn
         this.subs.sink = this.authService.login(this.f.username.value, this.f.password.value).subscribe(
             (res) => {
                 this.loading = false;
-                const page = this.authService.currentUserValue?.profile?.page;
+                const page = 'USER_PENDING'===this.authService.currentUserValue.status?'/authentication/reset-password':this.authService.currentUserValue?.profile?.page;
                 this.router.navigate([page]);
             },
             (err) => {

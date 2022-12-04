@@ -29,7 +29,7 @@ public class PlaceController {
         return placeService.all();
     }
 
-    @RequestMapping(value = "/search/{criteria}", method= RequestMethod.GET)
+    @RequestMapping(value = "/{criteria}", method= RequestMethod.GET)
     public List<Place> search(@PathVariable(value = "criteria") String criteria) {
         return placeService.search(criteria);
     }

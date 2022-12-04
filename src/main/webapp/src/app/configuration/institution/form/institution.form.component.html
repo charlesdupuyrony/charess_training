@@ -14,19 +14,25 @@
                     <div class="body">
                         <form [formGroup]="fg" (submit)="submit(fg.value)">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-5">
                                     <mat-form-field class="example-full-width" appearance="outline">
                                         <mat-label>{{'Name' | translate}}</mat-label>
                                         <input matInput formControlName="name" required>
                                         <mat-error *ngIf="fg.get('name').hasError('')">{{'This field is required' | translate}}</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Accronym' | translate}}</mat-label>
+                                        <input matInput formControlName="accronym">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-5">
                                     <mat-form-field class="example-full-width" appearance="outline">
                                         <mat-label>{{'Parent' | translate}}</mat-label>
                                         <input type="text" matInput [formControl]="parent" [matAutocomplete]="autoParent">
                                         <mat-autocomplete autoActiveFirstOption #autoParent="matAutocomplete" [displayWith]="display">
-                                            <mat-option *ngFor="let p of places | async" [value]="p">{{p.name}}</mat-option>
+                                            <mat-option *ngFor="let p of places | async" [value]="p">{{p.fullname}}</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
@@ -53,23 +59,23 @@
                                     <legend>{{"Manager" | translate}}</legend>
                                     <ng-container formArrayName="managers" *ngFor="let manager of managers.controls; index as i">
                                         <ng-container [formGroupName]="i">
-                                            <div class="col-2">
-                                                <mat-form-field class="example-full-width mb-3">
-                                                    <mat-label>
-                                                        {{"Identifier" | translate}}
-                                                        <span *ngIf="isIdentifierDuplicated[i]" class="error">{{msg | translate}}</span>
-                                                    </mat-label>
-                                                    <input matInput mask="000-000-000-0" formControlName="identifier" required (blur)="check(i, 'identifier')"/>
-                                                </mat-form-field>
-                                            </div>
-                                            <div class="col-3">
-                                                <mat-form-field class="example-full-width mb-3">
+                                            <!--<div class="col-2">-->
+                                                <!--<mat-form-field class="example-full-width mb-3">-->
+                                                    <!--<mat-label>-->
+                                                        <!--{{"Identifier" | translate}}-->
+                                                        <!--<span *ngIf="isIdentifierDuplicated[i]" class="error">{{msg | translate}}</span>-->
+                                                    <!--</mat-label>-->
+                                                    <!--<input matInput mask="000-000-000-0" formControlName="identifier" required (blur)="check(i, 'identifier')"/>-->
+                                                <!--</mat-form-field>-->
+                                            <!--</div>-->
+                                            <div class="col-4">
+                                                <mat-form-field class="example-full-width mb-4">
                                                     <mat-label>{{"Email"| translate}}<span *ngIf="isEmailDuplicated[i]" class="error">{{msg | translate}}</span></mat-label>
-                                                    <input matInput formControlName="email" [showMaskTyped]="true" required (blur)="check(i, 'email')"/>
+                                                    <input matInput formControlName="email" [showMaskTyped]="true" required (blur)="check(i)"/>
                                                 </mat-form-field>
                                             </div>
-                                            <div class="col-3">
-                                                <mat-form-field class="example-full-width mb-3">
+                                            <div class="col-4">
+                                                <mat-form-field class="example-full-width mb-4">
                                                     <mat-label>{{"FirstName" | translate}}</mat-label>
                                                     <input matInput formControlName="firstName" [showMaskTyped]="true" required/>
                                                 </mat-form-field>

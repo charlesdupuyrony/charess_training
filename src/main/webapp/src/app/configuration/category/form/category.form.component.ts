@@ -10,6 +10,7 @@ import {CategoryService} from "../category.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Category} from "../../../core/models/security/category";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-form',
@@ -23,7 +24,7 @@ export class CategoryFormComponent implements OnInit {
     category: Category;
 
     constructor(public fm: MatDialogRef<CategoryFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public service: CategoryService,
-                private fb: FormBuilder, private snack: MatSnackBar){
+                private fb: FormBuilder, private snack: MatSnackBar, private router: Router){
         this.title = data.edit?'Edit the Current Category':'New Category';
         this.fg = this.fb.group(data.category?data.category:new Category({}));
     }
@@ -49,6 +50,11 @@ export class CategoryFormComponent implements OnInit {
 
     private success(){
         this.toast('bg-green','The category has been successfully created');
+        this.back();
+    }
+
+    back(){
+        this.router.navigate(['configuration/category/page']);
     }
 
     private error(err:HttpErrorResponse){

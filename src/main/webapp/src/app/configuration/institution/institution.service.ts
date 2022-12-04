@@ -1,28 +1,52 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import {environment} from "../../../environments/environment";
-import {Location} from "../../core/models/security/location";
-import {Person} from "../../core/models/security/person";
 import {Institution} from "../../core/models/security/institution";
-
+import {Injectable} from "@angular/core";
+import {UnsubscribeOnDestroyAdapter} from "../../shared/UnsubscribeOnDestroyAdapter";
+import {environment} from "../../../environments/environment";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import {Person} from "../../core/models/security/person";
+import {Location} from "../../core/models/security/location";
 
 @Injectable()
 export class InstitutionService extends UnsubscribeOnDestroyAdapter {
 
     api = `${environment.api}/place`;
 
+    isTblLoading = true;
+    dataChange: BehaviorSubject<Institution[]> = new BehaviorSubject<Institution[]>([]);
+    dialogData: any;
+
     constructor(private http: HttpClient) {
         super();
     }
 
-    getInstitutions(){
-        return this.http.get<Institution[]>(this.api);
+    get data(): Institution[] {
+        return this.dataChange.value;
     }
 
-    getPlaces(criteria: string){
-        return this.http.get<Institution[]>(`${this.api}/search/${criteria}`);
+    setDialogData(institution) {
+        this.dialogData = institution;
+    }
+
+    getDialogData() {
+        return this.dialogData;
+    }
+
+    getInstitutions(): void {
+        this.subs.sink = this.http.get<Institution[]>(this.api).subscribe(
+            (data) => {
+                this.isTblLoading = false;
+                this.dataChange.next(data);
+            },
+            (error: HttpErrorResponse) => {
+                this.isTblLoading = false;
+                console.log(error.name + ' ' + error.message);
+            }
+        );
+    }
+
+    getPlaces(criteria:string){
+        return this.http.get<Institution[]>(`${environment.api}/place/${criteria}`);
     }
 
     save(place){
@@ -41,5 +65,7 @@ export class InstitutionService extends UnsubscribeOnDestroyAdapter {
         return this.http.get<Person>(`${environment.api}/user/person?key=${key}`);
     }
 
-
+    getPersonByEmail(email){
+        return this.http.get<Person>(`${environment.api}/user/email?email=${email}`);
+    }
 }

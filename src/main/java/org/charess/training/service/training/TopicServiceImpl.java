@@ -36,6 +36,9 @@ public class TopicServiceImpl implements TopicService {
 
     public Topic save(Topic topic){
         Audit audit = topic;
+        if(topic.getId() != null && topic.getTheme() != null && topic.getId().equals(topic.getTheme().getId())){
+            return null;
+        }
         userService.inject(audit);
         return topic==null?null:topicRepository.save(topic);
     }

@@ -26,7 +26,7 @@ const routes: Routes = [
             path: 'partnership',
             canActivate: [AuthGuard],
             data: {
-                roles: [Role.SUPER, Role.ADMIN, Role.PARTNER]
+                roles: [Role.SUPER, Role.PARTNER]
             },
             loadChildren: () =>
                 import('./partnership/partnership.module').then((m) => m.PartnershipModule),
@@ -40,6 +40,11 @@ const routes: Routes = [
             loadChildren: () =>
                 import('./configuration/configuration.module').then((m) => m.ConfigurationModule),
         },
+
+
+
+
+
         {
             path: 'admin',
             canActivate: [AuthGuard],

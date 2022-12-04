@@ -1,13 +1,30 @@
+update profile set page='partnership/participants' where id=5;
+
+
+-- -- -- -- -- -- -- --
+
 insert into training.profile (id, name, page, role) VALUES (1,'Super Administrateur','admin/dashboard/main','super');
 insert into training.profile (id, name, page, role) VALUES (2,'Administrateur','configuration/account/page','admin');
 insert into training.profile (id, name, page, role) VALUES (3,'Participant','admin/dashboard/main','attendee');
 insert into training.profile (id, name, page, role) VALUES (4,'Organisateur','admin/dashboard/main','organiser');
-insert into training.profile (id, name, page, role) VALUES (5,'Partenaire','partnership/request','partner');
+insert into training.profile (id, name, page, role) VALUES (5,'Partenaire','partnership/participants','partner');
 insert into training.profile (id, name, page, role) VALUES (6,'Officier de données','admin/dashboard/main','clerk');
 
 insert into training.person(id, first_name, last_name, gender, phone, identifier, identifier_type) values(1, 'Super', 'Admin', 'i', '(509) 0000-0000', '000-000-000-0', 'NIF');
-insert into training.users(id, username, password, status, locale, profile, created, creator)
-values(1, 'admin', '$2a$12$AHTfyhLWwKQ0pTMcbLqxVuMu8szRACausXNXk1pmjUlWseoGver5e', 'USER_ACTIVE', 'fr', 1, now(), null); -- password: pa1sw@rd
+insert into training.users(id, username, password, status, locale, profile, created, creator) values(1, 'admin', '$2a$12$AHTfyhLWwKQ0pTMcbLqxVuMu8szRACausXNXk1pmjUlWseoGver5e', 'USER_ACTIVE', 'fr', 1, now(), null); -- password: pa1sw@rd
+
+
+-- spécialement pour dépanner @Kémar le 30 mai 2022 -- à enlever
+-- insert into training.person(id, first_name, last_name, email) values(3, 'Jeejen', 'JOSEPH',  'josephjeejen@gmail.com');,
+-- insert into training.person(id, first_name, last_name, email) values(6, 'Kemar', 'Celestin',  'kemarcelestin@charess.org');
+-- insert into training.person(id, first_name, last_name, email) values(7, 'Rodney', 'DESTINE',  'rodneydestine@charess.org');
+-- insert into training.person(id, first_name, last_name, email) values(9, 'Stherlove', 'Lafortune',  'stherlovelafortune@charess.org');
+--
+-- insert into training.users(id, username, password, status, locale, profile, created) values(3, 'jeejen', '$2a$10$c8sa.TKORfBjFM3tTRqsbO1CmFk8tolt.UL9xejTaMZF3KWgXcrXW', 'USER_ACTIVE', 'fr', 1, now());
+-- insert into training.users(id, username, password, status, locale, profile, created) values(6, 'ckemar', '$2a$10$ueAa7MQDs.kpTMqvNsPy1OGo567InIg7ryuDEKoIi7iKFz/Jlsh.G', 'USER_ACTIVE', 'fr', 1, now());
+-- insert into training.users(id, username, password, status, locale, profile, created) values(7, 'rodneydestine', '$2a$10$UAI3r/DA/vMEcIx07xEJj.HXaHrJlXqMRNeBHelsqq2I0kwhCd066', 'USER_ACTIVE', 'fr', 1, now());
+-- insert into training.users(id, username, password, status, locale, profile, created) values(9, 'stherlove', '$2a$10$0tgVEv9LXvvGxr0C4Zwk8.psl0Y1fkhwlUifp3.n03sk88uMspDY6', 'USER_ACTIVE', 'fr', 1, now());
+
 
 -- location
 insert into training.location (id, name, parent, nature, created, creator) values (1,'Ouest', null, 'department', now(), 1);

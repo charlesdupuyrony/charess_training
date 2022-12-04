@@ -3,7 +3,6 @@ package org.charess.training.controller.security;
 import org.charess.training.configuration.Token;
 import org.charess.training.domain.security.User;
 import org.charess.training.service.security.AuthUserService;
-import org.charess.training.service.security.PlaceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class AuthController {
 
 
     @Autowired
-    public AuthController(AuthenticationManager authenticationManager, Token token, AuthUserService authUserService, PlaceService placeService) {
+    public AuthController(AuthenticationManager authenticationManager, Token token, AuthUserService authUserService) {
         this.authenticationManager = authenticationManager;
         this.token = token;
         this.authUserService = authUserService;
@@ -37,6 +36,7 @@ public class AuthController {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody User user) throws Exception {
+        log.info("={}=", user);
         authenticate(user.getUsername(), user.getPassword());
         UserDetails details = authUserService.loadUserByUsername(user.getUsername());
         User usr = authUserService.findByUsername(user.getUsername());

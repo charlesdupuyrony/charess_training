@@ -17,10 +17,12 @@ export class Person {
     constructor(person) {
         {
             this.id = person?.id;
+
             this.identifier =  person?.identifier;
             this.firstName = person?.firstName;
             this.lastName = person?.lastName;
             this.email = person?.email;
+            this.phone = person?.phone;
             this.gender = person?.gender;
         }
     }

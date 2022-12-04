@@ -8,13 +8,20 @@ import org.charess.training.domain.security.User;
 import java.util.List;
 
 public interface UserService {
-    User findByUsername(String username);
+
     User getCurrentUser();
-    Audit inject(Audit audit);
-    List<User> getUsers();
-    List<Profile> getProfiles();
-    Person findByEmail(String email);
+    User findByUsername(String username);
     User register(User user, boolean encodePassword);
+    List<User> getUsers();
     void update(List<User> users);
-    Person getPerson(String key);
+    User getUserById(Integer id);
+    User forgotPassword(String email);
+
+
+    Audit inject(Audit audit);
+    List<Profile> getProfiles();
+
+
+    Person getPersonByEmail(String email);
+
 }

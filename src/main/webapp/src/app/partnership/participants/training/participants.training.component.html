@@ -1,0 +1,96 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <div class="materialTableHeader">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <ul class="header-buttons-left ml-0">
+                                                <li class="dropdown"><h2><strong>{{partner?partner.name:''}}: {{'training.page' | translate}}</strong></h2></li>
+                                                <li class="dropdown m-l-20">
+                                                    <label><i class="material-icons search-icon">search</i></label>
+                                                    <input placeholder="Search" type="text" #filter class="browser-default search-field" aria-label="Search box">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>&nbsp;</div>
+                                <div>
+                                    <div style="font-weight: bold">Légende:</div>
+                                    <div>
+                                        Nouvelle: <button mat-icon-button class="btn-tbl-edit new"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        En attente: <button mat-icon-button class="btn-tbl-edit pending"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        Remplie: <button mat-icon-button class="btn-tbl-edit set"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        En cours: <button mat-icon-button class="btn-tbl-edit ongoing"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        Complétée: <button mat-icon-button class="btn-tbl-edit completed"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        Incomplète: <button mat-icon-button class="btn-tbl-edit deprecated"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+
+                                <mat-table #table [dataSource]="datasource" matSort class="mat-cell">
+                                    <!--<ng-container>-->
+                                        <!--<mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">-->
+                                            <!--<mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"-->
+                                                          <!--[indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">-->
+                                            <!--</mat-checkbox>-->
+                                        <!--</mat-header-cell>-->
+                                        <!--<mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">-->
+                                            <!--<mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"-->
+                                                          <!--[checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'">-->
+                                            <!--</mat-checkbox>-->
+                                        <!--</mat-cell>-->
+                                    <!--</ng-container>-->
+
+                                    <ng-container matColumnDef="status">
+                                        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <span>
+                                                <button mat-icon-button class="btn-tbl-edit {{row.status}}">
+                                                    <mat-icon></mat-icon>
+                                                </button>
+                                            </span>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="topic">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Theme'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.training.topic.fullname}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="startDate">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Start Date'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.training.startDate}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="endDate">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'End Date'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.training.endDate}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="capacity">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'# Part.'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.participantsQuantity}}/<span style="font-weight: bold">{{row.training.capacity}}</span></mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="categories">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Professionals Category'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <span *ngFor="let c of row.training.categories; index as i">{{i===0?c.name: (i===row.training.categories.length-1? ', et ' + c.name: ', ' + c.name)}}</span>
+
+                                                <!--<span class="corps" *ngFor="let category of row.training?.categories; index as i">-->
+                                            <!---->
+                                                <!--</span>-->
+                                        </mat-cell>
+                                    </ng-container>
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="submitParticipants(row)" [style.cursor]="'pointer'" matRipple> </mat-row>
+                                </mat-table>
+                                <mat-paginator #paginator [length]="datasource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

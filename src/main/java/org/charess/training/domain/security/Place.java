@@ -12,12 +12,15 @@ public class Place extends Name implements Serializable {
     @JoinColumn(name = "location_address")
     private Location locationAddress;
 
-    @ManyToMany(cascade={CascadeType.ALL})
+    @ManyToMany(cascade={CascadeType.MERGE})
     @JoinTable(name="place_person", joinColumns={@JoinColumn(name="place")}, inverseJoinColumns={@JoinColumn(name="person")})
     private List<Person> managers;
 
     @Column(name = "text_address", length = 200)
     private String textAddress;
+
+    @Column(name = "accronym", length = 20)
+    private String accronym;
 
     @ManyToOne
     @JoinColumn(name = "parent")
@@ -25,6 +28,9 @@ public class Place extends Name implements Serializable {
 
     @Transient
     private String address;
+
+    @Transient
+    private String fullname;
 
     public String getAddress() {
         String str = "";
@@ -36,6 +42,10 @@ public class Place extends Name implements Serializable {
 
         }
         return str;
+    }
+
+    public String getFullname(){
+        return String.format("%s %s", this.getName(), this.accronym!=null?String.format("(%s)", this.accronym):"");
     }
 
     public Location getLocationAddress() {
@@ -72,5 +82,13 @@ public class Place extends Name implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getAccronym() {
+        return accronym;
+    }
+
+    public void setAccronym(String accronym) {
+        this.accronym = accronym.toUpperCase();
     }
 }

@@ -1,0 +1,91 @@
+table{
+  width: 100%;
+}
+
+.mat-column-topic {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 39.5% !important;
+  width: 40% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-startDate {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 7.5% !important;
+  width: 8% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-endDate {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 7.5% !important;
+  width: 8% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-capacity {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 9.5% !important;
+  width: 10% !important;
+  text-align: center;
+  justify-content: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-network {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 6.5% !important;
+  width: 7% !important;
+  text-align: center;
+  justify-content: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-location {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 26.5% !important;
+  width: 27% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}

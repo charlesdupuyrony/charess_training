@@ -62,39 +62,11 @@ export class AccountService extends UnsubscribeOnDestroyAdapter {
         return this.http.post(`${this.api}/update`, users);
     }
 
+    forgotPassword(email: String){
+        return this.http.post(`${this.api}/password/forgot`, email);
+    }
 
-    
-    // addTeachers(teachers: User): void {
-    //     alert(1);
-    //     this.dialogData = teachers;
-    //
-    //     /*  this.httpClient.post(this.API_URL, teachers).subscribe(data => {
-    //       this.dialogData = teachers;
-    //       },
-    //       (err: HttpErrorResponse) => {
-    //      // error code here
-    //     });*/
-    // }
-    // updateTeachers(teachers: User): void {
-    //     this.dialogData = teachers;
-    //
-    //     /* this.httpClient.put(this.API_URL + teachers.id, teachers).subscribe(data => {
-    //       this.dialogData = teachers;
-    //     },
-    //     (err: HttpErrorResponse) => {
-    //       // error code here
-    //     }
-    //   );*/
-    // }
-    // deleteTeachers(id: number): void {
-    //     console.log(id);
-    //
-    //     /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
-    //       console.log(id);
-    //       },
-    //       (err: HttpErrorResponse) => {
-    //          // error code here
-    //       }
-    //     );*/
-    // }
+    resetPassword(id: number, password: string){
+        return this.http.post(`${this.api}/password/reset`, {id, password});
+    }
 }

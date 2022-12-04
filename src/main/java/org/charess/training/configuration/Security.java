@@ -74,7 +74,7 @@ public class Security extends WebSecurityConfigurerAdapter {
         http = http.exceptionHandling().authenticationEntryPoint(entryPoint).and();
         http.authorizeRequests()
             .antMatchers(HttpMethod.GET, "/api/place").permitAll()
-            .antMatchers(HttpMethod.POST, "/api/user/password").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/user/password/forgot").permitAll()
             .antMatchers(HttpMethod.POST, "/api/user").permitAll()
             .antMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
             .antMatchers("/api/**").authenticated();

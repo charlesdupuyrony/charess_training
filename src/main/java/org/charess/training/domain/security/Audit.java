@@ -10,19 +10,39 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class Audit extends ID implements Serializable {
 
-    @Column(name = "created", nullable = false)
+    @Column(name = "created")
     private LocalDateTime created;
 
-    @ManyToOne
-    @JoinColumn(name = "creator", nullable = false)
-    private User creator;
+    @Column(name = "creator")
+    private Integer creator;
 
     @Column(name = "edited")
     private LocalDateTime edited;
 
-    @ManyToOne
-    @JoinColumn(name = "editor")
-    private User editor;
+    @Column(name = "editor")
+    private Integer editor;
+
+    public Audit() {
+    }
+
+    public Audit(Audit audit) {
+        this.created = audit.created;
+        this.creator = audit.creator;
+        this.edited = audit.edited;
+        this.editor = audit.editor;
+    }
+
+    public Audit(LocalDateTime created, Integer creator, LocalDateTime edited, Integer editor) {
+        this.created = created;
+        this.creator = creator;
+        this.edited = edited;
+        this.editor = editor;
+    }
+
+    public Audit(LocalDateTime created, Integer creator) {
+        this.created = created;
+        this.creator = creator;
+    }
 
     public LocalDateTime getCreated() {
         return created;
@@ -32,11 +52,11 @@ public class Audit extends ID implements Serializable {
         this.created = created;
     }
 
-    public User getCreator() {
+    public Integer getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(Integer creator) {
         this.creator = creator;
     }
 
@@ -48,11 +68,11 @@ public class Audit extends ID implements Serializable {
         this.edited = edited;
     }
 
-    public User getEditor() {
+    public Integer getEditor() {
         return editor;
     }
 
-    public void setEditor(User editor) {
+    public void setEditor(Integer editor) {
         this.editor = editor;
     }
 }

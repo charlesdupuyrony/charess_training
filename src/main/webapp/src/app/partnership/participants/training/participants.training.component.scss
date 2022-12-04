@@ -1,0 +1,118 @@
+table{
+  width: 100%;
+}
+
+.mat-column-status {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 3% !important;
+  width: 3% !important;
+  padding-left: 0px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-topic {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 37.5% !important;
+  width: 38% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-startDate {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 7.5% !important;
+  width: 8% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-endDate {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 7.5% !important;
+  width: 8% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-capacity {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 6.5% !important;
+  width: 6% !important;
+  text-align: center;
+  justify-content: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-categories {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 35.5% !important;
+  width: 36% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.new {
+  background-color: red;
+}
+
+.pending {
+  background-color: orange;
+}
+
+.set {
+  background-color: blue;
+}
+
+.ongoing {
+  background-color: yellow;
+}
+
+.completed {
+  background-color: green;
+}
+
+.deprecated {
+  background-color: purple;
+}
+
+
+
+//new - red, pending - orange, set - blue, ongoing - yellow, completed: green, deprecated - purple

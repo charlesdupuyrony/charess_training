@@ -1,72 +1,72 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import {InstitutionService} from "../institution.service";
-import {MatDialog} from "@angular/material/dialog";
-import {Router} from "@angular/router";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {UnsubscribeOnDestroyAdapter} from "../../../shared/UnsubscribeOnDestroyAdapter";
-import {DeleteComponent} from "../../delete/delete.confirm";
-import {HttpErrorResponse} from "@angular/common/http";
+import {InstitutionService} from "../institution.service";
+import {DataSource} from "@angular/cdk/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 import {Institution} from "../../../core/models/security/institution";
+import {SelectionModel} from "@angular/cdk/collections";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
+import {MatMenuTrigger} from "@angular/material/menu";
+import {BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
+import {DeleteComponent} from "../../delete/delete.confirm";
 
 @Component({
     selector: 'app-page',
-    templateUrl: './institution.page.component.html'
+    templateUrl: './institution.page.component.html',
+    styleUrls: ['./institution.page.component.scss']
 })
 
 export class InstitutionPageComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
 
-    @ViewChild('roleTemplate', { static: true }) roleTemplate: TemplateRef<any>;
-    @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
-    rows = [];
-    data = [];
-    institution: Institution | null;
-    filteredData = [];
-    columns = [
-        { name: 'name' },
-        { name: 'address' }
+    displayedColumns = [
+        'name',
+        'address',
+        'managers',
+        // 'parent',
+        'actions',
     ];
 
-    constructor(private service: InstitutionService, private snack: MatSnackBar, public dialog: MatDialog, private router: Router) {
+    database: InstitutionService | null;
+    datasource: Source | null;
+    selection = new SelectionModel<Institution>(true, []);
+    institution: Institution | null;
+    profiles=[];
+    dim = {
+        width: '1200px',
+        height: '420px'
+    };
+
+    constructor(public http: HttpClient, public dialog: MatDialog, private snack: MatSnackBar, private factory: InstitutionService, private router: Router){
         super();
     }
 
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatSort, { static: true }) sort: MatSort;
+    @ViewChild('filter', { static: true }) filter: ElementRef;
+    @ViewChild(MatMenuTrigger)
+    contextMenu: MatMenuTrigger;
+    contextMenuPosition = { x: '0px', y: '0px' };
+
+    public load() {
+        this.database = new InstitutionService(this.http);
+        this.datasource = new Source(this.database, this.paginator, this.sort);
+        this.subs.sink = fromEvent(this.filter.nativeElement, 'keyup').subscribe(
+            () => {
+                if (!this.datasource) {
+                    return;
+                }
+                this.datasource.filter = this.filter.nativeElement.value;
+            }
+        );
+    }
+
     ngOnInit() {
-        this.set();
-    }
-
-    set(){
-        this.service.getInstitutions().subscribe(res => {
-            this.data = res;
-            this.filteredData = res;
-        });
-    }
-
-    filterDatatable(event){
-        const val = event.target.value.toLowerCase();
-        const cols = this.columns;
-        const keys = Object.keys(this.filteredData[0]);
-        this.data = this.filteredData.filter(function (item) {
-            for (let i = 0; i < cols.length; i++) {
-                if((item[cols[i].name] && item[cols[i].name].toString().toLowerCase().indexOf(val) !==-1) || !val)
-                    return true;
-            }
-        });
-        this.table.offset = 0;
-    }
-
-    delete(row): void {
-        const dialogRef = this.dialog.open(DeleteComponent, {});
-        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-            if (result === 1) {
-                this.service.deleteInstitution(row.id).subscribe(
-                    (res) => this.success(),
-                    (err: HttpErrorResponse)=>this.error(err)
-                );
-                this.set();
-            }
-        });
-
+        this.load();
     }
 
     private toast(color, text) {
@@ -94,4 +94,106 @@ export class InstitutionPageComponent extends UnsubscribeOnDestroyAdapter implem
     edit(row){
         this.router.navigate(['configuration/institution/form'],{state:{place: row}});
     }
+
+    delete(row): void {
+        const dialogRef = this.dialog.open(DeleteComponent, {});
+        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+            if (result === 1) {
+                this.factory.deleteInstitution(row.id).subscribe(
+                    (res) => this.success(),
+                    (err: HttpErrorResponse)=>this.error(err)
+                );
+                this.load();
+            }
+        });
+    }
+
+    displayManagers(managers) {
+        let display = '';
+        if (managers.length > 0) {
+            if (managers.length == 1) {
+                display = managers[0].fullname;
+            } else if (managers.length == 2){
+                display = managers[0].fullname + ' & ' + managers[1].fullname;
+            } else {
+                display = managers[0].fullname + ' & ' +  (managers.length-1) + ' autres';
+            }
+        }
+        return display;
+    }
+}
+
+
+export class Source extends DataSource<Institution> {
+
+    filterChange = new BehaviorSubject('');
+
+    get filter(): string {
+        return this.filterChange.value;
+    }
+
+    set filter(filter: string) {
+        this.filterChange.next(filter);
+    }
+
+    filteredData: Institution[] = [];
+    renderedData: Institution[] = [];
+
+    constructor(public service: InstitutionService, public paginator: MatPaginator, public ms: MatSort){
+        super();
+        this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
+    }
+
+    connect(): Observable<Institution[]>{
+        const displayDataChanges = [
+            this.service.dataChange,
+            this.ms.sortChange,
+            this.filterChange,
+            this.paginator.page,
+        ];
+        this.service.getInstitutions();
+        return merge(...displayDataChanges).pipe(
+            map(() => {
+                this.filteredData = this.service.data
+                    .slice()
+                    .filter((institution: Institution) => {
+                        const search = (
+                            institution.name
+                        ).toLowerCase();
+                        return search.indexOf(this.filter.toLowerCase()) !== -1;
+                    });
+                const sortedData = this.sortData(this.filteredData.slice());
+                const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+                this.renderedData = sortedData.splice(startIndex, this.paginator.pageSize);
+                return this.renderedData;
+            })
+        );
+    }
+
+    disconnect() {}
+
+    sortData(data: Institution[]): Institution[] {
+        if (!this.ms.active || this.ms.direction === '') {
+            return data;
+        }
+        return data.sort((a, b) => {
+            let propertyA: number | string = '';
+            let propertyB: number | string = '';
+            switch (this.ms.active) {
+                case 'id':
+                    [propertyA, propertyB] = [a.id, b.id];
+                    break;
+                case 'name':
+                    [propertyA, propertyB] = [a.name, b.name];
+                    break;
+
+            }
+            const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+            const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+            return (
+                (valueA < valueB ? -1 : 1) * (this.ms.direction === 'asc' ? 1 : -1)
+            );
+        });
+    }
+
 }

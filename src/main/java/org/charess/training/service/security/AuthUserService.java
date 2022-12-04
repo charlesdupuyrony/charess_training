@@ -1,6 +1,5 @@
 package org.charess.training.service.security;
 
-import org.charess.training.controller.security.UserController;
 import org.charess.training.domain.security.Status;
 import org.charess.training.repository.security.UserRepository;
 import org.slf4j.Logger;
@@ -23,7 +22,6 @@ public class AuthUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         org.charess.training.domain.security.User usr = userRepository.findByUsername(username);
-
         User user = (usr !=null && (usr.getStatus().equals(Status.USER_ACTIVE.toString()) || usr.getStatus().equals(Status.USER_PENDING.toString())))?
                 new User(usr.getUsername(), usr.getPassword(), usr.getAuthorities()):null;
         return user;

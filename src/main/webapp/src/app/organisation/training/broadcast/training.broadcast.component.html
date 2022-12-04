@@ -1,0 +1,133 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h4 class="page-title">{{'training.organisation.broadcast' | translate}}</h4>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div>
+                <div class="card">
+                    <div class="body">
+                        <form [formGroup]="fg" (submit)="submit(fg.value)">
+                            <div class="row">
+                                <div class="col-11">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Title' | translate}}</mat-label>
+                                        <input type="text" matInput [formControl]="topic" [matAutocomplete]="autoTopic" required>
+                                        <mat-autocomplete autoActiveFirstOption #autoTopic="matAutocomplete" [displayWith]="display">
+                                            <mat-option *ngFor="let t of topics | async" [value]="t">{{t.fullname}}</mat-option>
+                                        </mat-autocomplete>
+                                        <mat-error *ngIf="topic.hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-1 add-button-training" (click)="add()">
+                                    <button mat-mini-fab color="primary" type="button">
+                                        <mat-icon class="col-white">add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Start Date' | translate}}</mat-label>
+                                        <input matInput formControlName="startDate" [matDatepicker]="start" required>
+                                        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                                        <mat-datepicker #start></mat-datepicker>
+                                        <mat-error *ngIf="fg.get('startDate').hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-2">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'End Date' | translate}}</mat-label>
+                                        <input matInput formControlName="endDate" [matDatepicker]="end" required>
+                                        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                                        <mat-datepicker #end></mat-datepicker>
+                                        <mat-error *ngIf="fg.get('endDate').hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                        <mat-error *ngIf="fg.get('endDate').hasError('datesValidator')">{{'End Date needs to be greater than first date'| translate}}</mat-error>
+
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-8">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Where to' | translate}}</mat-label>
+                                        <input type="text" matInput [formControl]="location" [matAutocomplete]="autoLocation" required>
+                                        <!--<input type="text" matInput [formControl]="location" [matAutocomplete]="autoLocation" (blur)="updatePartners();" required>-->
+                                        <mat-autocomplete autoActiveFirstOption #autoLocation="matAutocomplete" [displayWith]="display">
+                                            <mat-option *ngFor="let l of locations | async" [value]="l">{{l.name}}</mat-option>
+                                        </mat-autocomplete>
+                                        <mat-error *ngIf="location.hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-9">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Participants Category' | translate}}</mat-label>
+                                        <mat-select multiple [formControl]="categories" required>
+                                            <mat-option *ngFor="let c of categoryArray" [value]="c">{{c.name}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="categories.hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Number of attendees' | translate}}</mat-label>
+                                        <input matInput formControlName="capacity" required>
+                                        <mat-error *ngIf="fg.get('capacity').hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Partners' | translate}}</mat-label>
+                                        <mat-select multiple [formControl]="partners" required="">
+                                            <mat-option *ngFor="let p of partnerArray" [value]="p">{{p.name}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="partners.hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Mode Transmission' | translate}}</mat-label>
+                                        <mat-select formControlName="mode" required>
+                                            <mat-option [value]="'MODE_ON_SITE'">En présentiel</mat-option>
+                                            <mat-option [value]="'MODE_ON_LINE'">En ligne</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="fg.get('mode').hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>{{'Test Type' | translate}}</mat-label>
+                                        <mat-select formControlName="testType" required>
+                                            <mat-option [value]="'TEST_TYPE_AUTO'">Auto Évaluation</mat-option>
+                                            <mat-option [value]="'TEST_TYPE_PRE_AND_POST'">Pré et Post Tests</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="fg.get('testType').hasError('required')">{{'This field is required' | translate}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                    <div class="example-button-row">
+                                        <div class="example-button-row">
+                                            <button mat-raised-button color="primary"  [class.auth-spinner]="loading" [disabled]="loading" [type]="submit" [disabled]="!fg.valid">{{"Save" | translate}}</button>
+                                            <button mat-raised-button color="warn" (click)="initialize()" tabindex="-1">{{"Reinitialize" | translate}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

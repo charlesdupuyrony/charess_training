@@ -16,6 +16,13 @@ public class Topic extends Audit implements Serializable {
     @JoinColumn(name = "theme")
     private Topic theme;
 
+    @Transient
+    private String fullname;
+
+    public String getFullname() {
+        return this.theme==null?this.title: this.title + " (" +this.theme.title+")";
+    }
+
     public String getTitle() {
         return title;
     }

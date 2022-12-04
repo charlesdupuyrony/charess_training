@@ -1,46 +1,64 @@
 <section class="content">
     <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="ngxTableHeader">
-                                    <ul class="header-buttons-left ms-0 mb-0">
-                                        <li class="dropdown"><h2><strong>{{'training.configuration.list.facility' | translate}}</strong></h2></li>
-                                        <li class="dropdown m-l-20">
-                                            <label><i class="material-icons search-icon">search</i></label>
-                                            <input placeholder="Search" type="text" class="browser-default search-field" (keyup)='filterDatatable($event)' aria-label="Search box">
-                                        </li>
-                                    </ul>
-                                    <ul class="header-buttons">
-                                        <li>
-                                            <button mat-mini-fab color="primary" (click)="add()">
-                                                <mat-icon class="col-white">add</mat-icon>
-                                            </button>
-                                        </li>
-                                    </ul>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <div class="materialTableHeader">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <ul class="header-buttons-left ml-0">
+                                                <li class="dropdown"><h2><strong>{{'training.configuration.list.facility' | translate}}</strong></h2></li>
+                                                <li class="dropdown m-l-20">
+                                                    <label><i class="material-icons search-icon">search</i></label>
+                                                    <input placeholder="Search" type="text" #filter class="browser-default search-field" aria-label="Search box">
+                                                </li>
+                                            </ul>
+                                            <ul class="header-buttons">
+                                                <li>
+                                                    <button mat-mini-fab color="primary" (click)="add()">
+                                                        <mat-icon class="col-white">add</mat-icon>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <ngx-datatable #table class="material" [rows]="data" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'60'" [limit]="10">
+                                <mat-table #table [dataSource]="datasource" matSort class="mat-cell">
+                                    <ng-container>
+                                        <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
+                                            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                                                          [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
+                                            </mat-checkbox>
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
+                                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                                                          [checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'">
+                                            </mat-checkbox>
+                                        </mat-cell>
+                                    </ng-container>
 
-                                    <ngx-datatable-column name="{{'Name' | translate}}" sortable="true" prop="name" [width]="170">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-t-emplate>{{value}}</ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="{{'Address' | translate}}" sortable="true" prop="address" [width]="120">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value}}</ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="{{'Manager' | translate}}" sortable="true" prop="managers" [width]="100">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>
-                                            {{value.length > 0?(value[0].fullname+' ('+value.length+')'):''}}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="{{'Parent' | translate}}" sortable="true" prop="parent" [width]="170">
-                                        <ng-template let-row="data" let-value="value" let-i="index" ngx-datatable-cell-template>{{value?.name}}</ng-template>
-                                    </ngx-datatable-column>
-
-                                    <ngx-datatable-column name="Actions" sortable="false" [maxWidth]="105">
-                                        <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Name'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.fullname}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="address">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Adress'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.address}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="managers">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Manager'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{displayManagers(row.managers)}}</mat-cell>
+                                    </ng-container>
+                                    <!--<ng-container matColumnDef="parent">-->
+                                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header>{{'Parent'| translate}}</mat-header-cell>-->
+                                        <!--<mat-cell *matCellDef="let row">{{row?.parent?.name}}</mat-cell>-->
+                                    <!--</ng-container>-->
+                                    <ng-container matColumnDef="actions">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Action'| translate}}</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
                                             <span>
                                                 <button mat-icon-button color="accent" class="btn-tbl-edit" (click)="edit(row)">
                                                     <mat-icon aria-label="Edit" class="col-white">edit</mat-icon>
@@ -49,10 +67,13 @@
                                                     <mat-icon aria-label="Delete" class="col-white">delete</mat-icon>
                                                 </button>
                                             </span>
-                                        </ng-template>
-                                    </ngx-datatable-column>
+                                        </mat-cell>
+                                    </ng-container>
 
-                                </ngx-datatable>
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;" [style.cursor]="'pointer'" matRipple> </mat-row>
+                                </mat-table>
+                                <mat-paginator #paginator [length]="datasource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                             </div>
                         </div>
                     </div>

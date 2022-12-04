@@ -2,7 +2,6 @@ package org.charess.training.domain.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User implements Serializable, UserDetails {
+public class User extends Audit implements Serializable, UserDetails {
 
     @Id
     private Integer id;
@@ -50,26 +49,10 @@ public class User implements Serializable, UserDetails {
     @JoinColumn(name = "institution")
     private Place institution;
 
-    @Column(name = "created", nullable = false)
-    private LocalDateTime created = LocalDateTime.now();
-
-    @ManyToOne
-    @JoinColumn(name = "creator")
-    private User creator;
-
-    @Column(name = "edited")
-    private LocalDateTime edited;
-
-    @ManyToOne
-    @JoinColumn(name = "editor")
-    private User editor;
-
     @Transient
     private String token;
 
-    @ManyToOne
-    @JoinColumn(name = "activated_by")
-    private User activatedBy;
+    private Integer activatedBy;
 
     @Column(name = "activated_date")
     private LocalDateTime activatedDate;
@@ -177,43 +160,11 @@ public class User implements Serializable, UserDetails {
         this.status = status;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
-
-    public LocalDateTime getEdited() {
-        return edited;
-    }
-
-    public void setEdited(LocalDateTime edited) {
-        this.edited = edited;
-    }
-
-    public User getEditor() {
-        return editor;
-    }
-
-    public void setEditor(User editor) {
-        this.editor = editor;
-    }
-
-    public User getActivatedBy() {
+    public Integer getActivatedBy() {
         return activatedBy;
     }
 
-    public void setActivatedBy(User activatedBy) {
+    public void setActivatedBy(Integer activatedBy) {
         this.activatedBy = activatedBy;
     }
 
@@ -248,10 +199,6 @@ public class User implements Serializable, UserDetails {
                 ", locale='" + locale + '\'' +
                 ", status='" + status + '\'' +
                 ", profile=" + profile +
-                ", created=" + created +
-                ", creator=" + creator +
-                ", edited=" + edited +
-                ", editor=" + editor +
                 ", token='" + token + '\'' +
                 '}';
     }

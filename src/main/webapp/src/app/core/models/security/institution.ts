@@ -1,6 +1,8 @@
 export class Institution {
     id: number;
     name: string;
+    accronym: string;
+    fullname: string;
     managers?: [{Person}];
     locationAddress?: Location;
     textAddress?: string;
@@ -11,6 +13,7 @@ export class Institution {
         {
             this.id = institution.id;
             this.name = institution.name;
+            this.accronym = institution.accronym;
             this.parent = institution.parent || null;
             this.textAddress = institution.textAddress || '';
             this.locationAddress = institution.locationAddress || null;

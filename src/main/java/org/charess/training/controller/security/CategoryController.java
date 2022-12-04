@@ -1,5 +1,6 @@
 package org.charess.training.controller.security;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.charess.training.domain.security.Category;
 import org.charess.training.service.security.CategoryService;
 import org.slf4j.Logger;
@@ -29,8 +30,9 @@ public class CategoryController {
         return categoryService.list();
     }
 
-    @RequestMapping(value = "/search/{criteria}", method= RequestMethod.GET)
-    public List<Category> search(@PathVariable(value = "criteria") String criteria) {
+    @RequestMapping(value = "/search", method= RequestMethod.GET)
+    public List<Category> search(@RequestParam("criteria") String criteria){
+        log.info("==={}===", criteria);
         return categoryService.search(criteria);
     }
 

@@ -42,7 +42,7 @@ export class InstitutionFormComponent implements OnInit {
         if(pl && pl.parent)
             this.parent.setValue(pl.parent);
         if(pl && pl.locationAddress)
-            this.locationAddress.setValue(pl.locationAddress)
+            this.locationAddress.setValue(pl.locationAddress);
         this.fg = this.fb.group(pl);
     }
 
@@ -51,7 +51,7 @@ export class InstitutionFormComponent implements OnInit {
             map(value => {
                 if(typeof value==='string' && value.trim().length < 1)
                     return [];
-                this.service.getPlaces(typeof value==='string'?value.toLowerCase():value.name).subscribe((res)=>{
+                this.service.getPlaces(typeof value==='string'?value.toLowerCase():value.fullname).subscribe((res)=>{
                     this.placeArray = res;
                 });
                 return this.placeArray;
@@ -109,51 +109,28 @@ export class InstitutionFormComponent implements OnInit {
         return this.fg.get('managers') as FormArray;
     }
 
-    private chkIdent(arr, index){
-        const ident = arr[index].identifier;
-        this.isIdentifierDuplicated = arr.map(e => false);
-        for(let i=0; i< arr.length; i++){
-            if(i != index && arr[i].identifier===ident){
-                this.isIdentifierDuplicated[index] = true;
-                this.msg = ' (existed in present pool)';
-                return;
-            } else {
-                this.msg = undefined;
+    check(index){
+        const managers = this.managers.getRawValue();
+        const email = managers[index].email;
+        if(email?.trim().length < 1)
+            return;
+        if(managers.length > 1){
+            for(let i=0; i< managers.length; i++){
+                if(index != i){
+                    if(email === managers[i].email){
+                        this.isEmailDuplicated[index] = true;
+                        this.msg = ' (existed in present pool)';
+                        return;
+                    }
+                }
             }
         }
-        this.service.getPerson(ident).subscribe(res => {
+        this.service.getPersonByEmail(email).subscribe(res => {
             if(res != null){
-                this.pull(index);
                 this.managers.controls.unshift(this.fb.group(res));
+                this.pull(index+1);
             }
         });
-
-    }
-
-    private chkEmail(arr, index){
-        const mail = arr[index].email;
-        this.isEmailDuplicated = arr.map(e => false);
-        for(let i=0; i< arr.length; i++){
-            if(i != index && arr[i].email===mail){
-                this.isEmailDuplicated[index] = true;
-                this.msg = ' (existed in present pool)';
-                return;
-            } else {
-                this.msg = undefined;
-            }
-        }
-        this.service.getPerson(mail).subscribe(res => {
-            if(res != null){
-                this.pull(index);
-                this.managers.controls.unshift(this.fb.group(res));
-            }
-        });
-    }
-
-    check(index, field){
-        let arr = this.managers.getRawValue();
-        return field==='identifier'?this.chkIdent(arr, index):this.chkEmail(arr, index);
-
     }
 
     push(){
