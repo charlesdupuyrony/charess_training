@@ -38,7 +38,20 @@
     "Number of networks": "Number of partners",
     "Test Type": "Test type",
     "Mode Transmission": "Mode Transmission",
-
+    "New": "New",
+    "Pending": "Pending",
+    "Filled": "Filled",
+    "In Progress": "In Progress",
+    "Completed": "Completed",
+    "Uncompleted": "Uncompleted",
+    "Legend": "Legend",
+    "training_broadcast": "Declared",
+    "training_requested": "Requested",
+    "training_validated": "Validated",
+    "training_rejected": "Rejected",
+    "training_pending": "Ongoing",
+    "training_completed": "Completed",
+    "training_uncompleted": "Uncompleted",
 
 
 

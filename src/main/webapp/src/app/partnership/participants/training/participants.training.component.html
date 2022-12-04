@@ -21,14 +21,14 @@
                                 </div>
                                 <div>&nbsp;</div>
                                 <div>
-                                    <div style="font-weight: bold">Légende:</div>
+                                    <div style="font-weight: bold">{{'Legend' | translate}}:</div>
                                     <div>
-                                        Nouvelle: <button mat-icon-button class="btn-tbl-edit new"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
-                                        En attente: <button mat-icon-button class="btn-tbl-edit pending"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
-                                        Remplie: <button mat-icon-button class="btn-tbl-edit set"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
-                                        En cours: <button mat-icon-button class="btn-tbl-edit ongoing"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
-                                        Complétée: <button mat-icon-button class="btn-tbl-edit completed"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
-                                        Incomplète: <button mat-icon-button class="btn-tbl-edit deprecated"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'New' | translate}}: <button mat-icon-button class="btn-tbl-edit new"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'Pending' | translate}}: <button mat-icon-button class="btn-tbl-edit pending"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'Filled' | translate}}: <button mat-icon-button class="btn-tbl-edit set"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'In Progress' | translate}}: <button mat-icon-button class="btn-tbl-edit ongoing"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'Completed' | translate}}: <button mat-icon-button class="btn-tbl-edit completed"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'Uncompleted' | translate}}: <button mat-icon-button class="btn-tbl-edit deprecated"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
                                     </div>
                                 </div>
 
@@ -52,7 +52,7 @@
                                             <span>
                                                 <button mat-icon-button class="btn-tbl-edit {{row.status}}">
                                                     <mat-icon></mat-icon>
-                                                </button>
+                                                </button>{{row.status}}
                                             </span>
                                         </mat-cell>
                                     </ng-container>

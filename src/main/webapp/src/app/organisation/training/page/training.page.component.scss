@@ -1,12 +1,26 @@
 table{
   width: 100%;
 }
+.mat-column-status {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 3% !important;
+  width: 3% !important;
+  padding-left: 0px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
 
 .mat-column-topic {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 39.5% !important;
-  width: 40% !important;
+  flex: 0 0 38.5% !important;
+  width: 39% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -19,8 +33,8 @@ table{
 .mat-column-startDate {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 7.5% !important;
-  width: 8% !important;
+  flex: 0 0 6.5% !important;
+  width: 7% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -79,8 +93,8 @@ table{
 .mat-column-location {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 26.5% !important;
-  width: 27% !important;
+  flex: 0 0 25.5% !important;
+  width: 26% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -88,4 +102,32 @@ table{
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+.training_broadcast {
+  background-color: gray;
+}
+
+.training_requested {
+  background-color: darkslategray;
+}
+
+.training_validated {
+  background-color: greenyellow;
+}
+
+.training_rejected {
+  background-color: darkred;
+}
+
+.training_pending {
+  background-color: yellow;
+}
+
+.training_completed {
+  background-color: green;
+}
+
+.training_uncompleted {
+  background-color: red;
 }

@@ -26,7 +26,31 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div>&nbsp;</div>
+                                <div>
+                                    <div style="font-weight: bold">{{'Legend' | translate}}:</div>
+                                    <div>
+                                        {{'training_broadcast' | translate}}: <button mat-icon-button class="btn-tbl-edit training_broadcast"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'training_requested' | translate}}: <button mat-icon-button class="btn-tbl-edit training_requested"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'training_validated' | translate}}: <button mat-icon-button class="btn-tbl-edit training_validated"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'training_rejected' | translate}}: <button mat-icon-button class="btn-tbl-edit training_rejected"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'training_pending' | translate}}: <button mat-icon-button class="btn-tbl-edit training_pending"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'training_completed' | translate}}: <button mat-icon-button class="btn-tbl-edit training_completed"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                        {{'training_uncompleted' | translate}}: <button mat-icon-button class="btn-tbl-edit training_uncompleted"><mat-icon></mat-icon></button> &nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+
                                 <mat-table #table [dataSource]="datasource" matSort class="mat-cell">
+                                    <ng-container matColumnDef="status">
+                                        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <span>
+                                                <button mat-icon-button class="btn-tbl-edit {{row.status.toLowerCase()}}">
+                                                    <mat-icon></mat-icon>
+                                                </button>
+                                            </span>
+                                        </mat-cell>
+                                    </ng-container>
                                     <ng-container>
                                         <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
                                             <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"

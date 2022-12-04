@@ -23,6 +23,7 @@ import {TrainingService} from "../training.service";
 export class TrainingPageComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
 
     displayedColumns = [
+        'status',
         'topic',
         'startDate',
         'endDate',

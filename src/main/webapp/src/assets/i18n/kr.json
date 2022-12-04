@@ -38,6 +38,20 @@
     "Number of networks": "Nomb patnè yo",
     "Test Type": "Tip test",
     "Mode Transmission": "Transmisyon mòd",
+    "New": "Nouvèl",
+    "Pending": "En atant",
+    "Filled": "Ranpli",
+    "In Progress": "Ankou",
+    "Completed": "Konplèt",
+    "Uncompleted": "Enkonplèt",
+    "Legend": "Lejand",
+    "training_broadcast": "Deklare",
+    "training_requested": "Demande",
+    "training_validated": "Valide",
+    "training_rejected": "Rejte",
+    "training_pending": "Ankou",
+    "training_completed": "Konplete",
+    "training_uncompleted": "Non-konplete",
 
 
 
