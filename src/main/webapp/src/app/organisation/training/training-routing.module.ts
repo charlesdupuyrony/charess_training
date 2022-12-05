@@ -3,9 +3,14 @@ import {Routes, RouterModule } from '@angular/router';
 import {TrainingBroadcastComponent} from "./broadcast/training.broadcast.component";
 import {TrainingBroadcastCompletionComponent} from "./broadcast-completion/training.broadcast.completion.component";
 import {TrainingPageComponent} from "./page/training.page.component";
+import {TrainingDetailsComponent} from "./details/training.details.component";
 
 
 const routes: Routes = [
+    {
+        path: 'details',
+        component: TrainingDetailsComponent,
+    },
     {
         path: 'broadcast',
         component: TrainingBroadcastComponent,

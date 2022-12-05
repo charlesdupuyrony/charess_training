@@ -29,12 +29,14 @@ import {InstitutionService} from "../../configuration/institution/institution.se
 import {TrainingBroadcastCompletionComponent} from "./broadcast-completion/training.broadcast.completion.component";
 import {TrainingPageComponent} from "./page/training.page.component";
 import {TopicService} from "../../configuration/topic/topic.service";
+import {TrainingDetailsComponent} from "./details/training.details.component";
 
 @NgModule({
     declarations: [
         TrainingBroadcastComponent,
         TrainingBroadcastCompletionComponent,
-        TrainingPageComponent
+        TrainingPageComponent,
+        TrainingDetailsComponent
     ],
     imports: [
         CommonModule,

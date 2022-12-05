@@ -11,6 +11,7 @@ export class Training {
     capacity: number;
     categories: [{Category}];
     partners?: [{PartnerCategory}];
+    participants?: [{PartnerTrainingParticipants}];
     cyclic?: string;
     mode?: string;
     testType?: string;
@@ -31,6 +32,7 @@ export class Training {
             this.capacity = t.capacity;
             this.categories = t.categories || null;
             this.partners = t.partners || null;
+            this.participants = t.participants || null;
             this.cyclic = t.cyclic;
             this.mode = t.mode;
             this.testType = t.testType;

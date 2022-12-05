@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +122,16 @@ public class TrainingServiceImpl implements TrainingService {
             mail(training);
 
         return training;
+    }
+
+    public void changeStatus(Integer trainingId, String status){
+        Training training = trainingRepository.findById(trainingId).get();
+        LocalDateTime time = LocalDateTime.now();
+        training.setStatus(status);
+        training.setStatusDatetime(time);
+        training.setEditor(userService.getCurrentUser().getId());
+        training.setEdited(time);
+        trainingRepository.save(training);
     }
 
     public List<Training> all(){

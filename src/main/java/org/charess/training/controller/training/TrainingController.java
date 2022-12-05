@@ -1,8 +1,7 @@
 package org.charess.training.controller.training;
 
-import org.charess.training.domain.security.Place;
 import org.charess.training.domain.security.Status;
-import org.charess.training.domain.training.PartnerTrainingParticipants;
+import org.charess.training.domain.training.StatusTraining;
 import org.charess.training.domain.training.Training;
 import org.charess.training.domain.training.TrainingPartner;
 import org.charess.training.service.training.TrainingService;
@@ -34,6 +33,17 @@ public class TrainingController {
             training.setStatus(Status.TRAINING_BROADCAST.toString());
             Training trn = trainingService.broadcast(training);
             return trn==null?new ResponseEntity<>("", HttpStatus.BAD_REQUEST):new ResponseEntity<>(trn, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
+    @RequestMapping(value="/status", method = RequestMethod.POST)
+    public ResponseEntity<?> changeStatus(@RequestBody StatusTraining statusTraining){
+        try {
+            trainingService.changeStatus(statusTraining.getTraining(), statusTraining.getStatus());
+            return new ResponseEntity<>("", HttpStatus.OK);
         } catch(Exception e){
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);

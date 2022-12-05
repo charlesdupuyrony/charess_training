@@ -30,9 +30,6 @@ export class TrainingPageComponent extends UnsubscribeOnDestroyAdapter implement
         'capacity',
         'network',
         'location'
-        // 'categories',
-        // 'partners',
-        // 'actions',
     ];
 
     database: TrainingService | null;
@@ -91,27 +88,6 @@ export class TrainingPageComponent extends UnsubscribeOnDestroyAdapter implement
         console.error(err);
     }
 
-    // add(){
-    //     this.router.navigate(['configuration/Training/form']);
-    // }
-
-    // edit(row){
-    //     this.router.navigate(['configuration/Training/form'],{state:{place: row}});
-    // }
-
-    // delete(row): void {
-    //     const dialogRef = this.dialog.open(DeleteComponent, {});
-    //     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-    //         if (result === 1) {
-    //             this.factory.deleteTraining(row.id).subscribe(
-    //                 (res) => this.success(),
-    //                 (err: HttpErrorResponse)=>this.error(err)
-    //             );
-    //             this.load();
-    //         }
-    //     });
-    // }
-
     displayManagers(managers) {
         let display = '';
         if (managers.length > 0) {
@@ -128,6 +104,11 @@ export class TrainingPageComponent extends UnsubscribeOnDestroyAdapter implement
 
     add(){
         this.router.navigate(['organisation/training/broadcast']);
+    }
+
+    details(rw){
+        localStorage.setItem("training", JSON.stringify(rw));
+        this.router.navigate(['organisation/training/details'],{state:{training: rw}});
     }
 }
 

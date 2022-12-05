@@ -95,7 +95,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 
 //    public List<Participant> declareParticipants(PartnerTrainingParticipants partnerTrainingParticipants) {
 //        if (partnerTrainingParticipants == null || partnerTrainingParticipants.getTraining() == null || partnerTrainingParticipants.getPartner() == null ||
-//                partnerTrainingParticipants.getParticipants().size() < 1 || !partnerTrainingParticipants.getTraining().getStatus().equals(Status.TRAINING_BROADCAST))
+//                partnerTrainingParticipants.getParticipants().size() < 1 || !partnerTrainingParticipants.getTraining().getStatus().equals(StatusTraining.TRAINING_BROADCAST))
 //            return null;
 //
 //        Training training = partnerTrainingParticipants.getTraining();

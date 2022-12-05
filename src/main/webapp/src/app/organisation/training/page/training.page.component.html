@@ -78,7 +78,7 @@
                                     </ng-container>
                                     <ng-container matColumnDef="capacity">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Number of attendees'| translate}}</mat-header-cell>
-                                        <mat-cell *matCellDef="let row">{{row.capacity}}</mat-cell>
+                                        <mat-cell *matCellDef="let row">{{row.participants.length}}/<span style="font-weight: bold">{{row.capacity * row.partners.length}}</span></mat-cell>
                                     </ng-container>
                                     <ng-container matColumnDef="network">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Number of networks'| translate}}</mat-header-cell>
@@ -88,38 +88,8 @@
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Training Location'| translate}}</mat-header-cell>
                                         <mat-cell *matCellDef="let row">{{row.location.name}}</mat-cell>
                                     </ng-container>
-
-
-
-
-                                    <!--<ng-container matColumnDef="address">-->
-                                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header>{{'Adress'| translate}}</mat-header-cell>-->
-                                        <!--<mat-cell *matCellDef="let row">{{row.address}}</mat-cell>-->
-                                    <!--</ng-container>-->
-                                    <!--<ng-container matColumnDef="managers">-->
-                                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header>{{'Manager'| translate}}</mat-header-cell>-->
-                                        <!--<mat-cell *matCellDef="let row">{{displayManagers(row.managers)}}</mat-cell>-->
-                                    <!--</ng-container>-->
-                                    <!--<ng-container matColumnDef="parent">-->
-                                    <!--<mat-header-cell *matHeaderCellDef mat-sort-header>{{'Parent'| translate}}</mat-header-cell>-->
-                                    <!--<mat-cell *matCellDef="let row">{{row?.parent?.name}}</mat-cell>-->
-                                    <!--</ng-container>-->
-                                    <!--<ng-container matColumnDef="actions">-->
-                                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header>{{'Action'| translate}}</mat-header-cell>-->
-                                        <!--<mat-cell *matCellDef="let row">-->
-                                            <!--<span>-->
-                                                <!--<button mat-icon-button color="accent" class="btn-tbl-edit" (click)="edit(row)">-->
-                                                    <!--<mat-icon aria-label="Edit" class="col-white">edit</mat-icon>-->
-                                                <!--</button>-->
-                                                <!--<button mat-icon-button color="accent" class="btn-tbl-delete" (click)="delete(row)">-->
-                                                    <!--<mat-icon aria-label="Delete" class="col-white">delete</mat-icon>-->
-                                                <!--</button>-->
-                                            <!--</span>-->
-                                        <!--</mat-cell>-->
-                                    <!--</ng-container>-->
-
                                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                                    <mat-row *matRowDef="let row; columns: displayedColumns;" [style.cursor]="'pointer'" matRipple> </mat-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="details(row)" [style.cursor]="'pointer'" matRipple> </mat-row>
                                 </mat-table>
                                 <mat-paginator #paginator [length]="datasource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                             </div>

@@ -1,0 +1,93 @@
+.icon {
+  position: relative;
+  font-size: 120px;
+  top: 5px;
+  left: 5px;
+}
+
+.title {
+  font-size: 22px;
+  //padding-top: 22px;
+  padding-bottom: 5px;
+  font-weight: 600;
+}
+
+.actions{
+  justify-content: right;
+  padding-top: 10px
+}
+
+.corps {
+  font-weight: 600;
+  padding-left: 2px;
+}
+
+.inline {
+  display: inline;
+  padding-left: 0px;
+}
+.training_broadcast {
+  border: 1px solid gray;
+  height: 100%;
+  background-color: gray;
+}
+
+.training_requested {
+  border: 1px solid darkslategray;
+  height: 100%;
+  background-color: darkslategray;
+}
+
+.training_validated {
+  border: 1px solid greenyellow;
+  height: 100%;
+  background-color: greenyellow;
+}
+
+.training_rejected {
+  border: 1px solid darkred;
+  height: 100%;
+  background-color: darkred;
+}
+
+.training_pending {
+  border: 1px solid yellow;
+  height: 100%;
+  background-color: yellow;
+}
+
+.training_completed {
+  border: 1px solid green;
+  height: 100%;
+  background-color: green;
+}
+
+.training_uncompleted {
+  border: 1px solid red;
+  height: 100%;
+  background-color: red;
+}
+.btn-act-padding {
+  padding-right: 5px;
+}
+
+.mat-raised-button.mat-uncompleted{
+  background-color: red;
+  color: white;
+}
+.mat-raised-button.mat-completed{
+  background-color: green;
+  color: white;
+}
+.mat-raised-button.mat-pending{
+  background-color: orange;
+  color: white;
+}
+.mat-raised-button.mat-rejected{
+  background-color: darkred;
+  color: white;
+}
+.mat-raised-button.mat-validated{
+  background-color: blue;
+  color: white;
+}

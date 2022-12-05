@@ -1,6 +1,7 @@
 export class Topic {
     id: number;
     title: string;
+    fullname: string;
     theme?: Topic;
 
 

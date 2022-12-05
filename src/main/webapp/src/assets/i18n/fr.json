@@ -21,7 +21,8 @@
     "Place of work": "Lieu de travail",
     "Manager": "Responsable(s)",
     "Topic": "Thématique",
-    "Number of attendees": "Nombre de participants par partenaire",
+    "Number of attendees per partner": "Nombre de participants par partenaire",
+    "Number of attendees": "Nombre de participants",
     "Start Date": "Date de début",
     "End Date": "Date de fin",
     "Status": "Statut",
@@ -52,6 +53,24 @@
     "training_pending": "En cours",
     "training_completed": "Complétée",
     "training_uncompleted": "Non-complétée",
+    "Training Details": "Détails de la Formation",
+    "Training location": "Lieu de la formation",
+    "located at": "se trouvant à/au/aux",
+    "Expected categories": "Catégorie de professionels attendues",
+    "Expected participants numbers": "Nombre de participants attendus",
+    "Invited partners": "Partenaire/réseau invité(s)",
+    "Mark as": "Changer à",
+    "training_validated_action": "Valider",
+    "training_rejected_action": "Rejeter",
+    "training_pending_action": "Démarrer",
+    "training_completed_action": "Compléter",
+    "training_uncompleted_action": "Arrêter",
+    "Submit participants": "Soumettre participants",
+    "Save": "Sauvegarder",
+    "Back": "Retourner",
+
+
+
 
 
 

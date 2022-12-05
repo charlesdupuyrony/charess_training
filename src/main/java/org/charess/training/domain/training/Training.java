@@ -67,6 +67,18 @@ public class Training extends Audit {
     @Column(name = "status_date")
     private LocalDateTime statusDatetime = LocalDateTime.now();
 
+    @ManyToMany
+    @JoinTable(name="training_participant", joinColumns={@JoinColumn(name="training")}, inverseJoinColumns={@JoinColumn(name="participant")})
+    private List<Participant> participants;
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
+
     public String getMode() {
         return mode;
     }

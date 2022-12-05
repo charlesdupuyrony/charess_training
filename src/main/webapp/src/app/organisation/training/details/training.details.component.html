@@ -1,0 +1,141 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h4 class="page-title">{{'Training Details' | translate}}</h4>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div>
+                <div class="card">
+                    <div class="body">
+                        <form [formGroup]="fg" (submit)="submit(fg.value)">
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="{{training.status.toLowerCase()}}"></div>
+                                </div>
+                                <div class="col-11">
+                                    <div class="row title">{{training.topic?.fullname}}</div>
+                                    <div class="row">
+                                        <div class="inline">
+                                            {{'Start Date' | translate}}: <span class="corps">{{startDate.toLocaleString('fr-FR', {weekday:"long", year:"numeric", month:"long", day:"numeric"})}}</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            {{'End Date' | translate}}: <span class="corps">{{endDate.toLocaleString('fr-FR', {weekday:"long", year:"numeric", month:"long", day:"numeric"})}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline">
+                                            {{'Training location' | translate}}: <span class="corps">{{training?.location.fullname}}</span>
+                                            {{'located at' | translate}}:  <span class="corps">{{training?.location.address}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline">{{'Expected categories' | translate}}:
+                                            <span class="corps" *ngFor="let category of training?.categories; index as i">
+                                            {{i===0?category.name: (i===training.categories.length-1?' et ' + category.name: ', ' + category.name)}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline">
+                                            {{'Expected participants number' | translate}}: <span class="corps">{{training.partners.length * training.capacity}}</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            {{'Number of participants' | translate}}:  <span class="corps">{{training.participants.length}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline">{{'Invited partners' | translate}}:
+                                            <span class="corps" *ngFor="let partner of training?.partners; index as i">
+                                            {{i===0?partner.fullname: (i===training.partners.length-1?' et ' + partner.fullname: ', ' + partner.fullname)}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm actions">
+                                    <span class="right btn-act-padding">
+                                        <button mat-raised-button color="uncompleted" type="button" (click)="chg('TRAINING_UNCOMPLETED')">{{"training_uncompleted_action" | translate}}</button>
+                                    </span>
+                                    <span class="right btn-act-padding">
+                                        <button mat-raised-button color="completed" type="button" (click)="chg('TRAINING_COMPLETED')">{{"training_completed_action" | translate}}</button>
+                                    </span>
+                                    <span class="right btn-act-padding"><button mat-raised-button color="pending">{{"training_pending_action" | translate}}</button></span>
+                                    <span class="right btn-act-padding"><button mat-raised-button color="validated">{{"training_validated_action" | translate}}</button></span>
+                                    <span class="right btn-act-padding"><button mat-raised-button color="rejected">{{"training_rejected_action" | translate}}</button></span>
+                                    <span class="right btn-act-padding"><button mat-raised-button color="primary" [type]="submit">{{"Save" | translate}}</button></span>
+                                    <span class="right btn-act-padding"><button mat-raised-button color="warn" (click)="back()" tabindex="-1">{{"Back" | translate}}</button></span>
+                                    <span class="right btn-act-padding"><button mat-raised-button tabindex="-1">{{"Submit participants" | translate}}</button></span>
+                                </div>
+                            </div>
+                            <br/>
+                            <!--<fieldset>-->
+                                <!--<div class="row">-->
+                                    <!--<legend>{{"Participants" | translate}}</legend>-->
+                                    <!--<ng-container formArrayName="participants" *ngFor="let person of participants.controls; index as i">-->
+                                        <!--<ng-container [formGroupName]="i">-->
+                                            <!--<div class="col-2">-->
+                                                <!--<mat-form-field class="example-full-width mb-2">-->
+                                                    <!--<mat-label>{{"Numéro d'Identifiant Fiscal" | translate}}</mat-label>-->
+                                                    <!--<input matInput mask="000-000-000-0" formControlName="identifier" required/>-->
+                                                <!--</mat-form-field>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-1">-->
+                                                <!--<mat-form-field class="example-full-width mb-2">-->
+                                                    <!--<mat-label>{{"Phone"| translate}}</mat-label>-->
+                                                    <!--<input matInput formControlName="phone" [showMaskTyped]="true" required/>-->
+                                                <!--</mat-form-field>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-3">-->
+                                                <!--<mat-form-field class="example-full-width mb-3">-->
+                                                    <!--<mat-label>{{"Email"| translate}}</mat-label>-->
+                                                    <!--<input matInput formControlName="email" [showMaskTyped]="true" required/>-->
+                                                <!--</mat-form-field>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-3">-->
+                                                <!--<mat-form-field class="example-full-width mb-3">-->
+                                                    <!--<mat-label>{{"FirstName" | translate}}</mat-label>-->
+                                                    <!--<input matInput formControlName="firstName" [showMaskTyped]="true" required/>-->
+                                                <!--</mat-form-field>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-2">-->
+                                                <!--<mat-form-field class="example-full-width mb-2">-->
+                                                    <!--<mat-label>{{"LastName" | translate}}</mat-label>-->
+                                                    <!--<input matInput formControlName="lastName" [showMaskTyped]="true" required/>-->
+                                                <!--</mat-form-field>-->
+                                            <!--</div>-->
+                                            <!--&lt;!&ndash;<div class="col-1" *ngIf="participants['controls'][i].status == 'VALID' && i===0">&ndash;&gt;-->
+                                            <!--<div class="col-1" *ngIf="participants['controls'][i].status == 'VALID' && i===0 && participants['controls'].length < training.capacity">-->
+                                                <!--<div class="example-button-row" >-->
+                                                    <!--<button mat-mini-fab color="primary" type="button" (click)="push()"><mat-icon class="col-white">add</mat-icon></button>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--&lt;!&ndash;<div class="col-1" *ngIf="participants['controls'].length > 1 && (i>0 || participants['controls'][i].status != 'VALID')">&ndash;&gt;-->
+                                            <!--<div class="col-1" *ngIf="participants['controls'].length > 1 && (i>0 || participants['controls'][i].status != 'VALID') || participants['controls'].length >= training.capacity">-->
+                                                <!--<div class="example-button-row" >-->
+                                                    <!--<button mat-mini-fab color="warn" (click)="pull(i)"><mat-icon class="col-white">delete </mat-icon></button>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</ng-container>-->
+                                    <!--</ng-container>-->
+                                <!--</div>-->
+                            <!--</fieldset>-->
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                    <div class="example-button-row">
+                                        <div class="example-button-row">
+                                            <!--<button mat-raised-button color="primary" [type]="submit">{{"Save" | translate}}</button>-->
+                                            <!--<button mat-raised-button color="primary" [type]="submit" [disabled]="!fg.valid">{{"Save" | translate}}</button>-->
+                                            <!--<button mat-raised-button color="warn" (click)="back()" tabindex="-1">{{"Cancel" | translate}}</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

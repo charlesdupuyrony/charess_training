@@ -21,7 +21,8 @@
     "Place of work": "Lye travay",
     "Manager": "Responsab(yo)",
     "Topic": "Tematik",
-    "Number of attendees": "Nomb patisipan pa patnè",
+    "Number of attendees per partner": "Kantite patisipan pa patnè",
+    "Number of attendees": "Kantite patisipan",
     "Start Date": "De",
     "End Date": "A",
     "Status": "Stati",
@@ -52,6 +53,21 @@
     "training_pending": "Ankou",
     "training_completed": "Konplete",
     "training_uncompleted": "Non-konplete",
+    "Training Details": "Detay fòmasyon an",
+    "Training location": "Kote fòmasyon ap fèt",
+    "located at": "ki trouvel li nan",
+    "Expected categories": "Ki pwofesyonèl nap tann",
+    "Expected participants numbers": "Kantite patisipan nap tann",
+    "Invited partners": "Patnè/rezo envite",
+    "Mark as": "Mete li",
+    "training_validated_action": "Valide",
+    "training_rejected_action": "Rejte",
+    "training_pending_action": "Kòmanse",
+    "training_completed_action": "Konplete",
+    "training_uncompleted_action": "Kanpe",
+    "Submit participants": "Mete patisipan",
+    "Save": "Anrejistre",
+    "Back": "Retounen",
 
 
 
@@ -64,7 +80,12 @@
 
 
 
-  "training": {
+
+
+
+
+
+    "training": {
         "page": "Lis Fòmasyon yo",
         "partnership": {
             "text": "Patenarya",

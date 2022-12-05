@@ -69,6 +69,10 @@ export class TrainingService extends UnsubscribeOnDestroyAdapter {
         return this.http.post(`${this.api}/training/broadcast`, training);
     }
 
+    status(training){
+        return this.http.post(`${this.api}/training/status`, training);
+    }
+
     getTrainingsForAPartner(partnerId: number){
         const url = partnerId?`${this.apiTraining}/partner/${partnerId}`:`${this.apiTraining}`;
         this.subs.sink = this.http.get<TrainingPartner[]>(url).subscribe(
