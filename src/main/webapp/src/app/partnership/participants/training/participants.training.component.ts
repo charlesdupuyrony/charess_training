@@ -74,10 +74,6 @@ export class ParticipantsTrainingComponent extends UnsubscribeOnDestroyAdapter i
     submitParticipants(row){
         localStorage.setItem("trainingPartner", JSON.stringify(row));
         this.router.navigate(['partnership/participants/submission'],{state:{trainingPartner: row}});
-
-        // localStorage.setItem("partner", JSON.stringify(this.partner));
-        // localStorage.setItem("training", JSON.stringify(row.training));
-        // this.router.navigate(['partnership/participants/submission'],{state:{training:row.training, partner: this.partner}});
     }
 }
 

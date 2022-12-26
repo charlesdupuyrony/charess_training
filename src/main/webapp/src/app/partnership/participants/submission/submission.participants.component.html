@@ -15,7 +15,7 @@
                         <form [formGroup]="fg" (submit)="submit(fg.value)">
                             <div class="row">
                                 <div class="col-1">
-                                    <i [ngClass]="['material-icons-two-tone', 'icon']">subject</i>
+                                    <i [ngClass]="['material-icons-two-tone', 'icon', status]">subject</i>
                                 </div>
                                 <div class="col-11">
                                     <div class="row title">{{training?.topic?.fullname}}</div>
@@ -79,14 +79,12 @@
                                                     <input matInput formControlName="lastName" [showMaskTyped]="true" required/>
                                                 </mat-form-field>
                                             </div>
-                                            <!--<div class="col-1" *ngIf="participants['controls'][i].status == 'VALID' && i===0">-->
-                                            <div class="col-1" *ngIf="participants['controls'][i].status == 'VALID' && i===0 && participants['controls'].length < training.capacity">
+                                            <div class="col-1" *ngIf="!unchanged && (participants['controls'][i].status == 'VALID' && i===0 && participants['controls'].length < training.capacity)">
                                                 <div class="example-button-row" >
                                                     <button mat-mini-fab color="primary" type="button" (click)="push()"><mat-icon class="col-white">add</mat-icon></button>
                                                 </div>
                                             </div>
-                                            <!--<div class="col-1" *ngIf="participants['controls'].length > 1 && (i>0 || participants['controls'][i].status != 'VALID')">-->
-                                            <div class="col-1" *ngIf="participants['controls'].length > 1 && (i>0 || participants['controls'][i].status != 'VALID') || participants['controls'].length >= training.capacity">
+                                            <div class="col-1" *ngIf="!unchanged && (participants['controls'].length > 1 && (i>0 || participants['controls'][i].status != 'VALID') || participants['controls'].length >= training.capacity)">
                                                 <div class="example-button-row" >
                                                     <button mat-mini-fab color="warn" (click)="pull(i)"><mat-icon class="col-white">delete </mat-icon></button>
                                                 </div>
@@ -99,8 +97,8 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                                     <div class="example-button-row">
                                         <div class="example-button-row">
-                                            <button mat-raised-button color="primary" [type]="submit">{{"Save" | translate}}</button>
-                                            <!--<button mat-raised-button color="primary" [type]="submit" [disabled]="!fg.valid">{{"Save" | translate}}</button>-->
+                                            <!--<button mat-raised-button color="primary" [type]="submit">{{"Save" | translate}}</button>-->
+                                            <button mat-raised-button color="primary" [type]="submit" [disabled]="unchanged">{{"Save" | translate}}</button>
                                             <button mat-raised-button color="warn" (click)="back()" tabindex="-1">{{"Cancel" | translate}}</button>
                                         </div>
                                     </div>

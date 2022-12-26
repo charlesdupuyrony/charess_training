@@ -20,3 +20,27 @@
   display: inline;
   padding-left: 0px;
 }
+
+i.new {
+  color: red;
+}
+
+i.pending {
+  color: orange;
+}
+
+i.set {
+  color: blue;
+}
+
+i.ongoing {
+  color: yellow;
+}
+
+i.completed {
+  color: green;
+}
+
+i.deprecated {
+  color: purple;
+}

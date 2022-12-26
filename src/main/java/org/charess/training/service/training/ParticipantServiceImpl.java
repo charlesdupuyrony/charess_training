@@ -38,6 +38,10 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     public String declare(PartnerTrainingParticipants partnerTrainingParticipants) {
         Training training = partnerTrainingParticipants.getTraining();
+        if(training.getStatus().equals(Status.TRAINING_REJECTED.toString()) || training.getStatus().equals(Status.TRAINING_COMPLETED.toString()) ||
+            training.getStatus().equals(Status.TRAINING_UNCOMPLETED.toString()))
+            return "";
+
         Place partner = partnerTrainingParticipants.getPartner();
         Audit audit = new Audit(LocalDateTime.now(), userService.getCurrentUser().getId());
         List<Participant> participants = participantRepository.findByTrainingAndPartner(training, partner);

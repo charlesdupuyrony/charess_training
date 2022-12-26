@@ -28,11 +28,13 @@ export class SubmissionParticipantsComponent implements OnInit {
     fg: FormGroup;
     partner: Institution;
     training: Training;
+    status: String;
     startDate: Date;
     endDate: Date;
     msg: string;
     isEmailDuplicated = [];
     isIdentifierDuplicated = [];
+    unchanged = false;
 
 
     constructor(private fb: FormBuilder, private router: Router, private service: TrainingService, private snack: MatSnackBar){
@@ -40,8 +42,13 @@ export class SubmissionParticipantsComponent implements OnInit {
         const trainingPartner = state?state.trainingPartner:JSON.parse(localStorage.getItem("trainingPartner"));
         this.partner = trainingPartner.partner;
         this.training = trainingPartner.training;
+        this.status = trainingPartner.status;
         this.startDate = new Date(this.training?.startDate);
         this.endDate = new Date(this.training?.endDate);
+
+        this.unchanged = this.status === 'completed' || this.status === 'deprecated';
+
+        console.log(this.unchanged);
 
         const partnerTrainingParticpants = new PartnerTrainingParticipants(
             {'partner': this.partner,
