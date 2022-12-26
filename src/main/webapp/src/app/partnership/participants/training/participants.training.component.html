@@ -33,26 +33,13 @@
                                 </div>
 
                                 <mat-table #table [dataSource]="datasource" matSort class="mat-cell">
-                                    <!--<ng-container>-->
-                                        <!--<mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">-->
-                                            <!--<mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"-->
-                                                          <!--[indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">-->
-                                            <!--</mat-checkbox>-->
-                                        <!--</mat-header-cell>-->
-                                        <!--<mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">-->
-                                            <!--<mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"-->
-                                                          <!--[checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'">-->
-                                            <!--</mat-checkbox>-->
-                                        <!--</mat-cell>-->
-                                    <!--</ng-container>-->
-
                                     <ng-container matColumnDef="status">
                                         <mat-header-cell *matHeaderCellDef></mat-header-cell>
                                         <mat-cell *matCellDef="let row">
                                             <span>
                                                 <button mat-icon-button class="btn-tbl-edit {{row.status}}">
                                                     <mat-icon></mat-icon>
-                                                </button>{{row.status}}
+                                                </button>
                                             </span>
                                         </mat-cell>
                                     </ng-container>
@@ -69,17 +56,13 @@
                                         <mat-cell *matCellDef="let row">{{row.training.endDate}}</mat-cell>
                                     </ng-container>
                                     <ng-container matColumnDef="capacity">
-                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'# Part.'| translate}}</mat-header-cell>
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{'# Participants'| translate}}</mat-header-cell>
                                         <mat-cell *matCellDef="let row">{{row.participantsQuantity}}/<span style="font-weight: bold">{{row.training.capacity}}</span></mat-cell>
                                     </ng-container>
                                     <ng-container matColumnDef="categories">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Professionals Category'| translate}}</mat-header-cell>
                                         <mat-cell *matCellDef="let row">
                                             <span *ngFor="let c of row.training.categories; index as i">{{i===0?c.name: (i===row.training.categories.length-1? ', et ' + c.name: ', ' + c.name)}}</span>
-
-                                                <!--<span class="corps" *ngFor="let category of row.training?.categories; index as i">-->
-                                            <!---->
-                                                <!--</span>-->
                                         </mat-cell>
                                     </ng-container>
                                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

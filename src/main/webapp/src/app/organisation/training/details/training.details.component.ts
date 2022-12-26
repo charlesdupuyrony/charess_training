@@ -5,6 +5,7 @@ import {Training} from "../../../core/models/training/training";
 import {TrainingService} from "../training.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Person} from "../../../core/models/security/person";
 
 
 @Component({
@@ -28,6 +29,8 @@ export class TrainingDetailsComponent implements OnInit {
         this.startDate = new Date(this.training?.startDate);
         this.endDate = new Date(this.training?.endDate);
 
+        // this.training.participants = this.fb.array(this.training.participants==null?[this.fb.group(new Person({}))]: this.training.participants.map(m=>this.fb.group(m)));
+
         this.fg = this.fb.group(this.training);
     }
 
@@ -45,7 +48,8 @@ export class TrainingDetailsComponent implements OnInit {
 
     private chgSuccess(){
         this.toast('bg-green','Training status successfully changed...');
-        this.back();
+        localStorage.setItem("training", JSON.stringify(this.training));
+        this.router.navigate(['organisation/training/details'],{state:{training: this.training}});
     }
 
     private chgError(err: HttpErrorResponse){
@@ -56,6 +60,7 @@ export class TrainingDetailsComponent implements OnInit {
     chg(s){
         let value = this.fg.getRawValue();
         const ob = {training: value.id, status: s};
+        this.training.status = s;
         this.service.status(ob).subscribe(
             (res) => this.chgSuccess(),
             (err) => this.chgError(err)

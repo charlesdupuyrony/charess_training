@@ -61,7 +61,9 @@
                                     <span class="right btn-act-padding">
                                         <button mat-raised-button color="completed" type="button" (click)="chg('TRAINING_COMPLETED')">{{"training_completed_action" | translate}}</button>
                                     </span>
-                                    <span class="right btn-act-padding"><button mat-raised-button color="pending">{{"training_pending_action" | translate}}</button></span>
+                                    <span class="right btn-act-padding">
+                                        <button mat-raised-button color="pending" type="button" (click)="chg('TRAINING_PENDING')">{{"training_pending_action" | translate}}</button>
+                                    </span>
                                     <span class="right btn-act-padding"><button mat-raised-button color="validated">{{"training_validated_action" | translate}}</button></span>
                                     <span class="right btn-act-padding"><button mat-raised-button color="rejected">{{"training_rejected_action" | translate}}</button></span>
                                     <span class="right btn-act-padding"><button mat-raised-button color="primary" [type]="submit">{{"Save" | translate}}</button></span>

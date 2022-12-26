@@ -139,7 +139,6 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     private TrainingPartner setPartnerTrainingStatus(Training training, Place partner){
-
         List<Person> participants = participantRepository.findByTrainingIdAndPartnerId(training.getId(), partner.getId())
                 .stream().map(participant -> participant.getPerson()).collect(Collectors.toList());
         TrainingPartner tp = new TrainingPartner(training, partner, participants);

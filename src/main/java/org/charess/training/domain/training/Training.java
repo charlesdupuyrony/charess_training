@@ -1,5 +1,6 @@
 package org.charess.training.domain.training;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.charess.training.domain.security.*;
 
 import javax.persistence.*;
@@ -46,6 +47,10 @@ public class Training extends Audit {
     @Column(name = "test_type", length = 30)
     private String testType = Status.TEST_TYPE_PRE_AND_POST.toString();
 
+    @JsonManagedReference
+    @OneToMany(mappedBy="training")
+    private List<Participant> participants;
+
     @ManyToOne
     @JoinColumn(name = "requester")
     private Place requester;
@@ -66,10 +71,6 @@ public class Training extends Audit {
 
     @Column(name = "status_date")
     private LocalDateTime statusDatetime = LocalDateTime.now();
-
-    @ManyToMany
-    @JoinTable(name="training_participant", joinColumns={@JoinColumn(name="training")}, inverseJoinColumns={@JoinColumn(name="participant")})
-    private List<Participant> participants;
 
     public List<Participant> getParticipants() {
         return participants;

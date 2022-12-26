@@ -75,6 +75,7 @@ export class TrainingService extends UnsubscribeOnDestroyAdapter {
 
     getTrainingsForAPartner(partnerId: number){
         const url = partnerId?`${this.apiTraining}/partner/${partnerId}`:`${this.apiTraining}`;
+        console.log(url, '====================');
         this.subs.sink = this.http.get<TrainingPartner[]>(url).subscribe(
             (data) => {
                 this.isTblLoading = false;

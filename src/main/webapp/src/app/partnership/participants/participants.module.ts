@@ -28,6 +28,7 @@ import {ParticipantsRoutingModule} from "./participants.routing.module";
 import {ParticipantsTrainingComponent} from "./training/participants.training.component";
 import {TrainingService} from "../../organisation/training/training.service";
 import {SubmissionParticipantsComponent} from "./submission/submission.participants.component";
+import {NgxMaskModule} from "ngx-mask";
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import {SubmissionParticipantsComponent} from "./submission/submission.participa
         MatAutocompleteModule,
         PerfectScrollbarModule,
         NgbModule,
+        NgxMaskModule.forRoot(),
         ParticipantsRoutingModule
     ],
     providers: [TrainingService]

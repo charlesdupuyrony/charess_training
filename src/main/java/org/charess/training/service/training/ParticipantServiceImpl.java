@@ -40,83 +40,25 @@ public class ParticipantServiceImpl implements ParticipantService {
         Training training = partnerTrainingParticipants.getTraining();
         Place partner = partnerTrainingParticipants.getPartner();
         Audit audit = new Audit(LocalDateTime.now(), userService.getCurrentUser().getId());
-        List<Participant> participants = new ArrayList<>();
-        List<Person> people = new ArrayList<>();
+        List<Participant> participants = participantRepository.findByTrainingAndPartner(training, partner);
 
         if (training == null || partner == null)
             return null;
 
-        Integer usr = userService.getCurrentUser().getId();
-        LocalDateTime now = LocalDateTime.now();
-        Participant participant = null;
+        if(participants.size() > 0) {
+            participantRepository.deleteAll(participants);
+            participantRepository.flush();
+            participants = new ArrayList<>();
+        }
 
         for(Person person: partnerTrainingParticipants.getParticipants()){
             personRepository.save(person);
-            participant = participantRepository.findByTrainingIdAndPartnerIdAndPersonId(training.getId(), partner.getId(), person.getId());
-            if(participant == null){
-                participants.add(new Participant(training, partner, person, audit));
-            }
+            participants.add(new Participant(person, training, partner, audit));
         }
 
         participantRepository.saveAll(participants);
 
-
-
-
-
-//        List<Person> createdPeople = new ArrayList<>();
-
-//
-//        List<Participant> participants = participantRepository.findByTrainingIdAndPartnerId(training.getId(), partner.getId());
-//        if(!participants.isEmpty())
-//            participantRepository.deleteAll(participants);
-//
-//        List<Person> people = personRepository.saveAll(partnerTrainingParticipants.getParticipants());
-//        participants = new ArrayList<>();
-//
-//        for (Person person : people){
-//            participants.add(new Participant(training, partner, person, audit));
-//        }
-//
-//        participantRepository.saveAll(participants);
-//
-//        for(Person person: partnerTrainingParticipants.getParticipants()) {
-//            people.add(person);
-//        }
-//
-//        for(Person person: personRepository.saveAll(people)){
-//
-//        }
-
-//        participantRepository.saveAll(participants);
         return new String();
     }
-
-
-//    public List<Participant> declareParticipants(PartnerTrainingParticipants partnerTrainingParticipants) {
-//        if (partnerTrainingParticipants == null || partnerTrainingParticipants.getTraining() == null || partnerTrainingParticipants.getPartner() == null ||
-//                partnerTrainingParticipants.getParticipants().size() < 1 || !partnerTrainingParticipants.getTraining().getStatus().equals(StatusTraining.TRAINING_BROADCAST))
-//            return null;
-//
-//        Training training = partnerTrainingParticipants.getTraining();
-//        Place partner = partnerTrainingParticipants.getPartner();
-//        List<Participant> participants = participantRepository.findByTrainingIdAndPartnerId(training.getId(), partner.getId());
-//        Audit audit = new Audit(LocalDateTime.now(), userService.getCurrentUser().getId());
-//
-//        if(participants.size() > 1)
-//            participantRepository.deleteAll(participants);
-//
-//        for(Person person: partnerTrainingParticipants.getParticipants())
-//            participants.add(new Participant(training, partner, person, audit));
-//
-//        return participantRepository.saveAll(participants);
-//    }
-
-
-
-//    public List<Participant> getPartnerTrainingParticipants(Integer partnerId, Integer trainingId){
-//        return participantRepository.findByTrainingIdAndPartnerId(trainingId, partnerId);
-//    }
-
 
 }
