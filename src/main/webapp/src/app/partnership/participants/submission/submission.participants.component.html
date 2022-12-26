@@ -52,7 +52,7 @@
                                             <div class="col-2">
                                                 <mat-form-field class="example-full-width mb-2">
                                                     <mat-label>{{"Numéro d'Identifiant Fiscal" | translate}}</mat-label>
-                                                    <input matInput mask="000-000-000-0" placeholder="000-000-000-0" formControlName="identifier" required/>
+                                                    <input matInput mask="000-000-000-0" placeholder="000-000-000-0" formControlName="identifier" required (blur)="checkIdentifier(i)"/>
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-1">
@@ -64,7 +64,7 @@
                                             <div class="col-3">
                                                 <mat-form-field class="example-full-width mb-3">
                                                     <mat-label>{{"Email"| translate}}</mat-label>
-                                                    <input matInput formControlName="email" [showMaskTyped]="true" required/>
+                                                    <input matInput formControlName="email" [showMaskTyped]="true" required (blur)="checkEmail(i)"/>
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-3">

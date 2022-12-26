@@ -23,5 +23,6 @@ public interface UserService {
 
 
     Person getPersonByEmail(String email);
+    Person getPersonByIdentifier(String nif);
 
 }

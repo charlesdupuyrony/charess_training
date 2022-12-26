@@ -162,4 +162,8 @@ public class UserServiceImpl implements UserService {
     public Person getPersonByEmail(String email){
         return personRepository.findByEmail(email);
     }
+
+    public Person getPersonByIdentifier(String nif){
+        return personRepository.findByIdentifier(nif);
+    }
 }

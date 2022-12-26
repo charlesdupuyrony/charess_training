@@ -8,6 +8,7 @@ import {Topic} from "../../core/models/training/topic";
 import {Institution} from "../../core/models/security/institution";
 import {Category} from "../../core/models/security/category";
 import {TrainingPartner} from "../../core/models/training/training.partner";
+import {Person} from "../../core/models/security/person";
 
 @Injectable()
 export class TrainingService extends UnsubscribeOnDestroyAdapter {
@@ -75,7 +76,6 @@ export class TrainingService extends UnsubscribeOnDestroyAdapter {
 
     getTrainingsForAPartner(partnerId: number){
         const url = partnerId?`${this.apiTraining}/partner/${partnerId}`:`${this.apiTraining}`;
-        console.log(url, '====================');
         this.subs.sink = this.http.get<TrainingPartner[]>(url).subscribe(
             (data) => {
                 this.isTblLoading = false;
@@ -90,6 +90,14 @@ export class TrainingService extends UnsubscribeOnDestroyAdapter {
 
     participate(partnerTrainingParticipants){
         return this.http.post(`${this.api}/participant`, partnerTrainingParticipants);
+    }
+
+    getPersonByIdentifier(nif){
+        return this.http.get<Person>(`${environment.api}/user/nif?nif=${nif}`);
+    }
+
+    getPersonByEmail(email){
+        return this.http.get<Person>(`${environment.api}/user/email?email=${email}`);
     }
 
 }

@@ -37,6 +37,13 @@ public class UserController {
         return userService.getPersonByEmail(email);
     }
 
+
+    @RequestMapping(value = "/nif", method = RequestMethod.GET)
+    public Person getPersonByIdentifier(@RequestParam("nif") String nif) {
+        log.info("====={}====", nif);
+        return userService.getPersonByIdentifier(nif);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody User user) {
         HttpHeaders textPlainHeaders = new HttpHeaders();
@@ -93,8 +100,6 @@ public class UserController {
 
     @RequestMapping(value="/password/forgot", method = RequestMethod.POST)
     public ResponseEntity<?> forgotPassword(@RequestBody String email){
-        log.info("============================{}==============================", email);
-
         try {
             User usr = userService.forgotPassword(email);
             return new ResponseEntity(usr, usr==null?HttpStatus.NOT_FOUND: HttpStatus.OK);
