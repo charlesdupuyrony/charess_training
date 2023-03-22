@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.charess</groupId>
     <artifactId>training</artifactId>
-    <version>0.2.6</version>
+    <version>0.2.7</version>
     <name>training</name>
     <description>Tool to manage trainings at charess</description>
     <properties>

@@ -39,6 +39,18 @@ public class TrainingController {
         }
     }
 
+    @RequestMapping(value="/participants", method = RequestMethod.POST)
+    public ResponseEntity<?> updateParticipants(@RequestBody Training training){
+        try {
+            training.setStatus(Status.TRAINING_BROADCAST.toString());
+            Training t = trainingService.updateParticipants(training);
+            return t==null?new ResponseEntity<>("", HttpStatus.BAD_REQUEST):new ResponseEntity<>(t, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
     @RequestMapping(value="/status", method = RequestMethod.POST)
     public ResponseEntity<?> changeStatus(@RequestBody StatusTraining statusTraining){
         try {

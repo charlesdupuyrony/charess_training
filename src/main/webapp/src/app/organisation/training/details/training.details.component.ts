@@ -1,11 +1,16 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Training} from "../../../core/models/training/training";
 import {TrainingService} from "../training.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Person} from "../../../core/models/security/person";
+import {PartnerTrainingParticipants} from "../../../core/models/training/partner.training.participants";
+import {Participant} from "../../../core/models/training/participant";
+import {TrainingParticipants} from "../../../core/models/training/training.participants";
+import {Institution} from "../../../core/models/security/institution";
+import {InstitutionService} from "../../../configuration/institution/institution.service";
 
 
 @Component({
@@ -20,21 +25,59 @@ export class TrainingDetailsComponent implements OnInit {
     training: Training;
     startDate: Date;
     endDate: Date;
-    loading = false;
+    partners = new FormControl();
+    partnerArray = [];
+
+    // loading = false;
 
 
-    constructor(private router: Router, private fb: FormBuilder, private service: TrainingService, private snack: MatSnackBar){
+    constructor(private router: Router, private fb: FormBuilder, private service: TrainingService, private snack: MatSnackBar, private placeService: InstitutionService){
         const state = this.router.getCurrentNavigation().extras.state;
+
         this.training = state?state.training:JSON.parse(localStorage.getItem("training"));
         this.startDate = new Date(this.training?.startDate);
         this.endDate = new Date(this.training?.endDate);
 
-        // this.training.participants = this.fb.array(this.training.participants==null?[this.fb.group(new Person({}))]: this.training.participants.map(m=>this.fb.group(m)));
-
-        this.fg = this.fb.group(this.training);
+        const trainingParticpants = new TrainingParticipants(
+            {
+                'training': this.training,
+                'participants': this.fb.array(this.training.participants.length <1?[this.format(new Participant({}))]:this.training.participants.map(
+                 p => this.format(new Participant(p)))
+                )
+            });
+        this.fg = this.fb.group(trainingParticpants);
     }
 
-    ngOnInit(){}
+    ngOnInit(){
+        this.placeService.getPlaces('').subscribe((res)=>{
+            this.partnerArray = res;
+        });
+    }
+
+    get participants(): FormArray {
+        return this.fg.get('participants') as FormArray;
+    }
+
+    compare(a, b): boolean {
+        return a && b ?(a.id && b.id && a.id===b.id):a===b;
+    }
+
+    format(p: Participant): FormGroup {
+        return this.fb.group({
+            id: [p?.id],
+            partner: [p?.partner],
+            logistic: [p.logistic],
+            transport: [p.transport],
+            person: this.fb.group({
+                id: [p?.person?.id],
+                identifier: [p?.person?.identifier, [Validators.required]],
+                firstName: [p?.person?.firstName, [Validators.required]],
+                lastName: [p?.person?.lastName, [Validators.required]],
+                phone: [p?.person?.phone, [Validators.required]],
+                email: [p?.person?.email, [Validators.required]],
+            })
+        });
+    }
 
     private toast(color, text) {
         this.snack.open(text, '', {
@@ -48,8 +91,18 @@ export class TrainingDetailsComponent implements OnInit {
 
     private chgSuccess(){
         this.toast('bg-green','Training status successfully changed...');
-        localStorage.setItem("training", JSON.stringify(this.training));
-        this.router.navigate(['organisation/training/details'],{state:{training: this.training}});
+        // localStorage.setItem("training", JSON.stringify(this.training));
+        // this.router.navigate(['organisation/training/details'],{state:{training: this.training}});
+    }
+
+    private success(){
+        this.toast('bg-green','The usr has been successfully created');
+        this.back();
+    }
+
+    private error(err: HttpErrorResponse){
+        this.toast('bg-red','Something went wrong the usr has not been created. Please, try again!');
+        console.error(err);
     }
 
     private chgError(err: HttpErrorResponse){
@@ -57,18 +110,25 @@ export class TrainingDetailsComponent implements OnInit {
         console.error(err);
     }
 
-    chg(s){
-        let value = this.fg.getRawValue();
-        const ob = {training: value.id, status: s};
-        this.training.status = s;
-        this.service.status(ob).subscribe(
-            (res) => this.chgSuccess(),
-            (err) => this.chgError(err)
+    submit(ob: any): void {
+        ob.id = this.training.id;
+        ob.participants = this.participants.getRawValue();
+        this.service.updateParticipants(ob).subscribe(
+            (res) => this.success(),
+            (err) => this.error(err)
         );
     }
 
-    submit(ob: any): void {
-        console.log('=============', ob.status);
+    push(){
+        this.participants.controls.unshift(this.format(new Participant({})));
     }
 
+    pull(index: number): void {
+        if (this.participants.length > 0){
+            this.participants.removeAt(index);
+            if(this.participants.length==0)
+                this.push()
+        }
+
+    }
 }

@@ -13,4 +13,5 @@ public interface ParticipantRepository extends JpaRepository<Participant, Intege
     List<Participant> findByTrainingIdAndPartnerId(Integer trainingId, Integer partnerId);
     List<Participant> findByTrainingAndPartner(Training training, Place partner);
     Participant findByTrainingAndPartnerAndPerson(Training training, Place partner, Person person);
+    void deleteAllByTraining(Training training);
 }

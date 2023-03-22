@@ -194,6 +194,7 @@ class Training {
             this.capacity = t.capacity;
             this.categories = t.categories || null;
             this.partners = t.partners || null;
+            this.participants = t.participants || null;
             this.cyclic = t.cyclic;
             this.mode = t.mode;
             this.testType = t.testType;
@@ -349,6 +350,12 @@ class TrainingService extends _shared_UnsubscribeOnDestroyAdapter__WEBPACK_IMPOR
     broadcast(training) {
         return this.http.post(`${this.api}/training/broadcast`, training);
     }
+    updateParticipants(training) {
+        return this.http.post(`${this.api}/training/participants`, training);
+    }
+    status(training) {
+        return this.http.post(`${this.api}/training/status`, training);
+    }
     getTrainingsForAPartner(partnerId) {
         const url = partnerId ? `${this.apiTraining}/partner/${partnerId}` : `${this.apiTraining}`;
         this.subs.sink = this.http.get(url).subscribe((data) => {
@@ -361,6 +368,12 @@ class TrainingService extends _shared_UnsubscribeOnDestroyAdapter__WEBPACK_IMPOR
     }
     participate(partnerTrainingParticipants) {
         return this.http.post(`${this.api}/participant`, partnerTrainingParticipants);
+    }
+    getPersonByIdentifier(nif) {
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api}/user/nif?nif=${nif}`);
+    }
+    getPersonByEmail(email) {
+        return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api}/user/email?email=${email}`);
     }
 }
 TrainingService.ɵfac = function TrainingService_Factory(t) { return new (t || TrainingService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient)); };

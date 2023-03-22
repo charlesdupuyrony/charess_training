@@ -6,15 +6,9 @@
 }
 
 .title {
-  font-size: 22px;
-  //padding-top: 22px;
-  padding-bottom: 5px;
+  font-size: 18px;
+  padding-top: 22px;
   font-weight: 600;
-}
-
-.actions{
-  justify-content: right;
-  padding-top: 10px
 }
 
 .corps {
@@ -26,68 +20,147 @@
   display: inline;
   padding-left: 0px;
 }
-.training_broadcast {
-  border: 1px solid gray;
-  height: 100%;
-  background-color: gray;
+
+i.new {
+  color: red;
 }
 
-.training_requested {
-  border: 1px solid darkslategray;
-  height: 100%;
-  background-color: darkslategray;
+i.training_pending {
+  color: orange;
 }
 
-.training_validated {
-  border: 1px solid greenyellow;
-  height: 100%;
-  background-color: greenyellow;
+i.set {
+  color: blue;
 }
 
-.training_rejected {
-  border: 1px solid darkred;
-  height: 100%;
-  background-color: darkred;
+i.pending {
+  color: yellow;
 }
 
-.training_pending {
-  border: 1px solid yellow;
-  height: 100%;
-  background-color: yellow;
+i.training_completed {
+  color: green;
 }
 
-.training_completed {
-  border: 1px solid green;
-  height: 100%;
-  background-color: green;
+i.training_rejected {
+  color: purple;
 }
 
-.training_uncompleted {
-  border: 1px solid red;
-  height: 100%;
-  background-color: red;
-}
-.btn-act-padding {
-  padding-right: 5px;
+.pushspan {
+  margin-left: 5em;
 }
 
-.mat-raised-button.mat-uncompleted{
-  background-color: red;
-  color: white;
-}
-.mat-raised-button.mat-completed{
-  background-color: green;
-  color: white;
-}
-.mat-raised-button.mat-pending{
-  background-color: orange;
-  color: white;
-}
-.mat-raised-button.mat-rejected{
-  background-color: darkred;
-  color: white;
-}
-.mat-raised-button.mat-validated{
-  background-color: blue;
-  color: white;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//.icon {
+//  position: relative;
+//  font-size: 120px;
+//  top: 5px;
+//  left: 5px;
+//}
+//
+//.title {
+//  font-size: 22px;
+//  //padding-top: 22px;
+//  padding-bottom: 5px;
+//  font-weight: 600;
+//}
+//
+//.actions{
+//  justify-content: right;
+//  padding-top: 10px
+//}
+//
+//.corps {
+//  font-weight: 600;
+//  padding-left: 2px;
+//}
+//
+//.inline {
+//  display: inline;
+//  padding-left: 0px;
+//}
+//i.training_broadcast {
+//  background-color: gray;
+//}
+//
+//i.training_requested {
+//  background-color: darkslategray;
+//}
+//
+//i.training_validated {
+//  background-color: greenyellow;
+//}
+//
+//i.training_rejected {
+//  background-color: darkred;
+//}
+//
+//i.training_pending {
+//  background-color: yellow;
+//}
+//
+//i.training_completed {
+//  background-color: green;
+//}
+//
+//i.training_uncompleted {
+//  background-color: red;
+//}
+//.btn-act-padding {
+//  padding-right: 5px;
+//}
+//
+//.mat-raised-button.mat-uncompleted{
+//  background-color: red;
+//  color: white;
+//}
+//.mat-raised-button.mat-completed{
+//  background-color: green;
+//  color: white;
+//}
+//.mat-raised-button.mat-pending{
+//  background-color: orange;
+//  color: white;
+//}
+//.mat-raised-button.mat-rejected{
+//  background-color: darkred;
+//  color: white;
+//}
+//.mat-raised-button.mat-validated{
+//  background-color: blue;
+//  color: white;
+//}

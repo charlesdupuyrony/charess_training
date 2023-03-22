@@ -402,6 +402,7 @@
           this.capacity = t.capacity;
           this.categories = t.categories || null;
           this.partners = t.partners || null;
+          this.participants = t.participants || null;
           this.cyclic = t.cyclic;
           this.mode = t.mode;
           this.testType = t.testType;
@@ -694,6 +695,16 @@
             return this.http.post("".concat(this.api, "/training/broadcast"), training);
           }
         }, {
+          key: "updateParticipants",
+          value: function updateParticipants(training) {
+            return this.http.post("".concat(this.api, "/training/participants"), training);
+          }
+        }, {
+          key: "status",
+          value: function status(training) {
+            return this.http.post("".concat(this.api, "/training/status"), training);
+          }
+        }, {
           key: "getTrainingsForAPartner",
           value: function getTrainingsForAPartner(partnerId) {
             var _this9 = this;
@@ -712,6 +723,16 @@
           key: "participate",
           value: function participate(partnerTrainingParticipants) {
             return this.http.post("".concat(this.api, "/participant"), partnerTrainingParticipants);
+          }
+        }, {
+          key: "getPersonByIdentifier",
+          value: function getPersonByIdentifier(nif) {
+            return this.http.get("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api, "/user/nif?nif=").concat(nif));
+          }
+        }, {
+          key: "getPersonByEmail",
+          value: function getPersonByEmail(email) {
+            return this.http.get("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.api, "/user/email?email=").concat(email));
           }
         }]);
 

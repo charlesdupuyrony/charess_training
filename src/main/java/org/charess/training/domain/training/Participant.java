@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "participant", uniqueConstraints = @UniqueConstraint(columnNames = {"person", "training", "partner"}))
 public class Participant extends Audit {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person", nullable = false)
     private Person person;
 
@@ -32,6 +32,9 @@ public class Participant extends Audit {
     @Column(name = "logistic", length = 15) //hotel,
     private String logistic;
 
+    @Column(name = "transport", length = 20) //avion, machine
+    private String transport;
+
     public Participant() {
     }
 
@@ -41,6 +44,16 @@ public class Participant extends Audit {
         this.training = training;
         this.partner = partner;
         this.status = Status.PARTICPANT_DECLARED.toString();
+    }
+
+    public Participant(Participant participant, Audit audit){
+        super(audit);
+        this.person = participant.getPerson();
+        this.training = participant.getTraining();
+        this.partner = participant.getPartner();
+        this.status = Status.PARTICPANT_DECLARED.toString();
+        this.logistic = participant.logistic;
+        this.transport = participant.transport;
     }
 
     public Person getPerson() {
@@ -81,5 +94,13 @@ public class Participant extends Audit {
 
     public void setLogistic(String logistic) {
         this.logistic = logistic;
+    }
+
+    public String getTransport() {
+        return transport;
+    }
+
+    public void setTransport(String transport) {
+        this.transport = transport;
     }
 }

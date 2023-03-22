@@ -1,8 +1,10 @@
 package org.charess.training.service.training;
 
 import org.charess.training.domain.security.*;
+import org.charess.training.domain.training.Participant;
 import org.charess.training.domain.training.Training;
 import org.charess.training.domain.training.TrainingPartner;
+import org.charess.training.repository.security.PersonRepository;
 import org.charess.training.repository.security.PlaceRepository;
 import org.charess.training.repository.training.ParticipantRepository;
 import org.charess.training.repository.training.TrainingRepository;
@@ -34,15 +36,17 @@ public class TrainingServiceImpl implements TrainingService {
     private ParticipantRepository participantRepository;
     private PlaceRepository placeRepository;
     private MailService mailService;
+    private PersonRepository personRepository;
 
     @Autowired
     public TrainingServiceImpl(TrainingRepository trainingRepository, UserService userService, ParticipantRepository participantRepository,
-                               PlaceRepository placeRepository, MailService mailService) {
+                               PlaceRepository placeRepository, MailService mailService, PersonRepository personRepository) {
         this.trainingRepository = trainingRepository;
         this.userService = userService;
         this.participantRepository = participantRepository;
         this.placeRepository = placeRepository;
         this.mailService = mailService;
+        this.personRepository = personRepository;
     }
 
     private String formatDatesInterval(LocalDate start, LocalDate end){
@@ -155,6 +159,32 @@ public class TrainingServiceImpl implements TrainingService {
         }
 
         return partnerTrainings;
+    }
+
+    public Training updateParticipants(Training training){
+        Audit audit = new Audit(LocalDateTime.now(), userService.getCurrentUser().getId());
+
+        Training t = trainingRepository.findById(training.getId()).get();
+
+        participantRepository.deleteAllByTraining(t);
+        participantRepository.flush();
+
+        List<Participant> participants = new ArrayList<>();
+        for(Participant p: training.getParticipants()){
+            Person person = personRepository.save(p.getPerson());
+            p.setPerson(person);
+            p.setTraining(training);
+            log.info("=={}==={}===={}========{}===", person, training, p.getPartner(), p.getLogistic());
+            participants.add(new Participant(p, audit));
+        }
+
+        participantRepository.saveAll(participants);
+
+        if(Status.TRAINING_BROADCAST.toString().equals(t.getStatus())){
+            t.setStatus(Status.TRAINING_PENDING.toString());
+            trainingRepository.save(t);
+        }
+        return training;
     }
 }
 

@@ -11,7 +11,7 @@ export class Training {
     capacity: number;
     categories: [{Category}];
     partners?: [{PartnerCategory}];
-    participants?: [{PartnerTrainingParticipants}];
+    participants?: [{Participant}];
     cyclic?: string;
     mode?: string;
     testType?: string;

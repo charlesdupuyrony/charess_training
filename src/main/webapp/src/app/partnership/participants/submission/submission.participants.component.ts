@@ -20,7 +20,6 @@ import {Person} from "../../../core/models/security/person";
     selector: 'app-form',
     templateUrl: './submission.participants.component.html',
     styleUrls: ['./submission.participants.component.scss']
-
 })
 
 export class SubmissionParticipantsComponent implements OnInit {
@@ -40,6 +39,7 @@ export class SubmissionParticipantsComponent implements OnInit {
     constructor(private fb: FormBuilder, private router: Router, private service: TrainingService, private snack: MatSnackBar){
         const state = this.router.getCurrentNavigation().extras.state;
         const trainingPartner = state?state.trainingPartner:JSON.parse(localStorage.getItem("trainingPartner"));
+
         this.partner = trainingPartner.partner;
         this.training = trainingPartner.training;
         this.status = trainingPartner.status;

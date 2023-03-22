@@ -39,7 +39,6 @@ export class InstitutionFormComponent implements OnInit {
         this.title = st?'Edit the current institution':'Create new institution';
         let pl = (st && st.place)?st.place: new Institution({});
         pl.managers = this.fb.array(pl.managers==null?[this.fb.group(new Person({}))]: pl.managers.map(m=>this.fb.group(m)));
-
         if(pl && pl.parent)
             this.parent.setValue(pl.parent);
         if(pl && pl.locationAddress)

@@ -59,6 +59,15 @@
                                     <legend>{{"Manager" | translate}}</legend>
                                     <ng-container formArrayName="managers" *ngFor="let manager of managers.controls; index as i">
                                         <ng-container [formGroupName]="i">
+                                            <!--<div class="col-2">-->
+                                            <!--<mat-form-field class="example-full-width mb-3">-->
+                                            <!--<mat-label>-->
+                                            <!--{{"Identifier" | translate}}-->
+                                            <!--<span *ngIf="isIdentifierDuplicated[i]" class="error">{{msg | translate}}</span>-->
+                                            <!--</mat-label>-->
+                                            <!--<input matInput mask="000-000-000-0" formControlName="identifier" required (blur)="check(i, 'identifier')"/>-->
+                                            <!--</mat-form-field>-->
+                                            <!--</div>-->
                                             <div class="col-4">
                                                 <mat-form-field class="example-full-width mb-4">
                                                     <mat-label>{{"Email"| translate}}<span *ngIf="isEmailDuplicated[i]" class="error">{{msg | translate}}</span></mat-label>

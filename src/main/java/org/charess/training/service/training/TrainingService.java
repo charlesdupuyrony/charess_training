@@ -10,4 +10,5 @@ public interface TrainingService {
     void changeStatus(Integer trainingId, String status);
     List<Training> all();
     List<TrainingPartner> getPartnerTrainings(Integer partnerId);
+    Training updateParticipants(Training training);
 }

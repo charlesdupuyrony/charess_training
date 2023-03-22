@@ -70,6 +70,10 @@ export class TrainingService extends UnsubscribeOnDestroyAdapter {
         return this.http.post(`${this.api}/training/broadcast`, training);
     }
 
+    updateParticipants(training){
+        return this.http.post(`${this.api}/training/participants`, training);
+    }
+
     status(training){
         return this.http.post(`${this.api}/training/status`, training);
     }
