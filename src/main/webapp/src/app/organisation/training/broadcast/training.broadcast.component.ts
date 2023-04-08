@@ -18,6 +18,7 @@ import {InstitutionService} from "../../../configuration/institution/institution
 import {TopicService} from "../../../configuration/topic/topic.service";
 import {TopicFormComponent} from "../../../configuration/topic/form/topic.form.component";
 import {MatDialog} from "@angular/material/dialog";
+import {Person} from "../../../core/models/security/person";
 
 @Component({
     selector: 'app-form',
@@ -50,8 +51,33 @@ export class TrainingBroadcastComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private router: Router, private service: TrainingService, private topicService: TopicService,
                 private placeService: InstitutionService, private snack: MatSnackBar, public dialog: MatDialog){
-        this.fg = this.fb.group(new Training({}),
-            {validator: this.datesValidator('startDate', 'endDate')});
+
+        const st = this.router.getCurrentNavigation().extras.state;
+        let trn = (st && st.training)?st.training: new Training({});
+
+        this.topic.setValue(trn.topic);
+        this.location.setValue(trn.location);
+        this.fg = this.fb.group(trn, {validator: this.datesValidator('startDate', 'endDate')});
+
+
+        // this.partners.setValue(trn.partners);
+        // console.log(trn.partners, "-----------------------------------");
+
+        // this.partners = trn.partners;
+        // this.categories.setValue(trn.categories);
+
+        // this.fg = this.fb.group(new Training({}), {validator: this.datesValidator('startDate', 'endDate')});
+
+        // const st = this.router.getCurrentNavigation().extras.state;
+        // this.title = st?'Edit the current institution':'Create new institution';
+        // let pl = (st && st.place)?st.place: new Institution({});
+        // pl.managers = this.fb.array(pl.managers==null?[this.fb.group(new Person({}))]: pl.managers.map(m=>this.fb.group(m)));
+        // if(pl && pl.parent)
+        //     this.parent.setValue(pl.parent);
+        // if(pl && pl.locationAddress)
+        //     this.locationAddress.setValue(pl.locationAddress);
+        // this.fg = this.fb.group(pl);
+
     }
 
     ngOnInit(){
@@ -153,6 +179,10 @@ export class TrainingBroadcastComponent implements OnInit {
 
     cancel(): void {
         // this.fm.close();
+    }
+
+    goToList() {
+        this.router.navigate(['organisation/training/page']);
     }
 
     add(){

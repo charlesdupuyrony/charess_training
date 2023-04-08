@@ -57,6 +57,7 @@ export class InstitutionFormComponent implements OnInit {
                 return this.placeArray;
             })
         );
+
         this.locations = this.locationAddress.valueChanges.pipe(startWith(''),
             map(value => {
                 if(typeof value==='string' && value.trim().length < 1)

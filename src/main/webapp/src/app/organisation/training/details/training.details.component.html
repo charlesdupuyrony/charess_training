@@ -14,7 +14,7 @@
                     <div class="body">
                         <form [formGroup]="fg" (submit)="submit(fg.value)">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-1" (click)="edit();" style="cursor:pointer;">
                                     <i [ngClass]="['material-icons-two-tone', 'icon', training.status.toLowerCase()]">subject</i>
                                 </div>
                                 <div class="col-11">

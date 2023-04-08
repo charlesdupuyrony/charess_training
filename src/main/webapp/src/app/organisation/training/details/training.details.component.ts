@@ -79,6 +79,11 @@ export class TrainingDetailsComponent implements OnInit {
         });
     }
 
+    edit(){
+        this.router.navigate(['organisation/training/broadcast'], {state: {training: this.training}});
+        // this.router.navigate(['configuration/institution/form'],{state:{place: row}});
+    }
+
     private toast(color, text) {
         this.snack.open(text, '', {
             duration: 2000, verticalPosition: 'top', horizontalPosition: 'right', panelClass: color,
